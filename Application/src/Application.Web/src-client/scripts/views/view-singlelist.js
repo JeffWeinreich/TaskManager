@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 let dummyListObject = {
   sharedWith : "Wendy, Bob",
   listName : "Final Project",
+  currentNavRoute: '',
   tasks : [{
     name: "Set up backend database",
     checkedOff: false,
