@@ -8,6 +8,13 @@ import React from "react";
 // IMPORTS - VIEW CONTROLLER
 import {ViewController} from "./viewController.js";
 
+// STYLES COMPILING FIX
+if(window.location.hostname === 'localhost'){
+    let headEl = document.querySelector('head')
+    let linkEl = document.querySelector('link[href="./css/styles.css"]')
+    headEl.removeChild(linkEl)
+};
+
 // APPROUTER
 const AppRouter = Backbone.router.extend({
 	initialize: function(){

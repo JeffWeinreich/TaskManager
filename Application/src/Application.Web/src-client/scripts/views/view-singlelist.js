@@ -62,8 +62,8 @@ const SingleToDo = React.createClass({
 export const SingleListView = React.createClass({
   _mapOverTask: function(givenListObj){
     let givenTasks = givenListObj.tasks;
-    let mappedTasks = givenTasks.map(function(task){
-      return <SingleToDo taskData={task}/>
+    let mappedTasks = givenTasks.map(function(task, i){
+      return <SingleToDo key={i+Date.now()} taskData={task}/>
     });
     return mappedTasks;
   },
@@ -86,13 +86,13 @@ export const SingleListView = React.createClass({
         <div className="list-container">
           <div className="list-header columns-container">
             <div className="list-header_main-icon">
-              <i class="fa fa-list" aria-hidden="true"></i>
+              <i className="fa fa-list" aria-hidden="true"></i>
             </div>
             <div className="list-header_title">
               <h2>{givenListObj.listName}</h2>
             </div>
             <div className="list-header_delete-icon">
-              <i class="fa fa-times" aria-hidden="true"></i>
+              <i className="fa fa-times" aria-hidden="true"></i>
             </div>
           </div>
           <div className="all-tasks">

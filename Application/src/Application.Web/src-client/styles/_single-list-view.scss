@@ -1,0 +1,36 @@
+// STYLES - SINGLE LIST VIEW
+// INFO BAR
+.info-bar{
+  margin: 8px auto 16px auto;
+  width: 90%;
+}
+
+.info-bar_shared-with, .info-bar_edit-btn{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.info-bar_shared-with{
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+}
+
+.info-bar_edit-btn{
+  position: absolute;
+  right: 0;
+}
+
+.info-bar_edit-btn h4{
+  background-color: $color-primary-2;
+  border: 3px solid $color-primary-1;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  padding: 8px;
+}
+
+// LIST CONTAINER
+.list-header{
+  
+}
