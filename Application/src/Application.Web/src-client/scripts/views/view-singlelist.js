@@ -9,37 +9,38 @@ import ReactDOM from "react-dom";
 let dummyListObject = {
   sharedWith : "Wendy, Bob",
   listName : "Final Project",
-  tasks : {dummyTask1,dummyTask2,dummyTask3,dummyTask4}
+  tasks : [{
+    name: "Set up backend database",
+    checkedOff: false,
+    important: true,
+    completedBy: "",
+    dateDone: ""
+  },
+  {
+    name: "Finish wireframe mockups",
+    checkedOff: false,
+    important: false,
+    completedBy: "",
+    dateDone: ""
+  },
+  {
+    name: "Schedule daily stand-ups",
+    checkedOff: false,
+    important: false,
+    completedBy: "",
+    dateDone: ""
+  },
+  {
+    name: "Refill Nerf guns",
+    checkedOff: true,
+    important: false,
+    completedBy: "Wendy",
+    dateDone: "Wednesday"
+  }]
 };
 
-let dummyTask1 = {
-  name: "Set up backend database",
-  checkedOff: false,
-  important: true,
-  completedBy: "",
-  dateDone: ""
-};
-let dummyTask2 = {
-  name: "Finish wireframe mockups",
-  checkedOff: false,
-  important: false,
-  completedBy: "",
-  dateDone: ""
-};
-let dummyTask3 = {
-  name: "Schedule daily stand-ups",
-  checkedOff: false,
-  important: false,
-  completedBy: "",
-  dateDone: ""
-};
-let dummyTask4 = {
-  name: "Refill Nerf guns",
-  checkedOff: true,
-  important: false,
-  completedBy: "Wendy",
-  dateDone: "Wednesday"
-};
+
+console.log(dummyListObject);
 
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
@@ -58,15 +59,15 @@ const SingleToDo = React.createClass({
 
 // REACT COMPONENT - SINGLE LIST
 export const SingleListView = React.createClass({
-  _mapOverTask: function(dummyListObject){
-    let givenTasks = dummyListObject.tasks;
+  _mapOverTask: function(givenListObj){
+    let givenTasks = givenListObj.tasks;
     let mappedTasks = givenTasks.map(function(task){
       return <SingleToDo taskData={task}/>
     });
     return mappedTasks;
   },
   render: function(){
-    let givenListObj = dummyListObject;
+    let givenListObj = this.props.listData;
     return (
       <div className="view-singlelist">
         <div className="page-header">
@@ -94,10 +95,13 @@ export const SingleListView = React.createClass({
             </div>
           </div>
           <div className="all-tasks">
-            {this._mapOverTask(dummyListObject)}
+            {this._mapOverTask(givenListObj)}
           </div>
         </div>
       </div>
     )
   }
 });
+
+// TEST RENDERING
+// ReactDOM.render(<SingleListView listData={dummyListObject}/>, document.querySelector("#app-container"))
