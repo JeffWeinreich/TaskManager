@@ -104,4 +104,5 @@ export const SingleListView = React.createClass({
 });
 
 // TEST RENDERING
+console.log("This is a test, babeh.");
 // ReactDOM.render(<SingleListView listData={dummyListObject}/>, document.querySelector("#app-container"))
