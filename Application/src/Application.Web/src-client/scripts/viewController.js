@@ -18,23 +18,10 @@ export const ViewController = React.createClass({
 		return storeObject
 	},
 
-	componentDidMount: function(){
-		let component = this;
-
-	   STORE.onStoreChange(function(){
-			let newStoreObj = STORE.getStoreData()
-			component.setState(newStoreObj)
-		})
-
-		ACTIONS.fetchCurrentUser()
-
-	},
-
 	render: function(){
 
 		let componentToRender
 
-// ***Haven't set up the currentNavRoute yet***
 		switch(this.state.currentNavRoute){
 			case "HOME":
 				componentToRender = <WelcomeView {...this.state}/>
