@@ -10,7 +10,7 @@ namespace Application.Web.Migrations
         {
             migrationBuilder.CreateTable(
                 name: "Users", 
-                columns: table => new
+                columns: table => new 
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
