@@ -91,7 +91,7 @@ namespace Application.Web.Controllers.API
             return NoContent();
         }
         [HttpPost]
-        [Route("~/api/lists/{listsId}/fishes")]
+        [Route("~/api/lists/{listsId}/todos")]
 
         public async Task<IActionResult> PostTodo(int listId, [FromBody] Todo todo)
         {
