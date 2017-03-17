@@ -5,44 +5,6 @@ import Backbone from "backbone";
 import React from "react";
 import ReactDOM from "react-dom";
 
-// DUMMY DATA
-let dummyListObject = {
-  sharedWith : "Wendy, Bob",
-  listName : "Final Project",
-  currentNavRoute: '',
-  tasks : [{
-    name: "Set up backend database",
-    checkedOff: false,
-    important: true,
-    completedBy: "",
-    dateDone: ""
-  },
-  {
-    name: "Finish wireframe mockups",
-    checkedOff: false,
-    important: false,
-    completedBy: "",
-    dateDone: ""
-  },
-  {
-    name: "Schedule daily stand-ups",
-    checkedOff: false,
-    important: false,
-    completedBy: "",
-    dateDone: ""
-  },
-  {
-    name: "Refill Nerf guns",
-    checkedOff: true,
-    important: false,
-    completedBy: "Wendy",
-    dateDone: "Wednesday"
-  }]
-};
-
-
-console.log(dummyListObject);
-
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
   render: function(){
