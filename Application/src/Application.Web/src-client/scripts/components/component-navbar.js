@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 export const Navbar = React.createClass({
+  
   render: function(){
    return (
     <div className="nav-top columns-container">
