@@ -43,10 +43,10 @@ export const ViewController = React.createClass({
 				componentToRender = <LoginView {...this.state}/>
 				break;
  			case "REGISTER":
-				componentToRender = <RegistrationView {...this.state}  />
+				componentToRender = <RegistrationView {...this.state}/>
 				break;
       case "ALL_LISTS":
-				componentToRender = <MultiListView {...this.state} />
+				componentToRender = <MultiListView {...this.state}/>
 				break;
       case "SINGLE_LIST":
         componentToRender = <SingleListView {...this.state}/>
@@ -62,7 +62,7 @@ export const ViewController = React.createClass({
 
 		return (
 			<div>
-				<Navbar { ...this.state }/>
+				<Navbar {...this.state }/>
 				{componentToRender}
 			</div>
 		)
