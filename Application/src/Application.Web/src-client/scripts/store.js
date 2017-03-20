@@ -12,7 +12,7 @@ export const STORE = {
 			throw new Error('Cannot set property that does not exist on STORE._data')
 		}
 
-		this._data[storeProp] = payload
+		this._data[storeProp] = propLoad
 
 		if(typeof this._callMeLaterPls === 'function'){
 			this._callMeLaterPls()

@@ -8,7 +8,7 @@ import {ACTIONS} from './actions.js'
 import {ViewController} from "./viewController.js";
 
 // APPROUTER
-const AppRouter = Backbone.Router.extend({
+export const AppRouter = Backbone.Router.extend({
 	initialize: function(){
 		Backbone.history.start()
 	},
