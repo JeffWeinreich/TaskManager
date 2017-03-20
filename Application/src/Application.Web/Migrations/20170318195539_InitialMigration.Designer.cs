@@ -8,7 +8,7 @@ using Application.Web.Data;
 namespace Application.Web.Migrations
 {
     [DbContext(typeof(OrganizerContext))]
-    [Migration("20170317133638_InitialMigration")]
+    [Migration("20170318195539_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,11 +91,15 @@ namespace Application.Web.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("OwnerId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("Todo");
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Todos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -218,6 +222,10 @@ namespace Application.Web.Migrations
                         .WithMany("Todos")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Application.Web.Data.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

@@ -62,7 +62,7 @@ namespace Application.Web.Controllers.API
                 return BadRequest(ModelState);
 
             }
-            if(id != todo.Id)
+            if (id != todo.Id)
             {
                 return BadRequest();
 
@@ -76,7 +76,7 @@ namespace Application.Web.Controllers.API
                 await _context.SaveChangesAsync();
             }
 
-            catch(DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException)
             {
                 if (!TodoExists(id))
                 {
@@ -91,11 +91,11 @@ namespace Application.Web.Controllers.API
             return NoContent();
         }
         [HttpPost]
-        [Route("~/api/lists/{listsId}/todos")]
-
+        [Route("~/api/lists/{listId}/todos")]
         public async Task<IActionResult> PostTodo(int listId, [FromBody] Todo todo)
         {
             var list = _context.Lists.FirstOrDefault(q => q.Id == listId);
+
 
             if (!ModelState.IsValid)
             {
@@ -103,10 +103,10 @@ namespace Application.Web.Controllers.API
 
             }
 
-            //todo.List = await _userManager.GetUserAsync(User);
+            todo.Owner = await _userManager.GetUserAsync(User);
             todo.List = list;
 
-            _context.Lists.Add(todo.List);
+            _context.Todos.Add(todo);
 
             try
             {
@@ -125,7 +125,7 @@ namespace Application.Web.Controllers.API
             }
             return CreatedAtAction("GetTodo", new { id = todo.Id }, todo);
         }
-        
+
 
         private bool TodoExists(int id)
         {

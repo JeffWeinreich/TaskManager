@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace Application.Web.Data
 {
-     public class OrganizerContext : IdentityDbContext<ApplicationUser>
+    public class OrganizerContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<List> Lists { get; set; }
-
+        public DbSet<Todo> Todos { get; set; }
         public OrganizerContext() : base()
         {
 
         }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,7 +25,7 @@ namespace Application.Web.Data
 
 
         protected override void OnModelCreating(ModelBuilder builder)
-        {
+        {           
             base.OnModelCreating(builder);
 
             builder.Entity<ApplicationUser>()

@@ -90,11 +90,15 @@ namespace Application.Web.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("OwnerId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("Todo");
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Todos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -217,6 +221,10 @@ namespace Application.Web.Migrations
                         .WithMany("Todos")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Application.Web.Data.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

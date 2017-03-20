@@ -102,13 +102,15 @@ namespace Application.Web.Controllers.API
             }
 
             list.Owner = await _userManager.GetUserAsync(User);
+
             _context.Lists.Add(list);
+            var TimeStamp = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetList", new { id = list.Id, list });
         }
         [HttpDelete]
-        [Route("~/api/tanks/{id}")]
+        [Route("~/api/lists/{id}")]
 
         public async Task<IActionResult> DeleteList(int id)
         {

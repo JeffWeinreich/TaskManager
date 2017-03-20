@@ -9,8 +9,8 @@ namespace Application.Web.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users", 
-                columns: table => new 
+                name: "Users",
+                columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
@@ -168,23 +168,30 @@ namespace Application.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Todo",
+                name: "Todos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ListId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    OwnerId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Todo", x => x.Id);
+                    table.PrimaryKey("PK_Todos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Todo_Lists_ListId",
+                        name: "FK_Todos_Lists_ListId",
                         column: x => x.ListId,
                         principalTable: "Lists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Todos_Users_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -204,9 +211,14 @@ namespace Application.Web.Migrations
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Todo_ListId",
-                table: "Todo",
+                name: "IX_Todos_ListId",
+                table: "Todos",
                 column: "ListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Todos_OwnerId",
+                table: "Todos",
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -238,7 +250,7 @@ namespace Application.Web.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Todo");
+                name: "Todos");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");
