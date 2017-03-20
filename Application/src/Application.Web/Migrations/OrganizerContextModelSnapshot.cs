@@ -70,9 +70,12 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("OwnerId");
+
+                    b.Property<DateTime>("TimeStamp");
 
                     b.HasKey("Id");
 
@@ -88,7 +91,8 @@ namespace Application.Web.Migrations
 
                     b.Property<int>("ListId");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("OwnerId");
 

@@ -67,8 +67,9 @@ namespace Application.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true),
-                    OwnerId = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    OwnerId = table.Column<string>(nullable: true),
+                    TimeStamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -174,7 +175,7 @@ namespace Application.Web.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ListId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     OwnerId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

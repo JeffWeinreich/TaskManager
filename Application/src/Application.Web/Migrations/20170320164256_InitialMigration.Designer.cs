@@ -8,7 +8,7 @@ using Application.Web.Data;
 namespace Application.Web.Migrations
 {
     [DbContext(typeof(OrganizerContext))]
-    [Migration("20170318195539_InitialMigration")]
+    [Migration("20170320164256_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,9 +71,12 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("OwnerId");
+
+                    b.Property<DateTime>("TimeStamp");
 
                     b.HasKey("Id");
 
@@ -89,7 +92,8 @@ namespace Application.Web.Migrations
 
                     b.Property<int>("ListId");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("OwnerId");
 

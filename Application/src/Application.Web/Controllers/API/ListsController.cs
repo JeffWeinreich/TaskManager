@@ -102,9 +102,9 @@ namespace Application.Web.Controllers.API
             }
 
             list.Owner = await _userManager.GetUserAsync(User);
-
+            list.TimeStamp = DateTime.UtcNow;
             _context.Lists.Add(list);
-            var TimeStamp = DateTime.UtcNow;
+
 
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetList", new { id = list.Id, list });
