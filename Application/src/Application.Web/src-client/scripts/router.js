@@ -23,7 +23,7 @@ const AppRouter = Backbone.Router.extend({
 		"lists/:id/edit" : "routeToListEditing"
 	},
 
-	routeToHome: function(){
+	routeToWelcome: function(){
 		ACTIONS.setView("HOME");
 	},
   routeToLogin: function(){
@@ -32,7 +32,7 @@ const AppRouter = Backbone.Router.extend({
 	routeToRegistration: function(){
 		ACTIONS.setView("REGISTER");
 	},
-	routeToAllListss: function(){
+	routeToAllLists: function(){
 		ACTIONS.setView("ALL_LISTS");
 	},
 	routeToSingleList: function(){
@@ -41,7 +41,7 @@ const AppRouter = Backbone.Router.extend({
 	routeToListCreation: function(){
 		ACTIONS.setView("CREATE_LIST")
 	},
-	showEditListForm: function(){
+	routeToListEditing: function(){
 		ACTIONS.setView("EDIT_LIST")
 	}
 })
