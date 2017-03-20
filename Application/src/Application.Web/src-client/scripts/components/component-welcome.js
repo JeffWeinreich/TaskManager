@@ -10,7 +10,7 @@ export const WelcomeComponent = React.createClass({
 	      <div className="page-header">
 	        <div className="page-header_block">
 	          <h1>TaskMaster</h1>
-	          <h2>The convenient way to share todo lists</h2>
+	          <h2>The convenient way to share to-do lists!</h2>
 	        </div>
 	      </div>
 	      <div className="promo-blurb">
@@ -19,7 +19,7 @@ export const WelcomeComponent = React.createClass({
 	          <p>With TaskMaster you can:</p>
 	            <ul>
 	              <li>Mark tasks as important</li>
-	              <li> a due date a task</li>
+	              <li>Set a due date a task</li>
 	              <li>Share task lists others!</li>
 	            </ul>
 	        </div>
