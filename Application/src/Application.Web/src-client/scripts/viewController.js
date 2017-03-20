@@ -2,6 +2,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+// IMPORTS - APPROUTER
+import {AppRouter} from "./router.js";
+
+// IMPORTS - DATA FLOW
+import {ACTIONS} from "./actions.js";
+import {STORE} from "./store.js";
+
 // IMPORTS - COMPONENTS
 import {Navbar} from './components/component-navbar.js';
 
@@ -12,18 +19,28 @@ import {RegistrationView} from "./views/view-registration.js";
 import {SingleListView} from "./views/view-singlelist.js";
 
 export const ViewController = React.createClass({
+
   getInitialState: function(){
-		ACTIONS.changeCurrentNav(this.props.fromRoute, window.location.hash)
-		let storeObject = STORE.getStoreData()
-		return storeObject
+		let stateObj = STORE.getStoreData();
+    return stateObj;
 	},
 
+  componentWillMount: function(){
+    let vcComponent = this;
+    STORE.onStoreChange(function(){
+      let newStoreState = STORE.getStoreData();
+      vcComponent.setState(newStoreState);
+    })
+    let router = new AppRouter();
+  },
+
 	render: function(){
+    let currentView = this.state.currentView;
+		let componentToRender;
 
-		let componentToRender
-
-		switch(this.state.currentNavRoute){
+		switch(currentView){
 			case "HOME":
+        console.log("currentView: HOME");
 				componentToRender = <WelcomeView {...this.state}/>
 				break;
 			case "LOGIN":
@@ -49,7 +66,7 @@ export const ViewController = React.createClass({
 
 		return (
 			<div>
-				<Navbar {...this.state }/>
+				<Navbar {...this.state}/>
 				{componentToRender}
 			</div>
 		)
