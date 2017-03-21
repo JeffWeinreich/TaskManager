@@ -9,8 +9,10 @@ import ReactDOM from "react-dom";
 const SingleToDo = React.createClass({
   render: function(){
     let givenTaskObj = this.props.taskData;
+    let completeClassName = 'incomplete'
+    if(this.props.taskData.isComplete){ completeClassName = 'completed' }
     return (
-      <div className="todo-singleview columns-container">
+      <div className={`todo-singleview columns-container ${completeClassName}`}>
         <div className="todo_checkbox"><input type="checkbox"/></div>
         <div className="todo_name"><h2>{givenTaskObj.name}</h2></div>
         <div className="todo_important"></div>
