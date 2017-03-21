@@ -2,6 +2,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+// IMPORTS - JQUERY
+import $ from "jquery";
+
 // IMPORTS - APPROUTER
 import {AppRouter} from "./router.js";
 
@@ -26,6 +29,9 @@ export const ViewController = React.createClass({
 	},
 
   componentWillMount: function(){
+    $.getJSON("https://api.myjson.com/bins/16czsj").then(function(serverRes){
+      ACTIONS.setAPIData(serverRes);
+    })
     let vcComponent = this;
     STORE.onStoreChange(function(){
       let newStoreState = STORE.getStoreData();
@@ -53,7 +59,7 @@ export const ViewController = React.createClass({
 				componentToRender = <MultiListView {...this.state}/>
 				break;
       case "SINGLE_LIST":
-        componentToRender = <SingleListView {...this.state}/>
+        componentToRender = <SingleListView listData={this.state.dummyData[0]}/>
         break;
       case "CREATE_LIST":
         componentToRender = <CreateListView {...this.state}/>

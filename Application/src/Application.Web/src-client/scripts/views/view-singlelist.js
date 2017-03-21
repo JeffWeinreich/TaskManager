@@ -26,12 +26,19 @@ const SingleToDo = React.createClass({
 export const SingleListView = React.createClass({
   _mapOverTask: function(givenListObj){
     let givenTasks = givenListObj.tasks;
+    if (typeof givenTasks === 'undefined' ) givenTasks = []
     let mappedTasks = givenTasks.map(function(task, i){
       return <SingleToDo key={i+Date.now()} taskData={task}/>
     });
     return mappedTasks;
   },
   render: function(){
+    if(this.props.listData === undefined){
+      return(
+        <div></div>
+      )
+    };
+    console.log(this.props, 'single comp props')
     let givenListObj = this.props.listData;
     return (
       <div className="view-singlelist">
