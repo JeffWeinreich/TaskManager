@@ -17,10 +17,10 @@ const SingleToDo = React.createClass({
       completionInfo = (
         <div className="todo_completed"><p>{givenTaskObj.completedBy} - {givenTaskObj.dateDone}</p></div>
       )
-    }
+    };
     if(this.props.taskData.important === true){
-      let importantInfo = (<div className="todo_important"><h2>!</h2></div>)
-    }
+      importantInfo = (<div className="todo_important"><i className="icon-attention"></i></div>)
+    };
     return (
       <div className={`todo-singleview columns-container ${completeClassName}`}>
         <div className="todo_checkbox"><input type="checkbox"/></div>
@@ -66,13 +66,13 @@ export const SingleListView = React.createClass({
         <div className="list-container">
           <div className="list-header columns-container">
             <div className="list-header_main-icon">
-              <i className="fa fa-list" aria-hidden="true"></i>
+              <i className="icon-list"></i>
             </div>
             <div className="list-header_title">
               <h2>{givenListObj.listName}</h2>
             </div>
             <div className="list-header_delete-icon">
-              <i className="fa fa-times" aria-hidden="true"></i>
+              <i className="icon-x"></i>
             </div>
           </div>
           <div className="all-tasks">
