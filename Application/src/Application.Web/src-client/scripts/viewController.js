@@ -13,7 +13,7 @@ import {ACTIONS} from "./actions.js";
 import {STORE} from "./store.js";
 
 // IMPORTS - COMPONENTS
-import {Navbar} from './components/component-navbar.js';
+import {NavbarAnon, NavbarAuth} from './components/component-navbar.js';
 
 // IMPORTS - VIEWS
 import {WelcomeView} from "./views/view-welcome.js";
@@ -72,7 +72,7 @@ export const ViewController = React.createClass({
 
 		return (
 			<div>
-				<Navbar {...this.state}/>
+				<NavbarAnon {...this.state}/>
 				{componentToRender}
 			</div>
 		)

@@ -10,5 +10,13 @@ export const ACTIONS = {
 	},
 	setAPIData: function(results){
 		STORE.setStore("dummyData",results)
-	}
+	},
+	routeTo: function(path){
+	window.location.hash = path
+},
+logUserOut: function(){
+UserModel.logOut().then(function(){
+	STORE.setStore('currentUser', {})
+})
+},
 }

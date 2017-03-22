@@ -2,6 +2,7 @@ export const STORE = {
 	_data: {
     currentView: '',
 		dummyData: [],
+		currentUser: {}
 	},
 
 	getStoreData: function(){
@@ -9,7 +10,7 @@ export const STORE = {
 	},
 
   setStore: function(storeProp, propLoad){
-		if (typeof this._data[storeProp] === 'undefined' ) {
+		if (typeof this._data[storeProp] === 'undefined' ){
 			throw new Error('Cannot set property that does not exist on STORE._data')
 		}
 
