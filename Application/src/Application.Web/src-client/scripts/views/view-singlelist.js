@@ -83,6 +83,3 @@ export const SingleListView = React.createClass({
     )
   }
 });
-
-// TEST RENDERING
-// ReactDOM.render(<SingleListView listData={dummyListObject}/>, document.querySelector("#app-container"))

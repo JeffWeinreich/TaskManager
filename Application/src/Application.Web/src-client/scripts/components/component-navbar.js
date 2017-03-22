@@ -23,7 +23,7 @@ export const NavbarAnon = React.createClass({
 
 	render: function(){
 		return <div className="nav-top nav-anon columns-container">
-				<div className="nav-top_menu-button" onClick={this._handleNavClick} data-route="HOME"><i class="fa fa-bars" aria-hidden="true"></i></div>
+				<div className="nav-top_menu-button" onClick={this._handleNavClick} data-route="HOME"><i className="icon-menu"></i></div>
         <div className="nav-top_right-buttons columns-container">
 				<div className="right-buttons_sign-up" onClick={this._handleNavClick} data-route="REGISTER">Sign Up</div>
 				<div className="right-buttons_log-in" onClick={this._handleNavClick} data-route="LOGIN">Login</div>

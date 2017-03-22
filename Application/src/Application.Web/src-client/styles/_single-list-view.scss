@@ -37,8 +37,13 @@
   margin: 16px;
 }
 
+// LIST HEADER
 .list-header{
+  width: 100%;
+}
 
+.list-header *{
+  display: inline-block;
 }
 
 // TASKS/TO-DO'S
