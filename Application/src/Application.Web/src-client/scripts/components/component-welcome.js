@@ -7,8 +7,8 @@ export const WelcomeComponent = React.createClass({
 	render: function(){
 		return (
 			<div className="component-welcome">
-	      <div className="page-header">
-	        <div className="page-header_block">
+	      <div className="welcome-header">
+	        <div className="welcome-header_block">
 	          <h1>TaskMaster</h1>
 	          <h2>The convenient way to share to-do lists!</h2>
 	        </div>
