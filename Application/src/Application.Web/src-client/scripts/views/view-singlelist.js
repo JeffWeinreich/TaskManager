@@ -9,14 +9,24 @@ import ReactDOM from "react-dom";
 const SingleToDo = React.createClass({
   render: function(){
     let givenTaskObj = this.props.taskData;
-    let completeClassName = 'incomplete'
-    if(this.props.taskData.isComplete){ completeClassName = 'completed' }
+    let completionInfo = "";
+    let importantInfo = "";
+    let completeClassName = 'task-notdone'
+    if(this.props.taskData.checkedOff){
+      completeClassName = 'task-done'
+      completionInfo = (
+        <div className="todo_completed"><p>{givenTaskObj.completedBy} - {givenTaskObj.dateDone}</p></div>
+      )
+    }
+    if(this.props.taskData.important === true){
+      let importantInfo = (<div className="todo_important"><h2>!</h2></div>)
+    }
     return (
       <div className={`todo-singleview columns-container ${completeClassName}`}>
         <div className="todo_checkbox"><input type="checkbox"/></div>
         <div className="todo_name"><h2>{givenTaskObj.name}</h2></div>
-        <div className="todo_important"></div>
-        <div className="todo_completed">{givenTaskObj.completedBy} - {givenTaskObj.done}</div>
+        {importantInfo}
+        {completionInfo}
       </div>
     )
   }
@@ -38,7 +48,6 @@ export const SingleListView = React.createClass({
         <div></div>
       )
     };
-    console.log(this.props, 'single comp props')
     let givenListObj = this.props.listData;
     return (
       <div className="view-singlelist">

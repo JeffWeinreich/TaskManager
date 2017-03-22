@@ -32,8 +32,44 @@
 }
 
 // LIST CONTAINER
+.list-container *{
+  font-family: "Roboto", sans-serif;
+  margin: 16px;
+}
+
 .list-header{
 
 }
 
-//
+// TASKS/TO-DO'S
+.todo-singleview *{
+  display: inline-block;
+}
+
+.todo_checkbox, .todo_name, .todo_important{
+  margin: 0;
+}
+
+.todo_completed{
+  display: block;
+  margin-top: 0;
+  text-align: right;
+}
+
+.task-done{
+  background-color: $color-secondary-2-1;
+}
+
+.task-done .todo_name h2{
+  color: #777;
+  text-decoration: line-through;
+}
+
+.todo_important h2{
+  color: #FF0000;
+  font-size: initial;
+}
+
+.task-done .todo_completed p{
+  font-family: "Ubuntu", sans-serif;
+}
