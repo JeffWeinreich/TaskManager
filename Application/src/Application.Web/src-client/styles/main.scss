@@ -12,9 +12,9 @@
 @import "./welcome";
 
 // STYLES - UNIVERSAL
-#app-container, body{
-	margin: 0;
-}
+#app-container{margin-top: 72px}
+
+body{margin: 0;}
 
 * {box-sizing: border-box;
 }
