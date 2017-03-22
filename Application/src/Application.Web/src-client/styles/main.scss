@@ -4,8 +4,12 @@
 // IMPORTS - COMPONENTS
 @import "./page-header";
 
+// IMPORTS - NAVBAR
+@import "./navbar";
+
 // IMPORTS - VIEW STYLES
 @import "./single-list-view";
+@import "./welcome";
 
 // STYLES - UNIVERSAL
 * {box-sizing: border-box;
