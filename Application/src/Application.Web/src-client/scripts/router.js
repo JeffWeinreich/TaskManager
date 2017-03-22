@@ -22,7 +22,7 @@ export const AppRouter = Backbone.Router.extend({
 		"lists/single" : "routeToSingleList",
 		"lists/create" : "routeToListCreation",
 		// "lists/:id/edit" : "routeToListEditing"
-		"lists/edite" : "routeToListEditing"
+		"lists/edit" : "routeToListEditing"
 	},
 
 	routeToWelcome: function(){
