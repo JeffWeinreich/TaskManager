@@ -20,7 +20,7 @@ export const LoginComponent = React.createClass({
 							</div>
 							<div className="password-container columns-container">
 								<h3>Password</h3>
-								<input type="text" className="form-control" name="passwordField"/>
+								<input type="password" className="form-control" name="passwordField"/>
 							</div>
 							<button className="btn-submit-form btn-login">Submit</button>
 						</div>

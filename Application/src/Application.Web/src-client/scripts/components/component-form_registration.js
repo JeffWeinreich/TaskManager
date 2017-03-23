@@ -18,7 +18,7 @@ export const RegistrationComponent = React.createClass({
 						<h3>Username</h3>
 						<input type="text" className="form-control" name="usernameField"/>
 						<h3>Password</h3>
-						<input type="text" className="form-control" name="passwordField"/>
+						<input type="password" className="form-control" name="passwordField"/>
 					</div>
 					<div className="reg-right-container column-container">
 						<h3>Email</h3>
