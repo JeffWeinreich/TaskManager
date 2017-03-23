@@ -9,5 +9,7 @@ namespace Application.Web.Data
     public class ApplicationUser : IdentityUser
     {
         public List<List> Lists { get; set; }
+
+
     }
 }

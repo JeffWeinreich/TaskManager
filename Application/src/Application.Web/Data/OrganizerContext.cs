@@ -9,8 +9,8 @@ namespace Application.Web.Data
 {
     public class OrganizerContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<List> Lists { get; set; }
-        public DbSet<Todo> Todos { get; set; }
+        public DbSet<List> Lists { get; set; }    
+        public DbSet<Permission> Permissions { get; set; }        
         public OrganizerContext() : base()
         {
 

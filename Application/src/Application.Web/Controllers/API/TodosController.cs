@@ -26,32 +26,6 @@ namespace Application.Web.Controllers.API
             _context = context;
         }
 
-        //[HttpGet]
-        //[Route("~/api/lists")]
-        //public IEnumerable<List> GetList()
-        //{
-        //    var userId = _userManager.GetUserId(User);
-        //    return _context.Lists.Where(q => q.Owner.Id == userId).ToList();
-        //}
-
-        //[HttpGet]
-        //[Route("~/api/lists/{listsId}/todos/{todosId}")]
-        //public async Task<IActionResult> GetSingleTodo(int listId, int todosId)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var userId = _userManager.GetUserId(User);
-        //    var todo = await _context.Lists
-        //        .FirstOrDefaultAsync(q => q.Id == todosId);
-
-        //    if (todo = null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(todo);
-        //}
 
         [HttpPut]
         [Route("~/api/todos/{id}")]
@@ -61,14 +35,9 @@ namespace Application.Web.Controllers.API
             {
                 return BadRequest(ModelState);
 
-            }
-            if (id != todo.Id)
-            {
-                return BadRequest();
+            }          
 
-            }
-
-            //todo.List = await _userManager.GetUserAsync();
+            var userId = await _userManager.GetUserAsync(User);
             _context.Entry(todo).State = EntityState.Modified;
 
             try
@@ -94,8 +63,6 @@ namespace Application.Web.Controllers.API
         [Route("~/api/lists/{listId}/todos")]
         public async Task<IActionResult> PostTodo(int listId, [FromBody] Todo todo)
         {
-            var list = _context.Lists.FirstOrDefault(q => q.Id == listId);
-
 
             if (!ModelState.IsValid)
             {
@@ -103,27 +70,32 @@ namespace Application.Web.Controllers.API
 
             }
 
-            todo.Owner = await _userManager.GetUserAsync(User);
+            var list = _context.Lists.FirstOrDefault(p => p.Id == listId);
+            
+            todo.ListId = listId;
             todo.List = list;
+            
+            list.Todos.Add(todo);
 
-            _context.Todos.Add(todo);
+                
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TodoExists(todo.Id))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return CreatedAtAction("GetTodo", new { id = todo.Id }, todo);
+           await _context.SaveChangesAsync();
+        //    try
+        //    {
+        //        await 
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (TodoExists(todo.Id))
+        //        {
+        //            return new StatusCodeResult(StatusCodes.Status409Conflict);
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+           return CreatedAtAction("GetTodo", new { id = todo.Id }, todo);
         }
 
 

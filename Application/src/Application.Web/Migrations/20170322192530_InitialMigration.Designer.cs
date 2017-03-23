@@ -8,7 +8,7 @@ using Application.Web.Data;
 namespace Application.Web.Migrations
 {
     [DbContext(typeof(OrganizerContext))]
-    [Migration("20170320164256_InitialMigration")]
+    [Migration("20170322192530_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,18 +71,36 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<string>("Name")
                         .IsRequired();
-
-                    b.Property<string>("OwnerId");
 
                     b.Property<DateTime>("TimeStamp");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Lists");
+                });
+
+            modelBuilder.Entity("Application.Web.Data.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ListId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ListId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Permissions");
                 });
 
             modelBuilder.Entity("Application.Web.Data.Todo", b =>
@@ -95,15 +113,11 @@ namespace Application.Web.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<string>("OwnerId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ListId");
 
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Todos");
+                    b.ToTable("Todo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -215,9 +229,20 @@ namespace Application.Web.Migrations
 
             modelBuilder.Entity("Application.Web.Data.List", b =>
                 {
-                    b.HasOne("Application.Web.Data.ApplicationUser", "Owner")
+                    b.HasOne("Application.Web.Data.ApplicationUser")
                         .WithMany("Lists")
-                        .HasForeignKey("OwnerId");
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Application.Web.Data.Permission", b =>
+                {
+                    b.HasOne("Application.Web.Data.List", "List")
+                        .WithMany("Permissions")
+                        .HasForeignKey("ListId");
+
+                    b.HasOne("Application.Web.Data.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Application.Web.Data.Todo", b =>
@@ -226,10 +251,6 @@ namespace Application.Web.Migrations
                         .WithMany("Todos")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Application.Web.Data.ApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

@@ -67,16 +67,16 @@ namespace Application.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
-                    OwnerId = table.Column<string>(nullable: true),
                     TimeStamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Lists", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Lists_Users_OwnerId",
-                        column: x => x.OwnerId,
+                        name: "FK_Lists_Users_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -169,30 +169,49 @@ namespace Application.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Todos",
+                name: "Permissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ListId = table.Column<int>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Permissions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Permissions_Lists_ListId",
+                        column: x => x.ListId,
+                        principalTable: "Lists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Permissions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Todo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ListId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    OwnerId = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Todos", x => x.Id);
+                    table.PrimaryKey("PK_Todo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Todos_Lists_ListId",
+                        name: "FK_Todo_Lists_ListId",
                         column: x => x.ListId,
                         principalTable: "Lists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Todos_Users_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -207,19 +226,24 @@ namespace Application.Web.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lists_OwnerId",
+                name: "IX_Lists_ApplicationUserId",
                 table: "Lists",
-                column: "OwnerId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Todos_ListId",
-                table: "Todos",
+                name: "IX_Permissions_ListId",
+                table: "Permissions",
                 column: "ListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Todos_OwnerId",
-                table: "Todos",
-                column: "OwnerId");
+                name: "IX_Permissions_UserId",
+                table: "Permissions",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Todo_ListId",
+                table: "Todo",
+                column: "ListId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -251,7 +275,10 @@ namespace Application.Web.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Todos");
+                name: "Permissions");
+
+            migrationBuilder.DropTable(
+                name: "Todo");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");

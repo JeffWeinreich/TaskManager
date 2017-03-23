@@ -12,12 +12,13 @@ namespace Application.Web.Data
         [Required]
         public string Name { get; set; }     
         public virtual List<Todo> Todos { get; set; }
-        public ApplicationUser Owner { get; set; }
+        public virtual List<Permission> Permissions { get; set; }
         public DateTime TimeStamp { get; set; }
+        
 
         public List()
         {
-            var Todos = new List<Todo>();
+             Todos = new List<Todo>();
         }
     }
 }

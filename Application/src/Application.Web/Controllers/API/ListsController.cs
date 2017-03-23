@@ -30,8 +30,10 @@ namespace Application.Web.Controllers.API
         [Route("~/api/lists")]
         public IEnumerable<List> GetList()
         {
+
             var userId = _userManager.GetUserId(User);
-            return _context.Lists.Where(q => q.Owner.Id == userId).ToList();
+            var lists = _context.Permissions.Where(p => p.User.Id == userId).Select(p=>p.List);
+            return lists;
         }
 
         [HttpGet]
@@ -44,9 +46,13 @@ namespace Application.Web.Controllers.API
             }
 
             var userId = _userManager.GetUserId(User);
+            var lists = _context.Permissions.Where(p => p.User.Id == userId);
+                
             List list = await _context.Lists
-                .SingleOrDefaultAsync(p => p.Id == id);
-
+                .Where(p => p.Name == userId)
+                .Include(p =>p.Todos)
+                .FirstOrDefaultAsync(p=>p. Id == id);
+        
             if (list == null)
             {
                 return NotFound();
@@ -57,18 +63,18 @@ namespace Application.Web.Controllers.API
         }
 
         [HttpPut]
-        [Route("~/api/lits/{id}")]
+        [Route("~/api/lists/{id}")]
         public async Task<IActionResult> PutList(int id, [FromBody] List list)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (id != list.Id)
-            {
-                return BadRequest();
-            }
-            list.Owner = await _userManager.GetUserAsync(User);
+
+            var userId =  _userManager.GetUserId(User);
+
+            var lists = _context.Permissions.Where(p => p.User.Id == userId);
+                        
             _context.Entry(list).State = EntityState.Modified;
 
             try
@@ -93,15 +99,16 @@ namespace Application.Web.Controllers.API
         }
 
         [HttpPost]
-        [Route("~/api/list")]
-        public async Task<IActionResult> PostList(int id, [FromBody]List list)
+        [Route("~/api/lists")]
+        public async Task<IActionResult> PostList([FromBody]List list)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            list.Owner = await _userManager.GetUserAsync(User);
+            var userId = _userManager.GetUserId(User);
+            var lists = _context.Permissions.Where(p => p.User.Id == userId);
             list.TimeStamp = DateTime.UtcNow;
             _context.Lists.Add(list);
 
@@ -111,7 +118,6 @@ namespace Application.Web.Controllers.API
         }
         [HttpDelete]
         [Route("~/api/lists/{id}")]
-
         public async Task<IActionResult> DeleteList(int id)
         {
             if (!ModelState.IsValid)
@@ -120,9 +126,11 @@ namespace Application.Web.Controllers.API
             }
             var userId = _userManager.GetUserId(User);
 
+            var lists = _context.Permissions.Where(p => p.User.Id == userId);
+
             List list = await _context.Lists
-                .Where(q => q.Owner.Id == userId)
-                .SingleOrDefaultAsync(h => h.Id == id);
+                .Where(q => q.Name == userId)
+                .FirstOrDefaultAsync(h => h.Id == id);
 
             if (list == null)
             {

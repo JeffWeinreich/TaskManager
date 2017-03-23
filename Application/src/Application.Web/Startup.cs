@@ -50,7 +50,7 @@ namespace Application.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -76,27 +76,26 @@ namespace Application.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var context = app.ApplicationServices.GetRequiredService<OrganizerContext>();
-            var userManger = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
+            //var context = app.ApplicationServices.GetRequiredService<OrganizerContext>();
+            //var userManger = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
 
-            var user = await userManger.FindByEmailAsync("a@b.com");
+            //var user = await userManger.FindByEmailAsync("a@b.com");
 
-            if (user == null)
-            {
-                user = new ApplicationUser();
-                user.Email = "a@b.com";
-                user.UserName = "Steve";
-                await userManger.CreateAsync(user, "testtest1");
-                var list = new List() { Name = "Shopping" };
-                list.Owner = user;
-                var todo = new Todo() { Name = "Food" };
-                todo.Owner = user;
-                todo.List = list;
-                context.Lists.Add(list);
-                context.Todos.Add(todo);
-                context.SaveChanges();
+            //if (user == null)
+            //{
+            //    user = new ApplicationUser();
+            //    user.Email = "a@b.com";
+            //    user.UserName = "Steve";
+            //    await userManger.CreateAsync(user, "testtest1");
+            //    var list = new List() { Name = "Shopping" };
+            //    //list.Permissions = list.Permissions;
+            //    var todo = new Todo() { Name = "Food" };
+            //    todo.List = list;
+            //    context.Lists.Add(list);
+            //    context.Lists.Add(todo.List);
+            //    context.SaveChanges();
 
-            }
+            //}
 
 
         }
