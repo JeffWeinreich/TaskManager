@@ -1,0 +1,60 @@
+/* Styles - Navbar Top */
+.nav-top{
+  background-color: $color-primary-3;
+  font-family: "Robot", sans-serif;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 72px;
+}
+
+.nav-top_menu-button{
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 48px;
+  margin-left: 8px;
+  padding: 8px;
+  vertical-align: top;
+}
+
+.nav-top_right-buttons{
+  display: inline-block;
+  margin-right: 8px;
+  position: absolute;
+  right: 8px;
+  top: 16px;
+  vertical-align: top;
+}
+
+.right-buttons_sign-up,
+.right-buttons_log-in{
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .5);
+  color: #FFF;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 16px;
+  padding: 12px;
+  vertical-align: top;
+}
+
+.right-buttons_log-in{
+  margin-left: 8px;
+}
+
+.right-buttons_sign-up:hover{
+	color: $color-primary-2;
+  background-color: #FFF;
+	cursor: pointer;
+}
+
+.right-buttons_log-in:hover{
+	color: $color-primary-2;
+  background-color: #FFF;
+	cursor: pointer;
+}
+
+.nav-top_menu-button:hover{
+  cursor: pointer;
+}

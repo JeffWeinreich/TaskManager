@@ -1,0 +1,40 @@
+.welcome-header{
+  width: 100%;
+}
+
+.welcome-header_block{
+text-align: center;
+}
+
+.welcome-header_block h1{
+  font-family: "Ubuntu", sans-serif;;
+}
+
+.welcome-header_block h2{
+  font-family: "Roboto", sans-serif;
+}
+
+/* Styles - Promo Blurb */
+.promo-blurb{
+  background-image: url("https://unsplash.it/200/300?image=4");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 60vh;
+}
+
+.promo-blurb_block{
+  background-color: rgba(206, 209, 222, .8);
+  font-family: "Roboto", sans-serif;
+  min-height: 60vh;
+  padding: 24px;
+}
+
+.promo-blurb_block h3{
+  font-size: 28px;
+  text-align: center;
+}
+
+.promo-blurb_block p{
+  font-size: 20px;
+}

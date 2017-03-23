@@ -1,20 +1,28 @@
-// IMPORTS - BACKBONE
-import Backbone from "backbone";
-
 // IMPORTS - REACT
 import React from "react";
-import ReactDOM from "react-dom";
 
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
   render: function(){
     let givenTaskObj = this.props.taskData;
+    let completionInfo = "";
+    let importantInfo = "";
+    let completeClassName = 'task-notdone'
+    if(this.props.taskData.checkedOff){
+      completeClassName = 'task-done'
+      completionInfo = (
+        <div className="todo_completed"><p>{givenTaskObj.completedBy} - {givenTaskObj.dateDone}</p></div>
+      )
+    };
+    if(this.props.taskData.important === true){
+      importantInfo = (<div className="todo_important"><i className="icon-attention"></i></div>)
+    };
     return (
-      <div className="todo-singleview columns-container">
+      <div className={`todo-singleview columns-container ${completeClassName}`}>
         <div className="todo_checkbox"><input type="checkbox"/></div>
         <div className="todo_name"><h2>{givenTaskObj.name}</h2></div>
-        <div className="todo_important"></div>
-        <div className="todo_completed">{givenTaskObj.completedBy} - {givenTaskObj.done}</div>
+        {importantInfo}
+        {completionInfo}
       </div>
     )
   }
@@ -24,12 +32,18 @@ const SingleToDo = React.createClass({
 export const SingleListView = React.createClass({
   _mapOverTask: function(givenListObj){
     let givenTasks = givenListObj.tasks;
+    if (typeof givenTasks === 'undefined' ) givenTasks = []
     let mappedTasks = givenTasks.map(function(task, i){
       return <SingleToDo key={i+Date.now()} taskData={task}/>
     });
     return mappedTasks;
   },
   render: function(){
+    if(this.props.listData === undefined){
+      return(
+        <div></div>
+      )
+    };
     let givenListObj = this.props.listData;
     return (
       <div className="view-singlelist">
@@ -48,13 +62,13 @@ export const SingleListView = React.createClass({
         <div className="list-container">
           <div className="list-header columns-container">
             <div className="list-header_main-icon">
-              <i className="fa fa-list" aria-hidden="true"></i>
+              <i className="icon-list"></i>
             </div>
             <div className="list-header_title">
               <h2>{givenListObj.listName}</h2>
             </div>
             <div className="list-header_delete-icon">
-              <i className="fa fa-times" aria-hidden="true"></i>
+              <i className="icon-x"></i>
             </div>
           </div>
           <div className="all-tasks">
@@ -65,6 +79,3 @@ export const SingleListView = React.createClass({
     )
   }
 });
-
-// TEST RENDERING
-// ReactDOM.render(<SingleListView listData={dummyListObject}/>, document.querySelector("#app-container"))
