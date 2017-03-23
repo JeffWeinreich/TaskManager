@@ -16,7 +16,12 @@ export const CreateListView = React.createClass({
       additionalTaskRows: copyOfTaskRows
     })
   },
+  _handleFormSubmit: function(){
 
+  },
+  _handleCreateCancel: function(){
+
+  },
   render: function(){
     let additionalTaskRows;
     return (
@@ -42,10 +47,10 @@ export const CreateListView = React.createClass({
             </div>
           </div>
           <div className="create-form_buttons columns-container">
-            <div className="create-form_submit">
+            <div className="create-form_submit" onClick={this._handleFormSubmit}>
               <h2>Submit</h2>
             </div>
-            <div className="create-form_cancel">
+            <div className="create-form_cancel" onClick={this._handleCreateCancel}>
               <h2>Cancel</h2>
             </div>
           </div>
