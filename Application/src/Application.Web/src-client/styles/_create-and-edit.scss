@@ -1,0 +1,51 @@
+// STYLES - CREATE LIST AND EDIT LIST
+
+// CREATE-FORM
+.create-form{
+  margin: 16px;
+}
+
+.create-form *{
+  font-family: "Roboto", sans-serif;
+}
+
+.create-form_list-name h2{
+  margin-bottom: 8px;
+}
+
+.create-form_tasks h2{
+  margin-bottom: 8px;
+}
+
+.create-form_tasks-block{
+  border: 2px solid #CCCCCC;
+  max-height: 40vh;
+  overflow-y: scroll;
+}
+
+// TASK ROWS
+.task-row *{
+  display: inline-block;
+}
+
+.task-row{
+  border-bottom: 2px solid #CCCCCC;
+  padding: 8px;
+}
+
+// BUTTONS
+.create-form_buttons{
+  text-align: center;
+}
+
+.create-form_buttons *{
+    display: inline-block;
+}
+
+.create-form_submit{
+  margin-right: 8px;
+}
+
+.create-form_cancel{
+  margin-left: 8px;
+}

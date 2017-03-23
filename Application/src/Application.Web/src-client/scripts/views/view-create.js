@@ -6,19 +6,17 @@ import ReactDOM from "react-dom";
 export const CreateListView = React.createClass({
   getInitialState: function(){
     return {
-      additionalTaskRowCount: 1,
-      additionalTaskRows: ""
+      additionalTaskRows: []
     }
   },
   _handleAddRowClick: function(){
+    let copyOfTaskRows = this.state.additionalTaskRows.map(function makeCopy(val){return val});
+    copyOfTaskRows.push(<TaskFormRow key={Date.now()}/>);
     this.setState({
-      additionalTaskRowCount: this.state.additionalTaskRowCount + 1
+      additionalTaskRows: copyOfTaskRows
     })
-    console.log(this.state.additionalTaskRowCount);
-    for (var i; i<this.state.additionalTaskRowCount;i++){
-      this.state.additionalTaskRows = <TaskFormRow/>
-    }
   },
+
   render: function(){
     let additionalTaskRows;
     return (
@@ -43,6 +41,14 @@ export const CreateListView = React.createClass({
               </div>
             </div>
           </div>
+          <div className="create-form_buttons columns-container">
+            <div className="create-form_submit">
+              <h2>Submit</h2>
+            </div>
+            <div className="create-form_cancel">
+              <h2>Cancel</h2>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -52,7 +58,7 @@ export const CreateListView = React.createClass({
 const TaskFormRow = React.createClass({
   render: function(){
     return (
-      <div className="task-row columns-container" key={Date.now()}>
+      <div className="task-row columns-container">
         <div className="task-row_name">
           <input type="text"></input>
         </div>
@@ -60,11 +66,11 @@ const TaskFormRow = React.createClass({
           <input type="checkbox"></input>
           Important?
         </div>
-        <div className="task-row_date-due">
+    {/* <div className="task-row_date-due">
           <i className="icon-calendar"></i>
           <input type="date"></input>
           Date Due
-        </div>
+        </div> */}
       </div>
     )
   }

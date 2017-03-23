@@ -1,6 +1,5 @@
 // IMPORTS - REACT
 import React from "react";
-import ReactDOM from "react-dom";
 
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
