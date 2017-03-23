@@ -21,6 +21,7 @@ import {LoginView} from "./views/view-login.js";
 import {RegistrationView} from "./views/view-registration.js";
 import {SingleListView} from "./views/view-singlelist.js";
 import {CreateListView} from "./views/view-create.js";
+// import {EditListView} from "./views/view-edit.js";
 
 export const ViewController = React.createClass({
 
@@ -57,7 +58,7 @@ export const ViewController = React.createClass({
 				componentToRender = <RegistrationView {...this.state}/>
 				break;
       case "ALL_LISTS":
-				componentToRender = <MultiListView {...this.state}/>
+				componentToRender = <MultiListView listData={this.state.dummyData}/>
 				break;
       case "SINGLE_LIST":
         componentToRender = <SingleListView listData={this.state.dummyData[0]}/>
@@ -66,7 +67,7 @@ export const ViewController = React.createClass({
         componentToRender = <CreateListView {...this.state}/>
         break;
       case "EDIT_LIST":
-        componentToRender = <EditListView {...this.state}/>
+        componentToRender = <EditListView listData={this.state.dummyData[1]}/>
         break;
  			default:
 		}
