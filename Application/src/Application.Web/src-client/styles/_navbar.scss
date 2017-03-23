@@ -1,6 +1,6 @@
 /* Styles - Navbar Top */
 .nav-top{
-  background-color: #446CB6;
+  background-color: $color-primary-3;
   margin: 0;
   position: fixed;
   top: 0;
@@ -29,7 +29,7 @@
 .right-buttons_sign-up,
 .right-buttons_log-in{
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, .6);
+  background-color: rgba(255, 255, 255, .5);
   color: #FFF;
   display: inline-block;
   font-size: 20px;
@@ -43,13 +43,13 @@
 }
 
 .right-buttons_sign-up:hover{
-	color: #446CB6;
+	color: $color-primary-2;
   background-color: #FFF;
 	cursor: pointer;
 }
 
 .right-buttons_log-in:hover{
-	color: #446CB6;
+	color: $color-primary-2;
   background-color: #FFF;
 	cursor: pointer;
 }

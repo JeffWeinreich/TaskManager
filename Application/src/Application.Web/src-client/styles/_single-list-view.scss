@@ -32,14 +32,19 @@
 }
 
 // LIST CONTAINER
+.list-container{
+  margin: 16px;
+}
+
 .list-container *{
   font-family: "Roboto", sans-serif;
-  margin: 16px;
 }
 
 // LIST HEADER
 .list-header{
-  background-color: $color-primary-1;
+  background-color: $color-primary-2;
+  border: 4px solid $color-primary-1;
+  color: #FFF;
   width: 100%;
 }
 
@@ -50,6 +55,12 @@
 // TASKS/TO-DO'S
 .todo-singleview *{
   display: inline-block;
+}
+
+.todo-singleview{
+  border-bottom: 2px solid #CCCCCC;
+  border-left: 2px solid #CCCCCC;
+  border-right: 2px solid #CCCCCC;
 }
 
 .todo_checkbox, .todo_name, .todo_important{
