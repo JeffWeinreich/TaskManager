@@ -3,7 +3,7 @@ import $ from 'jquery'
 
 export const UserModel = Backbone.Model.extend({
 	initialize: function(){
-		
+
 	},
 	urlRoot: '/api/users',
 	idAttribute: '_id'
@@ -18,7 +18,7 @@ UserModel.logIn =  function(username, password){
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		url: '/auth/login'
+		url: '/api/accounts/login'
 	})
 }
 
@@ -32,7 +32,7 @@ UserModel.register =  function(dataObj){
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		url: '/auth/register'
+		url: '/api/accounts/register'
 	})
 }
 
@@ -50,6 +50,6 @@ UserModel.logOut =  function(){
 	console.log('logging in!')
 	return $.ajax({
 		method: 'GET',
-		url: '/auth/logout'
+		url: '/api/logout'
 	})
 }

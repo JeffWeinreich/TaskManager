@@ -1,5 +1,5 @@
 .page-header {
-  margin: 32px;
+  margin: 16px;
   text-align: center; }
 
 .page-header h1 {
@@ -9,8 +9,61 @@
 
 .page-header h2 {
   font-family: "Robot", sans-serif;
-  font-size: 24px;
-  margin: 8px; }
+  font-size: 32px;
+  margin: 16px; }
+
+/* Styles - Navbar Top */
+.nav-top {
+  background-color: #103D91;
+  font-family: "Robot", sans-serif;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 72px; }
+
+.nav-top_menu-button {
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 48px;
+  margin-left: 8px;
+  padding: 8px;
+  vertical-align: top; }
+
+.nav-top_right-buttons {
+  display: inline-block;
+  margin-right: 8px;
+  position: absolute;
+  right: 8px;
+  top: 16px;
+  vertical-align: top; }
+
+.right-buttons_sign-up,
+.right-buttons_log-in {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #FFF;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 16px;
+  padding: 12px;
+  vertical-align: top; }
+
+.right-buttons_log-in {
+  margin-left: 8px; }
+
+.right-buttons_sign-up:hover {
+  color: #446CB6;
+  background-color: #FFF;
+  cursor: pointer; }
+
+.right-buttons_log-in:hover {
+  color: #446CB6;
+  background-color: #FFF;
+  cursor: pointer; }
+
+.nav-top_menu-button:hover {
+  cursor: pointer; }
 
 .info-bar {
   margin: 8px auto 16px auto;
@@ -36,6 +89,126 @@
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   padding: 8px; }
+
+.list-container {
+  margin: 16px; }
+
+.list-container * {
+  font-family: "Roboto", sans-serif; }
+
+.list-header {
+  background-color: #446CB6;
+  border: 4px solid #698CCB;
+  color: #FFF;
+  width: 100%; }
+
+.list-header * {
+  display: inline-block; }
+
+.todo-singleview * {
+  display: inline-block; }
+
+.todo-singleview {
+  border-bottom: 2px solid #CCCCCC;
+  border-left: 2px solid #CCCCCC;
+  border-right: 2px solid #CCCCCC; }
+
+.todo_checkbox, .todo_name, .todo_important {
+  margin: 0; }
+
+.todo_completed {
+  display: block;
+  margin-top: 0;
+  text-align: right; }
+
+.task-done {
+  background-color: #5FCBA8; }
+
+.task-done .todo_name h2 {
+  color: #777;
+  text-decoration: line-through; }
+
+.todo_important {
+  color: #FF0000;
+  font-size: 24px; }
+
+.task-done .todo_completed p {
+  font-family: "Ubuntu", sans-serif; }
+
+.welcome-header {
+  width: 100%; }
+
+.welcome-header_block {
+  text-align: center; }
+
+.welcome-header_block h1 {
+  font-family: "Ubuntu", sans-serif; }
+
+.welcome-header_block h2 {
+  font-family: "Roboto", sans-serif; }
+
+/* Styles - Promo Blurb */
+.promo-blurb {
+  background-image: url("https://unsplash.it/200/300?image=4");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 60vh; }
+
+.promo-blurb_block {
+  background-color: rgba(206, 209, 222, 0.8);
+  font-family: "Roboto", sans-serif;
+  min-height: 60vh;
+  padding: 24px; }
+
+.promo-blurb_block h3 {
+  font-size: 28px;
+  text-align: center; }
+
+.promo-blurb_block p {
+  font-size: 20px; }
+
+.create-form {
+  margin: 16px; }
+
+.create-form * {
+  font-family: "Roboto", sans-serif; }
+
+.create-form_list-name h2 {
+  margin-bottom: 8px; }
+
+.create-form_tasks h2 {
+  margin-bottom: 8px; }
+
+.create-form_tasks-block {
+  border: 2px solid #CCCCCC;
+  max-height: 35vh;
+  overflow-y: scroll; }
+
+.task-row * {
+  display: inline-block; }
+
+.task-row {
+  border-bottom: 2px solid #CCCCCC;
+  padding: 8px; }
+
+.create-form_buttons {
+  text-align: center; }
+
+.create-form_buttons * {
+  display: inline-block; }
+
+.create-form_submit {
+  margin-right: 8px; }
+
+.create-form_cancel {
+  margin-left: 8px; }
+
+#app-container {
+  margin-top: 84px; }
+
+body {
+  margin: 0; }
 
 * {
   box-sizing: border-box; }
