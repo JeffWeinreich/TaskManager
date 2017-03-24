@@ -12,7 +12,6 @@ namespace Application.Web.Data
         [Required]
         public string Name { get; set; }     
         public virtual List<Todo> Todos { get; set; }
-        public virtual List<Permission> Permissions { get; set; }
         public DateTime TimeStamp { get; set; }
         
 

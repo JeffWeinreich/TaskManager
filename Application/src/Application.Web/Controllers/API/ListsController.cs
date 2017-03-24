@@ -126,12 +126,15 @@ namespace Application.Web.Controllers.API
             }
             var userId = _userManager.GetUserId(User);
 
-            var lists = _context.Permissions.Where(p => p.User.Id == userId);
+            //var lists = _context.Permissions.Where(q => q.User == userId);
 
             List list = await _context.Lists
-                .Where(q => q.Name == userId)
                 .FirstOrDefaultAsync(h => h.Id == id);
-
+            foreach(var todo in list.Todos)
+            {
+                list.Todos.Remove(todo);
+            }
+           
             if (list == null)
             {
                 return NotFound();

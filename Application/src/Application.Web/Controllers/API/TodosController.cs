@@ -37,7 +37,9 @@ namespace Application.Web.Controllers.API
 
             }          
 
-            var userId = await _userManager.GetUserAsync(User);
+            //var userId = await _userManager.GetUserAsync(User);
+            var list = _context.Lists.FirstOrDefaultAsync(p => p.Id == todo.Id);
+
             _context.Entry(todo).State = EntityState.Modified;
 
             try
@@ -59,8 +61,8 @@ namespace Application.Web.Controllers.API
             }
             return NoContent();
         }
-        [HttpPost]
-        [Route("~/api/lists/{listId}/todos")]
+       
+        [HttpPost("~/api/lists/{listId}/todos")]
         public async Task<IActionResult> PostTodo(int listId, [FromBody] Todo todo)
         {
 
@@ -72,8 +74,9 @@ namespace Application.Web.Controllers.API
 
             var list = _context.Lists.FirstOrDefault(p => p.Id == listId);
             
-            todo.ListId = listId;
-            todo.List = list;
+            //todo.ListId = listId;
+            //todo.List = list;
+
             
             list.Todos.Add(todo);
 
@@ -95,7 +98,7 @@ namespace Application.Web.Controllers.API
         //            throw;
         //        }
         //    }
-           return CreatedAtAction("GetTodo", new { id = todo.Id }, todo);
+           return Ok (todo);
         }
 
 
