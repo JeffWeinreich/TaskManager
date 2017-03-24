@@ -31,7 +31,7 @@ export const ViewController = React.createClass({
 	},
 
   componentWillMount: function(){
-    $.getJSON("https://api.myjson.com/bins/16czsj").then(function(serverRes){
+    $.getJSON("http://localhost:5000/api/").then(function(serverRes){
       ACTIONS.setAPIData(serverRes);
     })
     let vcComponent = this;
@@ -48,6 +48,7 @@ export const ViewController = React.createClass({
 
 		switch(currentView){
 			case "HOME":
+        console.log("currentView: HOME");
 				componentToRender = <WelcomeView {...this.state}/>
 				break;
 			case "LOGIN":
