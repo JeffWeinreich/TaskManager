@@ -48,7 +48,6 @@ export const ViewController = React.createClass({
 
 		switch(currentView){
 			case "HOME":
-        console.log("currentView: HOME");
 				componentToRender = <WelcomeView {...this.state}/>
 				break;
 			case "LOGIN":

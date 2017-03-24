@@ -19,8 +19,13 @@
 
 .create-form_tasks-block{
   border: 2px solid #CCCCCC;
-  max-height: 35vh;
+  max-height: 30vh;
   overflow-y: scroll;
+}
+
+.create-form_tasks-add{
+  font-family: "Ubuntu", sans-serif;
+  margin: 8px;
 }
 
 // TASK ROWS
@@ -39,7 +44,7 @@
 }
 
 .create-form_buttons *{
-    display: inline-block;
+  display: inline-block;
 }
 
 .create-form_submit{
