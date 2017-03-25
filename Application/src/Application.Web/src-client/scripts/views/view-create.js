@@ -6,7 +6,9 @@ import ReactDOM from "react-dom";
 export const CreateListView = React.createClass({
   getInitialState: function(){
     return {
-      tasksToAdd: [{taskName: "", isImportant: false}]
+      tasksToAdd: [{taskName: "", isImportant: false}],
+      errorMessageListName : "",
+      errorMessageTaskName : ""
     }
   },
   _handleAddRowClick: function(){
@@ -41,13 +43,41 @@ export const CreateListView = React.createClass({
     })
   },
   _handleFormSubmit: function(){
-    let listObjForSubmission = {
-      listName: document.querySelector(".create-form_list-name input").value,
-      sharedWith: document.querySelector(".create-form_sharing input").value,
-      tasks: this.state.tasksToAdd
+    console.log("--SUBMIT--");
+    let submittedListName = document.querySelector(".create-form_list-name input").value;
+    let submittedSharedUsers = document.querySelector(".create-form_sharing input").value;
+    console.log(this.state.tasksToAdd[0]);
+    let errorJSXListName = (
+      <div className="create-form_error-message error_listname">
+        <p>The list name can't be blank.</p>
+      </div>
+    );
+    let errorJSXTaskName = (
+      <div className="create-form_error-message error_taskname">
+        <p>Please add at least one task.</p>
+      </div>
+    )
+    if (submittedListName === "" && this.state.tasksToAdd[0].taskName === ""){
+      this.setState({
+        errorMessageListName: errorJSXListName,
+        errorMessageTaskName: errorJSXTaskName
+      })
+    } else if (this.state.tasksToAdd[0].taskName === ""){
+      this.setState({
+        errorMessageTaskName : errorJSXTaskName
+      })
+    } else if (submittedListName === "") {
+      this.setState({
+        errorMessageListName : errorJSXListName
+      })
+    } else {
+      let listObjForSubmission = {
+        listName: submittedListName,
+        sharedWith: submittedSharedUsers,
+        tasks: this.state.tasksToAdd
+      };
+      console.log(listObjForSubmission);
     };
-    console.log(listObjForSubmission);
-    
   },
 
   _handleCreateCancel: function(){
@@ -66,9 +96,11 @@ export const CreateListView = React.createClass({
           <div className="create-form_list-name">
             <h2>List Name</h2>
             <input type="text"/>
+            {this.state.errorMessageListName}
           </div>
           <div className="create-form_tasks">
             <h2>Tasks</h2>
+            {this.state.errorMessageTaskName}
             <div ref="taskBlock" className="create-form_tasks-block">
               {this._renderTasksToAdd(this.state.tasksToAdd)}
               <div className="create-form_tasks-add" onClick={this._handleAddRowClick}>
