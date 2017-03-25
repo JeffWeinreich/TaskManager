@@ -19,7 +19,7 @@
 
 .create-form_tasks-block{
   border: 2px solid #CCCCCC;
-  max-height: 30vh;
+  max-height: 34vh;
   overflow-y: scroll;
 }
 
@@ -47,10 +47,31 @@
   display: inline-block;
 }
 
+.create-form_buttons h2{
+  margin: 0;
+}
+
 .create-form_submit{
+  background-color: $color-primary-0;
+  border: 3px solid $color-primary-1;
+  border-radius: 8px;
+  color: #FFF;
   margin-right: 8px;
+  padding: 8px;
 }
 
 .create-form_cancel{
+  background-color: #b0b0b0;
+  border: 3px solid #CCC;
+  border-radius: 8px;
+  color: #717171;
   margin-left: 8px;
+  padding: 8px;
+}
+
+
+// VALIDATION & ERROR MESSAGES
+.create-form_error-message {
+  color: #FF0000;
+  display: inline-block;
 }

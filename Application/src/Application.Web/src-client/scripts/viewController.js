@@ -14,6 +14,7 @@ import {STORE} from "./store.js";
 
 // IMPORTS - COMPONENTS
 import {NavbarAnon, NavbarAuth} from './components/component-navbar.js';
+import {FooterComponent} from "./components/component-footer.js";
 
 // IMPORTS - VIEWS
 import {WelcomeView} from "./views/view-welcome.js";
@@ -31,10 +32,11 @@ export const ViewController = React.createClass({
 	},
 
   componentWillMount: function(){
-    $.getJSON("http://localhost:5000/api/").then(function(serverRes){
+    let vcComponent = this;
+    $.getJSON('http://localhost:5000/api/accounts/').then(function(serverRes){
+      // console.log(serverRes)
       ACTIONS.setAPIData(serverRes);
     })
-    let vcComponent = this;
     STORE.onStoreChange(function(){
       let newStoreState = STORE.getStoreData();
       vcComponent.setState(newStoreState);
@@ -48,7 +50,6 @@ export const ViewController = React.createClass({
 
 		switch(currentView){
 			case "HOME":
-        console.log("currentView: HOME");
 				componentToRender = <WelcomeView {...this.state}/>
 				break;
 			case "LOGIN":
@@ -76,6 +77,7 @@ export const ViewController = React.createClass({
 			<div>
 				<NavbarAnon {...this.state}/>
 				{componentToRender}
+        <FooterComponent/>
 			</div>
 		)
 	}
