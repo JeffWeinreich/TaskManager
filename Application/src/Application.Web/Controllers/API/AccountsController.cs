@@ -24,11 +24,11 @@ namespace Application.Web.Controllers.API
             SignInManager = signinmanager;
         }
 
-        [Route("~/accounts/login")]
-        public IActionResult Login()
+        [HttpGet]
+        [Route("~/api/accounts/login")]
+        public IActionResult GetLogin()
         {
-            return View();
-
+            return Ok(new { IsAuthenticated = User.Identity.IsAuthenticated, Name = User.Identity.Name });
         }
 
         [HttpPost]
@@ -46,12 +46,6 @@ namespace Application.Web.Controllers.API
             {
                 return BadRequest();
             }
-        }
-
-        [Route("~/accounts/register")]
-        public IActionResult Register()
-        {
-            return View();
         }
 
         [HttpPost]
