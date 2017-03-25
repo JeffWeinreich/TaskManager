@@ -22,8 +22,6 @@ namespace Application.Web.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-
-
         protected override void OnModelCreating(ModelBuilder builder)
         {           
             base.OnModelCreating(builder);

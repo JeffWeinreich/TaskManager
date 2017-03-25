@@ -7,14 +7,14 @@ using Application.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Application.Web.Controllers.API
 {
     [Produces("application/json")]
-    //[Authorize]
-
+    [Authorize]
     public class TodosController : Controller
     {
         private readonly OrganizerContext _context;
@@ -25,7 +25,6 @@ namespace Application.Web.Controllers.API
             _userManager = userManager;
             _context = context;
         }
-
 
         [HttpPut]
         [Route("~/api/todos/{id}")]
@@ -69,38 +68,16 @@ namespace Application.Web.Controllers.API
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-
             }
 
             var list = _context.Lists.FirstOrDefault(p => p.Id == listId);
-            
-            //todo.ListId = listId;
-            //todo.List = list;
-
-            
+                      
             list.Todos.Add(todo);
 
-                
-
            await _context.SaveChangesAsync();
-        //    try
-        //    {
-        //        await 
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (TodoExists(todo.Id))
-        //        {
-        //            return new StatusCodeResult(StatusCodes.Status409Conflict);
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+        
            return Ok (todo);
         }
-
 
         private bool TodoExists(int id)
         {

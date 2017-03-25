@@ -8,9 +8,7 @@ namespace Application.Web.Data
     public class Permission
     {
         public int Id { get; set; }
-
         public List List { get; set; }
-
         public ApplicationUser User { get; set; }
 
     }

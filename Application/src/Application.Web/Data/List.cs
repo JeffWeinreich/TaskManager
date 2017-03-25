@@ -13,8 +13,7 @@ namespace Application.Web.Data
         public string Name { get; set; }     
         public virtual List<Todo> Todos { get; set; }
         public DateTime TimeStamp { get; set; }
-        
-
+ 
         public List()
         {
              Todos = new List<Todo>();

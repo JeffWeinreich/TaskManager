@@ -25,14 +25,13 @@ namespace Application.Web.Controllers.API
             _context = context;
         }
 
-
         [HttpGet]
         [Route("~/api/lists")]
         public IEnumerable<List> GetList()
         {
 
             var userId = _userManager.GetUserId(User);
-            var lists = _context.Permissions.Where(p => p.User.Id == userId).Select(p=>p.List);
+            var lists = _context.Permissions.Where(p => p.User.Id == userId).Select(p => p.List);
             return lists;
         }
 
@@ -47,19 +46,18 @@ namespace Application.Web.Controllers.API
 
             var userId = _userManager.GetUserId(User);
             var lists = _context.Permissions.Where(p => p.User.Id == userId);
-                
+
             List list = await _context.Lists
                 .Where(p => p.Name == userId)
-                .Include(p =>p.Todos)
-                .FirstOrDefaultAsync(p=>p. Id == id);
-        
+                .Include(p => p.Todos)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (list == null)
             {
                 return NotFound();
             }
 
             return Ok(list);
-
         }
 
         [HttpPut]
@@ -71,29 +69,31 @@ namespace Application.Web.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var userId =  _userManager.GetUserId(User);
+            var userId = _userManager.GetUserId(User);
 
-            var lists = _context.Permissions.Where(p => p.User.Id == userId);
-                        
+            var lists = _context.Permissions.Where(p => p.List == list)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             _context.Entry(list).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
+            await _context.SaveChangesAsync();
+            //try
+            //{
+            //    
+            //}
 
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ListExists(id))
-                {
-                    return NotFound();
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!ListExists(id))
+            //    {
+            //        return NotFound();
 
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
             return NoContent();
 
         }
@@ -130,11 +130,11 @@ namespace Application.Web.Controllers.API
 
             List list = await _context.Lists
                 .FirstOrDefaultAsync(h => h.Id == id);
-            foreach(var todo in list.Todos)
+            foreach (var todo in list.Todos)
             {
                 list.Todos.Remove(todo);
             }
-           
+
             if (list == null)
             {
                 return NotFound();

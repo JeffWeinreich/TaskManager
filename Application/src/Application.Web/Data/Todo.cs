@@ -8,15 +8,8 @@ namespace Application.Web.Data
 {
     public class Todo
     {
-
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-
-        //public ApplicationUser Owner { get; set; }
-
-        
-
-
     }
 }
