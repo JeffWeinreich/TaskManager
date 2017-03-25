@@ -6,47 +6,50 @@ import ReactDOM from "react-dom";
 export const CreateListView = React.createClass({
   getInitialState: function(){
     return {
-      additionalTaskRows: [],
-      rowCount: 1
+      tasksToAdd: [{taskName: "", isImportant: false}]
     }
   },
   _handleAddRowClick: function(){
-    let copyOfTaskRows = this.state.additionalTaskRows.map(function makeCopy(val){return val});
-    copyOfTaskRows.push(<TaskFormRow key={this.state.rowCount}/>);
+    let component = this
+    let copyOfTaskRows = this.state.tasksToAdd.map(function makeCopy(val){return val});
+    copyOfTaskRows.push({taskName: "", isImportant: false});
     this.setState({
-      additionalTaskRows: copyOfTaskRows,
-      rowCount: this.state.rowCount + 1
+      tasksToAdd: copyOfTaskRows
+    })
+  },
+  _renderTasksToAdd: function(arrOfTasks){
+    let component = this
+    return arrOfTasks.map(function(singleTask, i){
+
+      return(
+        <TaskFormRow key={i} i={i} handleInputChange={component._handleInputChange}/>
+      )
+    })
+
+  },
+
+  _handleInputChange: function(val, type, index){
+    let updatedTasks = this.state.tasksToAdd.map(function(taskObj,i){
+      let newObj = taskObj
+      if(i === index){
+        newObj[type] = val
+      }
+      return newObj
+    })
+    this.setState({
+      tasksToAdd: updatedTasks
     })
   },
   _handleFormSubmit: function(){
-    console.log("--SUBMIT--");
-    // 1 - collect all input data
-    // 2 - collate data into list object
-    var forEach = function(arr, func){
-    for(var i = 0 ; i < arr.length; i++){
-        func(arr[i], i, arr)
-        }
-    };
-    
-    let taskDataArray = [];
-
-    for (let i;i<this.state.rowCount.length;i++) {
-      let currentTaskData = {
-        name: document.querySelector(".task-row_name input").value,
-        important: document.querySelector(".task-row_important input").value
-      }
-      taskDataArray.push(currentTaskData);
-    };
     let listObjForSubmission = {
       listName: document.querySelector(".create-form_list-name input").value,
       sharedWith: document.querySelector(".create-form_sharing input").value,
-      tasks: taskDataArray
+      tasks: this.state.tasksToAdd
     };
     console.log(listObjForSubmission);
-    // 3 - trigger action to set store with data to submit
-    // 4 - POST data to API
-    // 5 - route to new list view?
+    
   },
+
   _handleCreateCancel: function(){
     console.log("--CANCEL--");
     // should route to main view, i.e. Multi Lists View
@@ -66,9 +69,8 @@ export const CreateListView = React.createClass({
           </div>
           <div className="create-form_tasks">
             <h2>Tasks</h2>
-            <div className="create-form_tasks-block">
-              <TaskFormRow/>
-              {this.state.additionalTaskRows}
+            <div ref="taskBlock" className="create-form_tasks-block">
+              {this._renderTasksToAdd(this.state.tasksToAdd)}
               <div className="create-form_tasks-add" onClick={this._handleAddRowClick}>
                 <i className="icon-plus-squared"></i>
                 add new task
@@ -94,14 +96,24 @@ export const CreateListView = React.createClass({
 });
 
 const TaskFormRow = React.createClass({
+  _handleChange: function(evt){
+    let eventType = evt.target.name
+    let eventValue
+    if (eventType === "isImportant"){
+      eventValue = evt.target.checked
+    } else {
+      eventValue = evt.target.value
+    };
+    this.props.handleInputChange(eventValue, eventType, this.props.i);
+  },
   render: function(){
     return (
       <div className="task-row columns-container">
         <div className="task-row_name">
-          <input type="text"></input>
+          <input name="taskName" ref="inputVal" onChange={this._handleChange} ref={this.props.i} type="text"></input>
         </div>
         <div className="task-row_important">
-          <input type="checkbox"></input>
+          <input name="isImportant" ref={this.props.i} onChange={this._handleChange} type="checkbox"></input>
           Important?
         </div>
     {/* <div className="task-row_date-due">

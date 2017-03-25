@@ -14,6 +14,7 @@ import {STORE} from "./store.js";
 
 // IMPORTS - COMPONENTS
 import {NavbarAnon, NavbarAuth} from './components/component-navbar.js';
+import {FooterComponent} from "./components/component-footer.js";
 
 // IMPORTS - VIEWS
 import {WelcomeView} from "./views/view-welcome.js";
@@ -76,6 +77,7 @@ export const ViewController = React.createClass({
 			<div>
 				<NavbarAnon {...this.state}/>
 				{componentToRender}
+        <FooterComponent/>
 			</div>
 		)
 	}
