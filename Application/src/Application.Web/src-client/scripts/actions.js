@@ -38,5 +38,10 @@ export const ACTIONS = {
 	},
 	setListToPost: function(givenListObj){
 		STORE.setStore("listToPost", givenListObj)
+	},
+	fetchCurrenUser: function(){
+		UserModel.getCurrentUser().then(function(serverRes){
+			STORE.setStore('currentUser', serverRes)
+    })
 	}
 }

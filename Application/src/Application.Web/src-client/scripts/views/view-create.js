@@ -1,3 +1,6 @@
+// IMPORTS - DATA FLOW
+import {ACTIONS} from "../actions.js";
+
 // IMPORTS - REACT
 import React from "react";
 import ReactDOM from "react-dom";
@@ -83,10 +86,9 @@ export const CreateListView = React.createClass({
         tasks: this.state.tasksToAdd
       };
       console.log(listObjForSubmission);
+      ACTIONS.setListToPost(listObjForSubmission);
     };
-    ACTIONS.setListToPost(listObjForSubmission);
   },
-
   _handleCreateCancel: function(){
     console.log("--CANCEL--");
     // should route to main view, i.e. Multi Lists View

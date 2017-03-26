@@ -5,13 +5,11 @@ import React from "react";
 const initialTaskRows = React.createClass({
   render: function(){
     return (
-      
+
     )
   }
 });
-const additionalTaskRows = React.createClass({
 
-});
 export const EditListView = React.createClass({
   render: function(){
     let initialListObj = this.props.listData;
@@ -34,7 +32,6 @@ export const EditListView = React.createClass({
                 <i className="icon-plus-squared"/>
                 add new task
               </div>
-
             </div>
           </div>
         </div>

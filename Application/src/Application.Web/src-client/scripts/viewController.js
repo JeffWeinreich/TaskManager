@@ -2,9 +2,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// IMPORTS - JQUERY
-import $ from "jquery";
-
 // IMPORTS - APPROUTER
 import {AppRouter} from "./router.js";
 
@@ -25,29 +22,22 @@ import {CreateListView} from "./views/view-create.js";
 // import {EditListView} from "./views/view-edit.js";
 
 export const ViewController = React.createClass({
-
   getInitialState: function(){
 		let stateObj = STORE.getStoreData();
     return stateObj;
 	},
-
   componentWillMount: function(){
     let vcComponent = this;
-    $.getJSON('http://localhost:5000/api/accounts/').then(function(serverRes){
-      // console.log(serverRes)
-      ACTIONS.setAPIData(serverRes);
-    })
+    ACTIONS.fetchCurrenUser()
     STORE.onStoreChange(function(){
       let newStoreState = STORE.getStoreData();
       vcComponent.setState(newStoreState);
     })
     let router = new AppRouter();
   },
-
 	render: function(){
     let currentView = this.state.currentView;
 		let componentToRender;
-
 		switch(currentView){
 			case "HOME":
 				componentToRender = <WelcomeView {...this.state}/>
@@ -71,8 +61,7 @@ export const ViewController = React.createClass({
         componentToRender = <EditListView listData={this.state.dummyData[1]}/>
         break;
  			default:
-		}
-
+		};
 		return (
 			<div>
 				<NavbarAnon {...this.state}/>
