@@ -2,39 +2,30 @@
   width: 100%;
 }
 
-.welcome-header_block{
+.welcome-header{
 text-align: center;
 }
 
-.welcome-header_block h1{
-  font-family: "Ubuntu", sans-serif;;
+.welcome-header h1{
+  font-family: "Oranienbaum", sans-serif;
+  font-size: 54px;
 }
 
-.welcome-header_block h2{
-  font-family: "Roboto", sans-serif;
+.welcome-header h2{
+  font-family: "Antic Didone", sans-serif;
+  font-size: 18px;
 }
 
-/* Styles - Promo Blurb */
-.promo-blurb{
-  background-image: url("https://unsplash.it/200/300?image=4");
+.welcome-header{
+  background-image: url("https://source.unsplash.com/RLw-UC03Gwc");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 60vh;
+  min-height: 40vh;
 }
 
-.promo-blurb_block{
+.welcome-header{
   background-color: rgba(206, 209, 222, .8);
-  font-family: "Roboto", sans-serif;
-  min-height: 60vh;
-  padding: 24px;
-}
-
-.promo-blurb_block h3{
-  font-size: 28px;
-  text-align: center;
-}
-
-.promo-blurb_block p{
-  font-size: 20px;
+  font-family: "Italiana", sans-serif;
+  min-height: 40vh;
 }

@@ -7,8 +7,8 @@ export const WelcomeComponent = React.createClass({
 	render: function(){
 		return (
 			<div className="component-welcome">
-	      <div className="promo-blurb">
-	        <div className="promo-blurb_block">
+	      <div className="welcome-promo-blurb">
+	        <div className="welcome-promo-blurb_block">
 	          <h3>Now when you make a todo list, you can share it those who need it!</h3>
 	          <p>With TaskMaster you can:</p>
 	            <ul>
