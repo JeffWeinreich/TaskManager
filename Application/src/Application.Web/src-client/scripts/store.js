@@ -2,7 +2,8 @@ export const STORE = {
 	_data: {
     currentView: '',
 		dummyData: [],
-		currentUser: {}
+		currentUser: {},
+		listToPost: {}
 	},
 
 	getStoreData: function(){

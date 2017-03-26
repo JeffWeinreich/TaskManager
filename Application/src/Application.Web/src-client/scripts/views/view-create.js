@@ -84,6 +84,7 @@ export const CreateListView = React.createClass({
       };
       console.log(listObjForSubmission);
     };
+    ACTIONS.setListToPost(listObjForSubmission);
   },
 
   _handleCreateCancel: function(){

@@ -35,5 +35,8 @@ export const ACTIONS = {
 		UserModel.logOut().then(function(){
 			STORE.setStore('currentUser', {})
 		})
+	},
+	setListToPost: function(givenListObj){
+		STORE.setStore("listToPost", givenListObj)
 	}
 }
