@@ -11,6 +11,25 @@ const initialTaskRows = React.createClass({
 });
 
 export const EditListView = React.createClass({
+  getInitialState: function(){
+    return {
+      tasksArray : [],
+      errorMessageListName : "",
+      errorMessageTaskName : ""
+    };
+  },
+  _handleAddRowClick: function(){
+    let component = this
+    let copyOfTaskRows = this.state.tasksToAdd.map(function makeCopy(val){return val});
+    copyOfTaskRows.push({taskName: "", isImportant: false});
+    this.setState({
+      tasksArray: copyOfTaskRows
+    })
+  },
+  _getInitialTasks: function(){
+    let givenTasksArray = this.props.listData.tasks;
+    return givenTasksArray;
+  },
   render: function(){
     let initialListObj = this.props.listData;
     return (
@@ -27,14 +46,51 @@ export const EditListView = React.createClass({
           <div className="edit-form_tasks">
             <h2>Tasks</h2>
             <div className="edit-form_tasks-block">
-
+               {/* <initialTaskRows tasksData=_getInitialTasks() /> */}
+               {/* task rows to add */}
               <div className="edit-form_tasks-add">
                 <i className="icon-plus-squared"/>
                 add new task
               </div>
             </div>
           </div>
+          <div className="edit-form_sharing">
+            <h2>Users to Share With</h2>
+            <input type="text" name="shared-users"></input>
+          </div>
+          <div className="edit-form_buttons columns-container">
+            <div className="edit-form_submit">
+              <h2>Submit</h2>
+            </div>
+            <div className="edit-form_cancel">
+              <h2>Cancel</h2>
+            </div>
+          </div>
         </div>
+      </div>
+    )
+  }
+})
+
+const TaskFormRow = React.createClass({
+  _handleChange: function(){
+
+  },
+  render: function(){
+    return (
+      <div className="task-row columns-container">
+        <div className="task-row_name">
+          <input name="taskName" ref="inputVal" onChange={this._handleChange} ref={this.props.i} type="text"></input>
+        </div>
+        <div className="task-row_important">
+          <input name="isImportant" ref={this.props.i} onChange={this._handleChange} type="checkbox"></input>
+          Important?
+        </div>
+    {/* <div className="task-row_date-due">
+          <i className="icon-calendar"></i>
+          <input type="date"></input>
+          Date Due
+        </div> */}
       </div>
     )
   }

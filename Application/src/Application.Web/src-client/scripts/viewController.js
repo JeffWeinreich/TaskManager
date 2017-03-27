@@ -28,7 +28,7 @@ export const ViewController = React.createClass({
 	},
   componentWillMount: function(){
     let vcComponent = this;
-    ACTIONS.fetchCurrenUser()
+    ACTIONS.fetchCurrenUser();
     STORE.onStoreChange(function(){
       let newStoreState = STORE.getStoreData();
       vcComponent.setState(newStoreState);
