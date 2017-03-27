@@ -24,6 +24,7 @@ namespace Application.Web.Controllers.API
             SignInManager = signinmanager;
         }
 
+
         [HttpGet]
         [Route("~/api/accounts/login")]
         public IActionResult GetLogin()
@@ -40,7 +41,7 @@ namespace Application.Web.Controllers.API
             if (user != null)
             {
                 var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
-                return Ok(User.Identity.IsAuthenticated);
+                return Ok(new { IsAuthenticated = User.Identity.IsAuthenticated, Name = User.Identity.Name });
             }
             else
             {

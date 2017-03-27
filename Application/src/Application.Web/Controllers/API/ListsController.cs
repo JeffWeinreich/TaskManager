@@ -114,7 +114,6 @@ namespace Application.Web.Controllers.API
 
             await _context.SaveChangesAsync();
             return Ok();
-            //return CreatedAtAction("GetList", new { id = list.Id, list });
         }
 
 
