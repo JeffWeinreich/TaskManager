@@ -80,19 +80,143 @@ namespace Application.Web
             var userManger = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
 
             var user = await userManger.FindByEmailAsync("a@d.com");
+            user = await userManger.FindByEmailAsync("a@e.com");
+            user = await userManger.FindByEmailAsync("a@f.com");
 
             if (user == null)
             {
                 user = new ApplicationUser();
                 user.Email = "a@d.com";
                 await userManger.CreateAsync(user, "testtest1");
-                var list = new List() { Name = "Shopping" };
-                var todo = new Todo() { Name = "Food" };
-                context.Lists.Add(list);
-                list.Todos.Add(todo);
+                var list1 = new List() { Name = "Shopping" };
+                var list2 = new List() { Name = "Eat" };
+                var list3 = new List() { Name = "Clean" };
+                var list4 = new List() { Name = "Costco" };
+
+                context.Lists.Add(list1);
+                context.Lists.Add(list2);
+                context.Lists.Add(list3);
+                context.Lists.Add(list4);
+
+                var todo1 = new Todo() { Name = "Food" };
+                var todo2 = new Todo() { Name = "Lunch1" };
+                var todo3 = new Todo() { Name = "Lunch2" };
+                var todo4 = new Todo() { Name = "More Food" };
+                var todo5 = new Todo() { Name = "Dinner1" };
+                var todo6 = new Todo() { Name = "Dinner2" };
+                var todo7 = new Todo() { Name = "Snack" };
+                var todo8 = new Todo() { Name = "More Snacks" };
+
+                list1.Todos.Add(todo1);
+                list1.Todos.Add(todo2);
+                list1.Todos.Add(todo3);
+                list1.Todos.Add(todo4);
+
+                list2.Todos.Add(todo5);
+                list2.Todos.Add(todo6);
+                list2.Todos.Add(todo7);
+                list2.Todos.Add(todo8);
+
+                list3.Todos.Add(todo3);
+                list3.Todos.Add(todo5);
+                list3.Todos.Add(todo8);
+                list3.Todos.Add(todo1);
+
+                list4.Todos.Add(todo2);
+                list4.Todos.Add(todo4);
+                list4.Todos.Add(todo8);
+                list4.Todos.Add(todo5);
+
+                context.Add(user);
+
+                user = new ApplicationUser();
+                user.Email = "a@e.com";
+                await userManger.CreateAsync(user, "testtest1");
+                list1 = new List() { Name = "Shopping" };
+                list2 = new List() { Name = "Eat" };
+                list3 = new List() { Name = "Clean" };
+                list4 = new List() { Name = "Costco" };
+
+                context.Lists.Add(list1);
+                context.Lists.Add(list2);
+                context.Lists.Add(list3);
+                context.Lists.Add(list4);
+
+                todo1 = new Todo() { Name = "Food" };
+                todo2 = new Todo() { Name = "Lunch1" };
+                todo3 = new Todo() { Name = "Lunch2" };
+                todo4 = new Todo() { Name = "More Food" };
+                todo5 = new Todo() { Name = "Dinner1" };
+                todo6 = new Todo() { Name = "Dinner2" };
+                todo7 = new Todo() { Name = "Snack" };
+                todo8 = new Todo() { Name = "More Snacks" };
+
+                list1.Todos.Add(todo1);
+                list1.Todos.Add(todo2);
+                list1.Todos.Add(todo3);
+                list1.Todos.Add(todo4);
+
+                list2.Todos.Add(todo5);
+                list2.Todos.Add(todo6);
+                list2.Todos.Add(todo7);
+                list2.Todos.Add(todo8);
+
+                list3.Todos.Add(todo3);
+                list3.Todos.Add(todo5);
+                list3.Todos.Add(todo8);
+                list3.Todos.Add(todo1);
+
+                list4.Todos.Add(todo2);
+                list4.Todos.Add(todo4);
+                list4.Todos.Add(todo8);
+                list4.Todos.Add(todo5);
+
+                context.Add(user);
+
+                user = new ApplicationUser();
+                user.Email = "a@f.com";
+                await userManger.CreateAsync(user, "testtest1");
+                list1 = new List() { Name = "Shopping" };
+                list2 = new List() { Name = "Eat" };
+                list3 = new List() { Name = "Clean" };
+                list4 = new List() { Name = "Costco" };
+
+                context.Lists.Add(list1);
+                context.Lists.Add(list2);
+                context.Lists.Add(list3);
+                context.Lists.Add(list4);
+
+                todo1 = new Todo() { Name = "Food" };
+                todo2 = new Todo() { Name = "Lunch1" };
+                todo3 = new Todo() { Name = "Lunch2" };
+                todo4 = new Todo() { Name = "More Food" };
+                todo5 = new Todo() { Name = "Dinner1" };
+                todo6 = new Todo() { Name = "Dinner2" };
+                todo7 = new Todo() { Name = "Snack" };
+                todo8 = new Todo() { Name = "More Snacks" };
+
+                list1.Todos.Add(todo1);
+                list1.Todos.Add(todo2);
+                list1.Todos.Add(todo3);
+                list1.Todos.Add(todo4);
+
+                list2.Todos.Add(todo5);
+                list2.Todos.Add(todo6);
+                list2.Todos.Add(todo7);
+                list2.Todos.Add(todo8);
+
+                list3.Todos.Add(todo3);
+                list3.Todos.Add(todo5);
+                list3.Todos.Add(todo8);
+                list3.Todos.Add(todo1);
+
+                list4.Todos.Add(todo2);
+                list4.Todos.Add(todo4);
+                list4.Todos.Add(todo8);
+                list4.Todos.Add(todo5);
+
                 context.Add(user);
                 context.SaveChanges();
-
             }
 
 
