@@ -38,7 +38,7 @@ export const ViewController = React.createClass({
   _getNavbar: function(currentUser){
     let theNavbar = <NavbarAnon  {...this.state}/>
 
-    if(typeof currentUser.email !== 'undefined'){
+    if(typeof currentUser.name !== 'undefined'){
           theNavbar = <NavbarAuth {...this.state}/>
     }
       return theNavbar;

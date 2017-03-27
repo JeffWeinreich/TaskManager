@@ -52,6 +52,7 @@ export const ACTIONS = {
 
 	fetchCurrenUser: function(){
 		UserModel.getCurrentUser().then(function(serverRes){
+			console.log(serverRes)
 			STORE.setStore('currentUser', serverRes)
     })
 	}
