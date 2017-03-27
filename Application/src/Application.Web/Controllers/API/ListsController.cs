@@ -71,29 +71,29 @@ namespace Application.Web.Controllers.API
 
             var userId = _userManager.GetUserId(User);
 
-            var lists = _context.Permissions.Where(p => p.List == list)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var lists = _context.Permissions.Where(p => p.User.Id == userId)               
+                .FirstOrDefaultAsync(p => p.List == list);
 
             _context.Entry(list).State = EntityState.Modified;
 
-            await _context.SaveChangesAsync();
-            //try
-            //{
-            //    
-            //}
+            //await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
 
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!ListExists(id))
-            //    {
-            //        return NotFound();
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ListExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
             return NoContent();
 
         }
@@ -112,10 +112,12 @@ namespace Application.Web.Controllers.API
             list.TimeStamp = DateTime.UtcNow;
             _context.Lists.Add(list);
 
-
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetList", new { id = list.Id, list });
+            return Ok();
+            //return CreatedAtAction("GetList", new { id = list.Id, list });
         }
+
+
         [HttpDelete]
         [Route("~/api/lists/{id}")]
         public async Task<IActionResult> DeleteList(int id)
@@ -125,8 +127,6 @@ namespace Application.Web.Controllers.API
                 return BadRequest(ModelState);
             }
             var userId = _userManager.GetUserId(User);
-
-            //var lists = _context.Permissions.Where(q => q.User == userId);
 
             List list = await _context.Lists
                 .FirstOrDefaultAsync(h => h.Id == id);

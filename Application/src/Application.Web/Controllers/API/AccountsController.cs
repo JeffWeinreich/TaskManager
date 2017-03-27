@@ -40,7 +40,7 @@ namespace Application.Web.Controllers.API
             if (user != null)
             {
                 var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
-                return Ok();
+                return Ok(new { IsAuthenticated = User.Identity.IsAuthenticated, Name = User.Identity.Name });
             }
             else
             {
@@ -57,7 +57,6 @@ namespace Application.Web.Controllers.API
 
             var result = await UserManager.CreateAsync(user, model.Password);
 
-
             if (result.Succeeded)
             {
                 return Ok();
@@ -66,7 +65,6 @@ namespace Application.Web.Controllers.API
             {
                 return BadRequest();
             }
-
         }
 
         [HttpGet]

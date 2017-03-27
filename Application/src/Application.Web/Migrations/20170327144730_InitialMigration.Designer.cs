@@ -8,7 +8,7 @@ using Application.Web.Data;
 namespace Application.Web.Migrations
 {
     [DbContext(typeof(OrganizerContext))]
-    [Migration("20170322192530_InitialMigration")]
+    [Migration("20170327144730_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,7 +108,7 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ListId");
+                    b.Property<int?>("ListId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -237,7 +237,7 @@ namespace Application.Web.Migrations
             modelBuilder.Entity("Application.Web.Data.Permission", b =>
                 {
                     b.HasOne("Application.Web.Data.List", "List")
-                        .WithMany("Permissions")
+                        .WithMany()
                         .HasForeignKey("ListId");
 
                     b.HasOne("Application.Web.Data.ApplicationUser", "User")
@@ -247,10 +247,9 @@ namespace Application.Web.Migrations
 
             modelBuilder.Entity("Application.Web.Data.Todo", b =>
                 {
-                    b.HasOne("Application.Web.Data.List", "List")
+                    b.HasOne("Application.Web.Data.List")
                         .WithMany("Todos")
-                        .HasForeignKey("ListId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ListId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

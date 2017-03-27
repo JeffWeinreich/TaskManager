@@ -200,7 +200,7 @@ namespace Application.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ListId = table.Column<int>(nullable: false),
+                    ListId = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -211,7 +211,7 @@ namespace Application.Web.Migrations
                         column: x => x.ListId,
                         principalTable: "Lists",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

@@ -79,20 +79,17 @@ namespace Application.Web
             //var context = app.ApplicationServices.GetRequiredService<OrganizerContext>();
             //var userManger = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
 
-            //var user = await userManger.FindByEmailAsync("a@b.com");
+            //var user = await userManger.FindByEmailAsync("a@d.com");
 
             //if (user == null)
             //{
             //    user = new ApplicationUser();
-            //    user.Email = "a@b.com";
-            //    user.UserName = "Steve";
+            //    user.Email = "a@d.com";
             //    await userManger.CreateAsync(user, "testtest1");
             //    var list = new List() { Name = "Shopping" };
-            //    //list.Permissions = list.Permissions;
-            //    var todo = new Todo() { Name = "Food" };
-            //    todo.List = list;
+            //    var todo = new Todo() { Name = "Food" };                            
             //    context.Lists.Add(list);
-            //    context.Lists.Add(todo.List);
+            //    list.Todos.Add(todo);
             //    context.SaveChanges();
 
             //}

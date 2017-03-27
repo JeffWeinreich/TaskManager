@@ -107,7 +107,7 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ListId");
+                    b.Property<int?>("ListId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -236,7 +236,7 @@ namespace Application.Web.Migrations
             modelBuilder.Entity("Application.Web.Data.Permission", b =>
                 {
                     b.HasOne("Application.Web.Data.List", "List")
-                        .WithMany("Permissions")
+                        .WithMany()
                         .HasForeignKey("ListId");
 
                     b.HasOne("Application.Web.Data.ApplicationUser", "User")
@@ -246,10 +246,9 @@ namespace Application.Web.Migrations
 
             modelBuilder.Entity("Application.Web.Data.Todo", b =>
                 {
-                    b.HasOne("Application.Web.Data.List", "List")
+                    b.HasOne("Application.Web.Data.List")
                         .WithMany("Todos")
-                        .HasForeignKey("ListId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ListId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

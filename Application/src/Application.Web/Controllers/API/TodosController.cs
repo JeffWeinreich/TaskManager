@@ -33,10 +33,8 @@ namespace Application.Web.Controllers.API
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-
             }          
 
-            //var userId = await _userManager.GetUserAsync(User);
             var list = _context.Lists.FirstOrDefaultAsync(p => p.Id == todo.Id);
 
             _context.Entry(todo).State = EntityState.Modified;
@@ -56,7 +54,6 @@ namespace Application.Web.Controllers.API
                 {
                     throw;
                 }
-
             }
             return NoContent();
         }
