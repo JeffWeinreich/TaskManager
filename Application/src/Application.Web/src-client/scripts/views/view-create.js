@@ -1,3 +1,6 @@
+// IMPORTS - DATA FLOW
+import {ACTIONS} from "../actions.js";
+
 // IMPORTS - REACT
 import React from "react";
 import ReactDOM from "react-dom";
@@ -64,22 +67,28 @@ export const CreateListView = React.createClass({
       })
     } else if (this.state.tasksToAdd[0].taskName === ""){
       this.setState({
+        errorMessageListName : "",
         errorMessageTaskName : errorJSXTaskName
       })
     } else if (submittedListName === "") {
       this.setState({
-        errorMessageListName : errorJSXListName
+        errorMessageListName : errorJSXListName,
+        errorMessageTaskName : ""
       })
     } else {
+      this.setState({
+        errorMessageListName : "",
+        errorMessageTaskName : ""
+      })
       let listObjForSubmission = {
         listName: submittedListName,
         sharedWith: submittedSharedUsers,
         tasks: this.state.tasksToAdd
       };
       console.log(listObjForSubmission);
+      ACTIONS.setListToPost(listObjForSubmission);
     };
   },
-
   _handleCreateCancel: function(){
     console.log("--CANCEL--");
     // should route to main view, i.e. Multi Lists View

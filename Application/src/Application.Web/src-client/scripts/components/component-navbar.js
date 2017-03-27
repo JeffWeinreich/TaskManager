@@ -7,7 +7,7 @@ import {ACTIONS} from '../actions.js';
 
 export const NavbarAnon = React.createClass({
 	_handleNavClick: function(evt){
-		let clickedRoute = evt.target.dataset.route
+		let clickedRoute = evt.currentTarget.dataset.route
 		let routeMapping = {
 			"HOME" : '',
 			"LOGIN" : 'login',

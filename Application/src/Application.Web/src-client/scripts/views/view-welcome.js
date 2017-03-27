@@ -9,8 +9,8 @@ export const WelcomeView = React.createClass({
 
 	render: function(){
 		return (
-			<div className="container">
-				<div className="page-header">
+			<div className="welcome-container">
+				<div className="welcome-header">
           <h1>TaskMaster</h1>
           <h2>The convenient way to share to-do lists</h2>
         </div>
