@@ -50,7 +50,7 @@ namespace Application.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -76,23 +76,24 @@ namespace Application.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //var context = app.ApplicationServices.GetRequiredService<OrganizerContext>();
-            //var userManger = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
+            var context = app.ApplicationServices.GetRequiredService<OrganizerContext>();
+            var userManger = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
 
-            //var user = await userManger.FindByEmailAsync("a@d.com");
+            var user = await userManger.FindByEmailAsync("a@d.com");
 
-            //if (user == null)
-            //{
-            //    user = new ApplicationUser();
-            //    user.Email = "a@d.com";
-            //    await userManger.CreateAsync(user, "testtest1");
-            //    var list = new List() { Name = "Shopping" };
-            //    var todo = new Todo() { Name = "Food" };                            
-            //    context.Lists.Add(list);
-            //    list.Todos.Add(todo);
-            //    context.SaveChanges();
+            if (user == null)
+            {
+                user = new ApplicationUser();
+                user.Email = "a@d.com";
+                await userManger.CreateAsync(user, "testtest1");
+                var list = new List() { Name = "Shopping" };
+                var todo = new Todo() { Name = "Food" };
+                context.Lists.Add(list);
+                list.Todos.Add(todo);
+                context.Add(user);
+                context.SaveChanges();
 
-            //}
+            }
 
 
         }
