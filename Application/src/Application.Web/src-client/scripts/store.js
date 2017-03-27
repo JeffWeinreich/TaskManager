@@ -1,7 +1,7 @@
 export const STORE = {
 	_data: {
     currentView: '',
-		dummyData: [],
+		listData: [],
 		currentUser: {},
 		listToPost: {}
 	},
@@ -33,6 +33,4 @@ export const STORE = {
 
 		this._callMeLaterPls = cbFunc
 	}
-
-	
 }

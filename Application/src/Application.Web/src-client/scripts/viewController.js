@@ -48,17 +48,17 @@ export const ViewController = React.createClass({
  			case "REGISTER":
 				componentToRender = <RegistrationView {...this.state}/>
 				break;
-      // case "ALL_LISTS":
-			// 	componentToRender = <MultiListView listData={this.state.dummyData}/>
-			// 	break;
+      case "ALL_LISTS":
+				componentToRender = <AllListsView {...this.state}/>
+				break;
       case "SINGLE_LIST":
-        componentToRender = <SingleListView listData={this.state.dummyData[0]}/>
+        componentToRender = <SingleListView {...this.state}/>
         break;
       case "CREATE_LIST":
         componentToRender = <CreateListView {...this.state}/>
         break;
       case "EDIT_LIST":
-        componentToRender = <EditListView listData={this.state.dummyData[1]}/>
+        componentToRender = <EditListView {...this.state}/>
         break;
  			default:
 		};

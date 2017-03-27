@@ -1,4 +1,4 @@
-import Backbone from 'backbone'
+import Backbone from 'backbone';
 
 export const ListModel = Backbone.Model.extend({
 	initialize: function(){

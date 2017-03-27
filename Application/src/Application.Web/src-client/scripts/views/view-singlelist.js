@@ -39,7 +39,7 @@ export const SingleListView = React.createClass({
     return mappedTasks;
   },
   _componentWillMount: function(){
-
+    
   },
   render: function(){
     if(this.props.listData === undefined){
