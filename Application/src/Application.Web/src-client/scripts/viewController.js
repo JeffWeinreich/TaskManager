@@ -35,6 +35,14 @@ export const ViewController = React.createClass({
     })
     let router = new AppRouter();
   },
+  _getNavbar: function(currentUser){
+    let theNavbar = <NavbarAnon  {...this.state}/>
+
+    if(typeof currentUser.email !== 'undefined'){
+          theNavbar = <NavbarAuth {...this.state}/>
+    }
+      return theNavbar;
+  },
 	render: function(){
     let currentView = this.state.currentView;
 		let componentToRender;
@@ -63,8 +71,8 @@ export const ViewController = React.createClass({
  			default:
 		};
 		return (
-			<div>
-				<NavbarAnon {...this.state}/>
+      <div>
+				{this._getNavbar(this.state.currentUser)}
 				{componentToRender}
         <FooterComponent/>
 			</div>
