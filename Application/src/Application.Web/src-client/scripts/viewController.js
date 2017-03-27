@@ -19,7 +19,7 @@ import {LoginView} from "./views/view-login.js";
 import {RegistrationView} from "./views/view-registration.js";
 import {SingleListView} from "./views/view-singlelist.js";
 import {CreateListView} from "./views/view-create.js";
-// import {EditListView} from "./views/view-edit.js";
+import {EditListView} from "./views/view-edit.js";
 
 export const ViewController = React.createClass({
   getInitialState: function(){
