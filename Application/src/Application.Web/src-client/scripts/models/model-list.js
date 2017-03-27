@@ -1,6 +1,9 @@
 import Backbone from 'backbone'
 
 export const ListModel = Backbone.Model.extend({
+	initialize: function(){
+
+	},
 	urlRoot: '/api/lists',
 	idAttribute: '_id'
 })

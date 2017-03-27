@@ -22,8 +22,6 @@ export const RegistrationComponent = React.createClass({
 		let emailErrorJSX = <div className="email-error"><p>Please use a valid e-mail address.</p></div>
 		let pwErrorJSX = <div className="password-error"><p>The password must contain at least one number and have at least eight characters total.</p></div>
 		let confirmErrorJSX = <div className="confirm-error"><p>The passwords must match.</p></div>
-
-		// FORM VALIDATION
 		function hasNumber(str){
 			return /\d/.test(str);
 		};
@@ -46,7 +44,7 @@ export const RegistrationComponent = React.createClass({
 				password: givenPassword
 			}
 			console.log(regObjToSave);
-			// ACTIONS.registerNewUser(regObjToSave)
+			ACTIONS.registerNewUser(regObjToSave)
 		};
 	},
 
