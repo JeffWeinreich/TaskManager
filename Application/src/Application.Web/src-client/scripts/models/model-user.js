@@ -42,7 +42,7 @@ UserModel.getCurrentUser =  function(){
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		url: '/api/accounts'
+		url: '/api/accounts/login'
 	})
 }
 
