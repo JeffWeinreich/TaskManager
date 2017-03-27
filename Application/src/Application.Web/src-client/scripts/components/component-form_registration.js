@@ -6,16 +6,48 @@ import ReactDOM from "react-dom";
 import {ACTIONS} from "../actions.js";
 
 export const RegistrationComponent = React.createClass({
+	getInitialState: function(){
+		return {
+			emailErrorMsg: "false",
+			passwordErrorMsg: "",
+			confirmPwErrorMsg: ""
+		}
+	},
+	// NOTE: possible rewrite using Bubba's method to add error-throwing function
 	_handleRegFormSubmit: function(evt){
 		evt.preventDefault()
-		let formEl = evt.target
+		let givenEmail = evt.target.emailField.value;
+		let givenPassword = evt.target.passwordField.value;
+		let givenConfirm = evt.target.confirmPasswordField.value
+		let emailErrorJSX = <div className="email-error"><p>Please use a valid e-mail address.</p></div>
+		let pwErrorJSX = <div className="password-error"><p>The password must contain at least one number and have at least eight characters total.</p></div>
+		let confirmErrorJSX = <div className="confirm-error"><p>The passwords must match.</p></div>
 
-		let regObjToSave = {
-			email: formEl.emailField.value,
-			password: formEl.passwordField.value
-		}
-		console.log(regObjToSave)
-		ACTIONS.registerNewUser(regObjToSave)
+		// FORM VALIDATION
+		function hasNumber(str){
+			return /\d/.test(str);
+		};
+		let validationError = false;
+		if (givenEmail.indexOf("@") === -1){
+			validationError = true;
+			this.setState({emailErrorMsg: emailErrorJSX});
+		};
+		if (hasNumber(givenPassword) === false){
+			validationError = true;
+			this.setState({passwordErrorMsg: pwErrorJSX});
+		};
+		if (givenPassword !== givenConfirm){
+			validationError = true;
+			this.setState({confirmPwErrorMsg: confirmErrorJSX});
+		};
+		if (validationError = false){
+			regObjToSave = {
+				email: givenEmail,
+				password: givenPassword
+			}
+			console.log(regObjToSave);
+			// ACTIONS.registerNewUser(regObjToSave)
+		};
 	},
 
 	render: function(){
@@ -33,7 +65,7 @@ export const RegistrationComponent = React.createClass({
 						<h3>Password</h3>
 						<input type="password" className="form-control" name="passwordField"/>
 						<h3>Confirm Password</h3>
-						<input type="password" className="form-control" name="confirmpasswordField"/>
+						<input type="password" className="form-control" name="confirmPasswordField"/>
 				</div>
 				<div className="reg-submit reg-btn">
 					<input type="submit" className="btn-submit-form btn-reg" value="Register"/>

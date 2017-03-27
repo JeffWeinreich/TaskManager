@@ -4,9 +4,9 @@ import React from "react";
 // REACT COMPONENT - EDIT LIST VIEW
 const initialTaskRows = React.createClass({
   render: function(){
-    return (
-
-    )
+    // return (
+    //
+    // )
   }
 });
 
