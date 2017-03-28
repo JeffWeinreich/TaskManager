@@ -7,7 +7,11 @@ import {UserModel} from './models/model-user.js';
 import {ListModel,ListCollection} from "./models/model-list.js";
 
 export const ACTIONS = {
-	setView: function(viewName){
+	setView: function(viewName, routeParamsData){
+		if(typeof routeParamsData !== 'undefined'){
+			STORE.setStore('routeParams', routeParamsData)
+		}
+
 		STORE.setStore('currentView', viewName)
 	},
 
@@ -17,7 +21,7 @@ export const ACTIONS = {
 
 	loginUser: function(credsObj){
 		console.log(credsObj)
-		UserModel.logIn( credsObj.email , credsObj.password ).then(function(serverRes){
+		UserModel.logIn(credsObj.email, credsObj.password).then(function(serverRes){
 			console.log(serverRes)
 			STORE.setStore('currentUser', serverRes)
 		})
@@ -61,7 +65,8 @@ export const ACTIONS = {
 		let newMod = new ListModel();
 		newMod.set({id: givenListID});
 		newMod.fetch().then(function(serverRes){
-			STORE.setStore("listData", serverRes);
+			console.log(serverRes)
+			STORE.setStore("listData", [serverRes]);
 		})
 	},
 

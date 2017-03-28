@@ -1,6 +1,7 @@
 export const STORE = {
 	_data: {
     currentView: '',
+		routeParams: {},
 		listData: [],
 		currentUser: {},
 		listToPost: {}
