@@ -12,6 +12,7 @@
 /// <reference path="../src-client/scripts/router.js" />
 /// <reference path="../src-client/scripts/store.js" />
 /// <reference path="../src-client/scripts/viewcontroller.js" />
+/// <reference path="../src-client/scripts/views/view-all_lists.js" />
 /// <reference path="../src-client/scripts/views/view-create.js" />
 /// <reference path="../src-client/scripts/views/view-edit.js" />
 /// <reference path="../src-client/scripts/views/view-login.js" />

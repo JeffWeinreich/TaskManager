@@ -50,11 +50,14 @@ namespace Application.Web.Controllers.API
             var userId = _userManager.GetUserId(User);
             //var lists = _context.Permissions.Where(p => p.User.Id == userId);
 
-            List list = await _context.Permissions
-                .Include(p => p.List.Todos)
-                .Where(p => p.User.Id == userId)
-                .Select(p=>p.List)              
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var list = _context.Lists.Include(q => q.Todos)
+                .FirstOrDefaultAsync(q => _context.Lists.Any(r => r.Id == id));
+
+            //List list = await _context.Permissions
+            //    .Include(p => p.List.Todos)
+            //    .Where(p => p.User.Id == userId)
+            //    .Select(p=>p.List)              
+            //    .FirstOrDefaultAsync(p => p.Id == id);
 
             if (list == null)
             {

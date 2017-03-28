@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Web.Data
 {
+    //Chris Nimmons
     public class Lorem
     {
         private string[] Words { get; set; }

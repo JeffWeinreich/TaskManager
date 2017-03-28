@@ -78,14 +78,17 @@ namespace Application.Web
             
             context.Database.Migrate();
 
+            //Chris Nimmons
             var lorem = new Lorem();
 
             var user = await userManager.FindByEmailAsync("a@b.com");
+            //var user2 = await userManager.FindByEmailAsync("a@c.com");
 
             if (user == null)
             {
                 user = new ApplicationUser();
                 user.UserName = user.Email = "a@b.com";
+                //user2.UserName = user.Email = "a@c.com";
 
                 var result = await userManager.CreateAsync(user, "testtest1");
 
