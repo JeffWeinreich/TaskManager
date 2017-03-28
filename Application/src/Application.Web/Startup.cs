@@ -82,17 +82,16 @@ namespace Application.Web
             var lorem = new Lorem();
 
             var user = await userManager.FindByEmailAsync("a@b.com");
-            //var user2 = await userManager.FindByEmailAsync("a@c.com");
+            
 
             if (user == null)
             {
                 user = new ApplicationUser();
-                user.UserName = user.Email = "a@b.com";
-                //user2.UserName = user.Email = "a@c.com";
+                user.UserName = user.Email = "a@b.com";           
 
                 var result = await userManager.CreateAsync(user, "testtest1");
 
-                for(int i = 0; i < 4; i ++)
+                for (int i = 0; i < 4; i++)
                 {
                     var list = new List() { Name = lorem.Word() };
                     context.Lists.Add(list);
@@ -100,7 +99,33 @@ namespace Application.Web
                     var permission = new Permission() { User = user, List = list };
                     context.Permissions.Add(permission);
 
-                    for(int j = 0; j < 4; j++)
+                    for (int j = 0; j < 4; j++)
+                    {
+                        var todo = new Todo() { Name = lorem.Sentence(2, 6) };
+                        list.Todos.Add(todo);
+                    }
+                }
+                context.SaveChanges();
+            }
+
+            var user2 = await userManager.FindByEmailAsync("a@c.com");
+
+            if (user2 == null)
+            {
+                user2 = new ApplicationUser();
+                user2.UserName = user2.Email = "a@c.com";              
+
+                var result = await userManager.CreateAsync(user2, "testtest2");
+
+                for (int i = 0; i < 4; i++)
+                {
+                    var list = new List() { Name = lorem.Word() };
+                    context.Lists.Add(list);
+
+                    var permission = new Permission() { User = user2, List = list };
+                    context.Permissions.Add(permission);
+
+                    for (int j = 0; j < 4; j++)
                     {
                         var todo = new Todo() { Name = lorem.Sentence(2, 6) };
                         list.Todos.Add(todo);
@@ -108,8 +133,18 @@ namespace Application.Web
                 }
 
                 context.SaveChanges();
+            }
 
-        
+            var user3 = await userManager.FindByEmailAsync("a@d.com");
+            if (user3 == null)
+            {
+                user3 = new ApplicationUser();
+                user3.UserName = user3.Email = "a@d.com";
+
+                var result = await userManager.CreateAsync(user3, "testtest2");
+            }
+            context.SaveChanges();
+
                 //user = new ApplicationUser();
                 //user.Email = "a@e.com";
                 //permissions.User = user;
@@ -210,8 +245,8 @@ namespace Application.Web
                 //context.Permissions.Add(permissions);
                 //await context.SaveChangesAsync();
 
-            }
 
+
+            }
         }
-    }
 }

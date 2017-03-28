@@ -78,12 +78,13 @@ namespace Application.Web.Controllers.API
 
             var userId = _userManager.GetUserId(User);
 
-            var lists = _context.Permissions.Where(p => p.User.Id == userId)
-                .FirstOrDefaultAsync(p => p.List == list);
+            var lists = _context.Lists
+                .Include(q => q.Todos )          
+                .FirstOrDefaultAsync(q => _context.Lists.Any(r => r.Id == id));
 
             _context.Entry(list).State = EntityState.Modified;
 
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             try
             {
                 await _context.SaveChangesAsync();
