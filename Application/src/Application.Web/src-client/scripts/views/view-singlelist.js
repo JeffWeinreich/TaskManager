@@ -1,6 +1,6 @@
 // IMPORTS - REACT
 import React from "react";
-
+import {ACTIONS} from '../actions.js  '
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
   render: function(){
@@ -30,6 +30,11 @@ const SingleToDo = React.createClass({
 
 // REACT COMPONENT - SINGLE LIST
 export const SingleListView = React.createClass({
+  componentWillMount: function(){
+    console.log('fetching????')
+    ACTIONS.fetchGivenList(this.props.routeParams.listId);
+  },
+
   _mapOverTask: function(givenListObj){
     let givenTasks = givenListObj.tasks;
     if (typeof givenTasks === 'undefined' ) givenTasks = []
@@ -38,9 +43,7 @@ export const SingleListView = React.createClass({
     });
     return mappedTasks;
   },
-  _componentWillMount: function(){
-    
-  },
+
   render: function(){
     if(this.props.listData === undefined){
       return(

@@ -14,15 +14,17 @@ export const AppRouter = Backbone.Router.extend({
 	},
 
 	routes: {
-		"" : "routeToWelcome",
 		"login" : "routeToLogin",
 		"register" : "routeToRegistration",
-		"lists" : "routeToAllLists",
 		// "lists/:id" : "routeToSingleList",
-		"lists/single" : "routeToSingleList",
+		"lists/edit" : "routeToListEditing",
+
 		"lists/create" : "routeToListCreation",
+		"lists/:id" : "routeToSingleList",
 		// "lists/:id/edit" : "routeToListEditing"
-		"lists/edit" : "routeToListEditing"
+		"lists" : "routeToAllLists",
+		"" : "routeToWelcome",
+
 	},
 
 	routeToWelcome: function(){
@@ -32,13 +34,13 @@ export const AppRouter = Backbone.Router.extend({
 		ACTIONS.setView("LOGIN");
 	},
 	routeToRegistration: function(){
-		ACTIONS.setView("REGISTER");
+		ACTIONS.setView("REGISTER" );
 	},
 	routeToAllLists: function(){
 		ACTIONS.setView("ALL_LISTS");
 	},
-	routeToSingleList: function(){
-		ACTIONS.setView("SINGLE_LIST")
+	routeToSingleList: function(id){
+		ACTIONS.setView("SINGLE_LIST", {listId: id})
 	},
 	routeToListCreation: function(){
 		ACTIONS.setView("CREATE_LIST")
