@@ -70,7 +70,7 @@ namespace Application.Web.Controllers.API
             var list = _context.Lists.FirstOrDefault(p => p.Id == listId);
                       
             list.Todos.Add(todo);
-
+ 
            await _context.SaveChangesAsync();
         
            return Ok (todo);

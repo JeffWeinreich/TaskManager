@@ -31,7 +31,10 @@ namespace Application.Web.Controllers.API
         {
 
             var userId = _userManager.GetUserId(User);
-            var lists = _context.Permissions.Where(p => p.User.Id == userId).Select(p => p.List);
+
+            var lists = _context.Lists.Include(q => q.Todos)
+                .Where(q => _context.Permissions.Any(r => r.List.Id == q.Id && r.User.Id == userId)).ToList();
+
             return lists;
         }
 
@@ -45,11 +48,12 @@ namespace Application.Web.Controllers.API
             }
 
             var userId = _userManager.GetUserId(User);
-            var lists = _context.Permissions.Where(p => p.User.Id == userId);
+            //var lists = _context.Permissions.Where(p => p.User.Id == userId);
 
-            List list = await _context.Lists
-                .Where(p => p.Name == userId)
-                .Include(p => p.Todos)
+            List list = await _context.Permissions
+                .Include(p => p.List.Todos)
+                .Where(p => p.User.Id == userId)
+                .Select(p=>p.List)              
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (list == null)
@@ -71,7 +75,7 @@ namespace Application.Web.Controllers.API
 
             var userId = _userManager.GetUserId(User);
 
-            var lists = _context.Permissions.Where(p => p.User.Id == userId)               
+            var lists = _context.Permissions.Where(p => p.User.Id == userId)
                 .FirstOrDefaultAsync(p => p.List == list);
 
             _context.Entry(list).State = EntityState.Modified;
@@ -107,13 +111,22 @@ namespace Application.Web.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var userId = _userManager.GetUserId(User);
-            var lists = _context.Permissions.Where(p => p.User.Id == userId);
+            var userId = _userManager.GetUserAsync(User);
+
+            //var lists = _context.Permissions.Where(p => p.User.Id == userId);
             list.TimeStamp = DateTime.UtcNow;
             _context.Lists.Add(list);
 
+            var permission = new Permission();
+            permission.List = list;
+
+            var user = await _userManager.GetUserAsync(User);
+            permission.User = user;
+
+            _context.Permissions.Add(permission);
+
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(list);
         }
 
 
@@ -125,7 +138,7 @@ namespace Application.Web.Controllers.API
             {
                 return BadRequest(ModelState);
             }
-            var userId = _userManager.GetUserId(User);
+            var userId = _userManager.GetUserAsync(User);
 
             List list = await _context.Lists
                 .FirstOrDefaultAsync(h => h.Id == id);
@@ -146,7 +159,7 @@ namespace Application.Web.Controllers.API
 
         private bool ListExists(int id)
         {
-            var userId = _userManager.GetUserId(User);
+            var userId = _userManager.GetUserAsync(User);
             return _context.Lists.Any(e => e.Id == id);
         }
 

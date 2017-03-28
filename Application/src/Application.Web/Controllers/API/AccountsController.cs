@@ -41,7 +41,15 @@ namespace Application.Web.Controllers.API
             if (user != null)
             {
                 var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
-                return Ok(new { IsAuthenticated = User.Identity.IsAuthenticated, Name = User.Identity.Name });
+             if (result.Succeeded)
+                {
+                  return Ok(new { IsAuthenticated = true, Name = user.Email });
+                }
+             else
+                {
+                    return Ok (new { IsAuthenticated = false });
+                }
+                
             }
             else
             {

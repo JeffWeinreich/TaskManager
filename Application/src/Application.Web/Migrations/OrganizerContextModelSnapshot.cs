@@ -70,16 +70,12 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<DateTime>("TimeStamp");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Lists");
                 });
@@ -116,7 +112,7 @@ namespace Application.Web.Migrations
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("Todo");
+                    b.ToTable("Todos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -224,13 +220,6 @@ namespace Application.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens");
-                });
-
-            modelBuilder.Entity("Application.Web.Data.List", b =>
-                {
-                    b.HasOne("Application.Web.Data.ApplicationUser")
-                        .WithMany("Lists")
-                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Application.Web.Data.Permission", b =>
