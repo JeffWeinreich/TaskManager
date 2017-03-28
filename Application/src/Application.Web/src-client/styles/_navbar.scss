@@ -1,20 +1,22 @@
 /* Styles - Navbar Top */
 .nav-top{
   background-color: $color-primary-3;
-  font-family: "Oranienbaum", sans-serif;
+  font-family: 'Pavanam', sans-serif;
+  letter-spacing: 2px;
   margin: 0;
   position: fixed;
   top: 0;
   width: 100%;
   height: 72px;
+  border-bottom-style: outset;
 }
 
 .nav-top_menu-button{
   color: #FFFFFF;
   display: inline-block;
-  font-size: 48px;
+  font-size: 40px;
   margin-left: 8px;
-  padding: 8px;
+  padding: 10px;
   vertical-align: top;
 }
 
@@ -23,13 +25,14 @@
   margin-right: 8px;
   position: absolute;
   right: 8px;
-  top: 16px;
+  top: 14px;
   vertical-align: top;
 }
 
 .right-buttons_sign-up,
-.right-buttons_log-in{
-  border-radius: 5px;
+.right-buttons_log-in,
+.nav-logout{
+  border-radius: 10px;
   background-color: rgba(255, 255, 255, .5);
   color: #FFF;
   display: inline-block;
@@ -55,6 +58,22 @@
 	cursor: pointer;
 }
 
+.nav-logout:hover{
+  color: $color-primary-2;
+  background-color: #FFF;
+  cursor: pointer;
+}
+
 .nav-top_menu-button:hover{
   cursor: pointer;
+}
+
+// TABLET STYLES
+@media screen and (min-width: 768px){
+
+}
+
+// DESKTOP VIEWS
+@media screen and (min-width: 1000px){
+
 }

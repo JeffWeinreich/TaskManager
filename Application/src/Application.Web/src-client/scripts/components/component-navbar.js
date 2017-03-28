@@ -38,7 +38,7 @@ export const NavbarAuth = React.createClass({
 	},
 	render: function(){
     return <div className="nav-top nav-auth columns-container">
-    <div className="nav-top_menu-button" onClick={this._handleNavClick} data-route="HOME"><i class="fa fa-bars" aria-hidden="true"></i></div>
+    <div className="nav-top_menu-button" onClick={this._handleNavClick} data-route="HOME"><i className="icon-menu"></i></div>
     <div className="nav-top_right-buttons">
 				<div className="nav-logout" data-route="LOGOUT"
 					onClick={this._handleLogoutClick}>Logout</div>

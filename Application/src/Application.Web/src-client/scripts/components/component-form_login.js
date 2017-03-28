@@ -20,11 +20,15 @@ export const LoginComponent = React.createClass({
 	},
 			render: function(){
 				return <form onSubmit={this._handleLoginFormSubmit} className="component-login">
+					<div className="login-header">
+						<div className="login-overlay">
 						<div className="page-header">
 			        <div className="page-header_block">
 			          <h1>TaskMaster</h1>
 			          <h2>Login</h2>
 			        </div>
+						</div>
+					</div>
 			      </div>
 						<div className="login-container">
 							<div className="email-container columns-container">

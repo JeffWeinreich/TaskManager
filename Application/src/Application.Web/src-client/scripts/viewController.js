@@ -20,6 +20,7 @@ import {RegistrationView} from "./views/view-registration.js";
 import {SingleListView} from "./views/view-singlelist.js";
 import {CreateListView} from "./views/view-create.js";
 import {EditListView} from "./views/view-edit.js";
+// import {AllListsView} fro "./views/view-all_lists.js";
 
 export const ViewController = React.createClass({
   getInitialState: function(){
@@ -35,6 +36,14 @@ export const ViewController = React.createClass({
     })
     let router = new AppRouter();
   },
+  _getNavbar: function(currentUser){
+    let theNavbar = <NavbarAnon  {...this.state}/>
+
+    if(typeof currentUser.name !== 'undefined'){
+          theNavbar = <NavbarAuth {...this.state}/>
+    }
+      return theNavbar;
+  },
 	render: function(){
     let currentView = this.state.currentView;
 		let componentToRender;
@@ -48,9 +57,9 @@ export const ViewController = React.createClass({
  			case "REGISTER":
 				componentToRender = <RegistrationView {...this.state}/>
 				break;
-      case "ALL_LISTS":
-				componentToRender = <AllListsView {...this.state}/>
-				break;
+      // case "ALL_LISTS":
+			// 	componentToRender = <AllListsView {...this.state}/>
+			// 	break;
       case "SINGLE_LIST":
         componentToRender = <SingleListView {...this.state}/>
         break;
@@ -63,8 +72,8 @@ export const ViewController = React.createClass({
  			default:
 		};
 		return (
-			<div>
-				<NavbarAnon {...this.state}/>
+      <div>
+				{this._getNavbar(this.state.currentUser)}
 				{componentToRender}
         <FooterComponent/>
 			</div>
