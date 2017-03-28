@@ -1,0 +1,44 @@
+.login-container h3{
+  font-family: 'Pavanam', sans-serif;
+  color: #3E383A;
+  letter-spacing: 2px;
+  margin-left: 5%;
+  margin-bottom: 4px;
+}
+
+.login-container input{
+  width: 90%;
+  margin-left: 5%;
+  padding: 8px 0 8px 0;
+  font-family: 'Pavanam', sans-serif;
+  font-size: 18px;
+  color: #3E383A;
+  letter-spacing: 2px;
+}
+
+.email-container{
+  margin-top: 48px;
+}
+
+.password-container{
+  margin-bottom: 36px;
+}
+
+.login-btn{
+  width: 20%;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 36px;
+  padding: 12px;
+}
+
+// TABLET STYLES
+@media screen and (min-width: 768px){
+
+}
+
+// DESKTOP VIEWS
+@media screen and (min-width: 1000px){
+
+}

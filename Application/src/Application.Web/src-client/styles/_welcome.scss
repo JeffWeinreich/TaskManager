@@ -7,13 +7,21 @@ text-align: center;
 }
 
 .welcome-header h1{
-  font-family: "Oranienbaum", sans-serif;
-  font-size: 54px;
+  font-family: 'Abril Fatface', serif;
+  font-weight: 100;
+  font-size: 60px;
+  letter-spacing: 4px;
+  color: #3E383A;
+  padding-top: 76px;
+  margin: 0;
 }
 
 .welcome-header h2{
-  font-family: "Antic Didone", sans-serif;
-  font-size: 18px;
+  font-family: 'Pavanam', sans-serif;
+  font-size: 20px;
+  color: #3E383A;
+  letter-spacing: 4px;
+  margin: 0;
 }
 
 .welcome-header{
@@ -24,8 +32,149 @@ text-align: center;
   min-height: 40vh;
 }
 
-.welcome-header{
-  background-color: rgba(206, 209, 222, .8);
-  font-family: "Italiana", sans-serif;
+.welcome-overlay{
+  background-color: rgba(206, 209, 222, .6);
   min-height: 40vh;
+}
+
+.welcome-promo-blurb_block h3{
+  font-family: 'Pavanam', sans-serif;
+  font-size: 18px;
+  color: #3E383A;
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
+  padding-top: 24px;
+}
+
+.welcome-promo-blurb_block span{
+  color: #19A97A;
+}
+
+.welcome-rows-article{
+  text-align: center;
+  padding-top: 12px;
+  max-width: 80%;
+  margin-left: 10%;
+}
+
+.welcome-row{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Pavanam', sans-serif;
+  letter-spacing: 2px;
+  font-size: 16px;
+  color: #3E383A;
+}
+
+.box1,
+.box2,
+.box3{
+  border-bottom: 1px solid #446CB6;
+  padding: 32px 0 32px 0;
+}
+
+.box4{
+  padding: 32px 0 32px 0;
+}
+
+.welcome-row .box3 i{
+  color: #3E383A;
+  font-size: 60px;
+  padding: 0 18px 0 18px;
+}
+
+.welcome-row h4{
+  margin-top: 6px;;
+}
+
+// TABLET STYLES
+@media screen and (min-width: 768px){
+  .welcome-header{
+    min-height: 50vh;
+  }
+
+  .welcome-overlay{
+    min-height: 50vh;
+  }
+
+  .welcome-header h1{
+    padding-top: 82px;
+  }
+
+  .welcome-row{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Pavanam', sans-serif;
+    letter-spacing: 2px;
+    font-size: 16px;
+  }
+
+  .welcome-rows-article{
+    max-width: 90%;
+    margin-left: 5%;
+  }
+
+  .welcome-col1{
+    border-right: 1px solid #446CB6;
+    padding-right: 32px;
+    max-width: 48%;
+  }
+
+  .welcome-col2{
+    padding-left: 32px;
+    max-width: 48%;
+    padding-bottom: 32px;
+  }
+
+  .box2{
+    border-bottom: 0px;
+  }
+}
+
+// DESKTOP VIEWS
+@media screen and (min-width: 1000px){
+  .welcome-header{
+    min-height: 60vh;
+  }
+
+  .welcome-overlay{
+    min-height: 60vh;
+  }
+
+  .welcome-header h1{
+    padding-top: 100px;
+  }
+
+  .welcome-row{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Pavanam', sans-serif;
+    letter-spacing: 2px;
+    font-size: 13.5px;
+  }
+
+  .welcome-rows-article{
+    max-width: 90%;
+    margin-left: 5%;
+  }
+
+  .welcome-col1{
+    border-right: 1px solid #446CB6;
+    padding-right: 32px;
+    max-width: 48%;
+  }
+
+  .welcome-col2{
+    padding-left: 32px;
+    max-width: 48%;
+    padding-bottom: 32px;
+  }
+
+  .box2{
+    border-bottom: 0px;
+  }
 }

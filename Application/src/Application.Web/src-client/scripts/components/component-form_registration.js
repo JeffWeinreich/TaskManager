@@ -62,11 +62,15 @@ export const RegistrationComponent = React.createClass({
 	render: function(){
 		return <form onSubmit={this._handleRegFormSubmit}>
 			<div className="component-registration">
+				<div className="reg-header">
+					<div className="reg-overlay">
 				<div className="page-header">
 					<div className="page-header_block">
 						<h1>TaskMaster</h1>
 						<h2>Registration</h2>
 					</div>
+				</div>
+			</div>
 				</div>
 				<div className="registration-container column-container">
 						<h3>Email</h3>
