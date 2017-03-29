@@ -38,8 +38,12 @@ export const SingleListView = React.createClass({
     ACTIONS.fetchGivenList(this.props.routeParams.listId);
   },
 
+  _handleEditClick: function(){
+
+  },
+
   _mapOverTask: function(givenListObj){
-    let givenTasks = givenListObj.tasks;
+    let givenTasks = givenListObj.todos;
     if (typeof givenTasks === 'undefined' ) givenTasks = []
     let mappedTasks = givenTasks.map(function(task, i){
       return <SingleToDo key={i+Date.now()} taskData={task}/>
@@ -48,6 +52,7 @@ export const SingleListView = React.createClass({
   },
 
   render: function(){
+    console.log("PROPS", this.props);
     if(this.props.listData === undefined){
       return(
         <div></div>
@@ -64,7 +69,7 @@ export const SingleListView = React.createClass({
           <div className="info-bar_shared-with">
             <h4>Shared With: {givenListObj.sharedWith}</h4>
           </div>
-          <div className="info-bar_edit-btn">
+          <div className="info-bar_edit-btn" onClick={this._handleEditClick}>
             <h4>Edit List</h4>
           </div>
         </div>
@@ -74,7 +79,7 @@ export const SingleListView = React.createClass({
               <i className="icon-list"></i>
             </div>
             <div className="list-header_title">
-              <h2>{givenListObj.listName}</h2>
+              <h2>{givenListObj.name}</h2>
             </div>
             <div className="list-header_delete-icon">
               <i className="icon-x"></i>
