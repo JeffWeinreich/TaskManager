@@ -53,8 +53,8 @@ export const EditListView = React.createClass({
 
   render: function(){
     let initialListObj = this.props.listData;
-    if(typeof initialListObj === 'undefined') {
-      return <div>....</div>
+    if (typeof initialListObj === 'undefined') {
+      return <div></div>
     }
 
     return (

@@ -6,12 +6,30 @@ import {ACTIONS} from '../actions.js'
 
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
+  _handleCompletion: function(event){
+    console.log(event.target);
+    console.log(event.currentTarget);
+    console.log(this.props)
+    let objToSave = Object.assign({}, this.props.taskData)
+    if(objToSave.isDone === true){
+      objToSave.isDone = false
+    } else {
+      objToSave.isDone = true
+    }
+
+    console.log(objToSave)
+    ACTIONS.updateTodo(objToSave)
+  },
+
   render: function(){
     let givenTaskObj = this.props.taskData;
     let completionInfo = "";
     let importantInfo = "";
     let completeClassName = 'task-notdone'
-    if(this.props.taskData.checkedOff){
+
+    let elStyle={}
+    if(this.props.taskData.isDone){
+      elStyle={background: 'red'}
       completeClassName = 'task-done'
       completionInfo = (
         <div className="todo_completed"><p>{givenTaskObj.completedBy} - {givenTaskObj.dateDone}</p></div>
@@ -20,8 +38,9 @@ const SingleToDo = React.createClass({
     if(this.props.taskData.important === true){
       importantInfo = (<div className="todo_important"><i className="icon-attention"></i></div>)
     };
+
     return (
-      <div className={`todo-singleview columns-container ${completeClassName}`}>
+      <div style={elStyle} className={`todo-singleview columns-container ${completeClassName}`} onClick={this._handleCompletion}>
         <div className="todo_checkbox"><input type="checkbox"/></div>
         <div className="todo_name"><h2>{givenTaskObj.name}</h2></div>
         {importantInfo}
@@ -33,13 +52,25 @@ const SingleToDo = React.createClass({
 
 // REACT COMPONENT - SINGLE LIST
 export const SingleListView = React.createClass({
+  getInitialState: function(){
+    return {
+      realPropsListData : this.props.listData
+    }
+  },
+
   componentWillMount: function(){
-    console.log('fetching????')
     ACTIONS.fetchGivenList(this.props.routeParams.listId);
   },
 
-  _handleEditClick: function(){
+  componentWillReceiveProps: function(newProps){
+    console.log('new PROPS', newProps)
+    this.setState({
+      realPropsListData : newProps.listData
+    })
+  },
 
+  _handleEditClick: function(){
+    ACTIONS.changeCurrentNav("routeToListEditing","lists/"+this.props.routeParams.listId+"/edit")
   },
 
   _mapOverTask: function(givenListObj){
@@ -52,13 +83,12 @@ export const SingleListView = React.createClass({
   },
 
   render: function(){
-    console.log("PROPS", this.props);
     if(this.props.listData === undefined){
       return(
         <div></div>
       )
     };
-    let givenListObj = this.props.listData;
+    let givenListObj = this.state.realPropsListData;
     return (
       <div className="view-singlelist">
         <div className="page-header">
