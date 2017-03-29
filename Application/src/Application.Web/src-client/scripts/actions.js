@@ -5,6 +5,7 @@ import Backbone from 'backbone'
 import {STORE} from './store.js';
 import {UserModel} from './models/model-user.js';
 import {ListModel,ListCollection} from "./models/model-list.js";
+import {TodoModel,TodoCollection} from "./models/model-todos.js";
 
 export const ACTIONS = {
 	setView: function(viewName, routeParamsData){
@@ -20,15 +21,18 @@ export const ACTIONS = {
 
 	loginUser: function(credsObj){
 		UserModel.logIn(credsObj.email, credsObj.password).then(function(serverRes){
-			console.log(serverRes)
 			STORE.setStore('currentUser', serverRes)
 		})
 	},
 
 	registerNewUser: function(newUserInfoObj){
 		UserModel.register(newUserInfoObj).then(function(serverRes){
-			ACTIONS.loginUser(serverRes);
-			ACTIONS.changeCurrentNav('HOME', '');
+			let loginNewUser = {
+				email: newUserInfoObj.email,
+				password: newUserInfoObj.password
+			}
+			ACTIONS.loginUser(loginNewUser);
+			ACTIONS.changeCurrentNav('routeToAllLists', '');
 		})
 	},
 
@@ -42,7 +46,6 @@ export const ACTIONS = {
 	},
 
 	logUserOut: function(){
-		console.log('logging out user...')
 		UserModel.logOut().then(function(){
 			STORE.setStore('currentUser', {})
 		})
@@ -61,7 +64,6 @@ export const ACTIONS = {
 
 	fetchCurrenUser: function(){
 		UserModel.getCurrentUser().then(function(serverRes){
-			console.log(serverRes)
 			STORE.setStore('currentUser', serverRes)
     })
 	},
@@ -78,6 +80,23 @@ export const ACTIONS = {
 		let newColl = new ListCollection();
 		newColl.fetch().then(function(serverRes){
 			STORE.setStore("allListsData", serverRes);
+		})
+	},
+
+	updateTodo: function(todoObj){
+		let newTodo = new TodoModel();
+		newTodo.set(todoObj).save().then(function(serverRes){
+			let listDataCopy = Object.assign({}, STORE.getStoreData().listData)
+			let todosDataCopy = [...listDataCopy.todos]
+
+			todosDataCopy = todosDataCopy.map(function(todo){
+					if(todo.id !== todoObj.id) {
+							return todo
+					}	else { return newTodo.toJSON() }
+			})
+
+			listDataCopy.todos = todosDataCopy
+			STORE.setStore('listData', listDataCopy)
 		})
 	}
 };
