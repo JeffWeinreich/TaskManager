@@ -71,13 +71,17 @@ export const ACTIONS = {
 	fetchGivenList: function(givenListID){
 		console.log(givenListID);
 		let newMod = new ListModel();
-		newMod.set({id: givenListID});
-		console.log(newMod);
+		// newMod.set({id: givenListID});
 		newMod.fetch().then(function(serverRes){
 			console.log(serverRes);
-			STORE.setStore("listData", serverRes.result);
+			let allTheListsInApp = serverRes
+			let soughtList = allTheListsInApp.filter(function(list,index,array){
+				if (list.id+'' === givenListID) {return true}
+			});
+			console.log('filtered list???', soughtList);
+			STORE.setStore("listData", soughtList[0]);
+			console.log(listData);
 		})
-		console.log("STORE:",STORE._data);
 	},
 
 	fetchAllLists: function(){
