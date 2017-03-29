@@ -48,17 +48,10 @@ namespace Application.Web.Controllers.API
             }
 
             var userId = _userManager.GetUserId(User);
-            //var lists = _context.Permissions.Where(p => p.User.Id == userId);
 
             var list = _context.Lists.Include(q => q.Todos)
                 .Where(q => _context.Permissions.Any(r => r.List.Id == id && r.User.Id == userId))
-                .FirstOrDefault(p=>p.Id== id);
-
-            //List list = await _context.Permissions
-            //    .Include(p => p.List.Todos)
-            //    .Where(p => p.User.Id == userId)
-            //    .Select(p=>p.List)              
-            //    .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefault(p => p.Id == id);
 
             if (list == null)
             {
@@ -85,32 +78,14 @@ namespace Application.Web.Controllers.API
 
             existinglist.IsDone = list.IsDone;
             existinglist.Name = list.Name;
-            
-            
+
+
 
             _context.Entry(list).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
 
             return Ok(existinglist);
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!ListExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            //return NoContent();
 
         }
 
@@ -125,7 +100,7 @@ namespace Application.Web.Controllers.API
 
             var userId = _userManager.GetUserAsync(User);
 
-            
+
             list.TimeStamp = DateTime.UtcNow;
             _context.Lists.Add(list);
 
@@ -141,22 +116,26 @@ namespace Application.Web.Controllers.API
             return Ok(list);
         }
 
-        //[HttpPost("~/api/lists/{id}/share")]
-        //public async Task<IActionResult> PostList(int id)
-        //{
-        //    var userId = _userManager.GetUserAsync(User);
+        [HttpPost("~/api/lists/{id}/share")]
+        public async Task<IActionResult> PostList(int id,[FromBody] List list)
+        {
+            var userId = _userManager.GetUserId(User);
 
-        //    var list = _context.Lists.Include(p=>p.Todos)
-        //        .
+                list = _context.Lists.Include(q => q.Todos)
+               .Where(q => _context.Permissions.Any(r => r.List.Id == id && r.User.Id == userId))
+               .FirstOrDefault(p => p.Id == id);
+           
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
 
-        //    var permission = new Permission();
-        //    permission.List =;
+            var permission = new Permission();
+            permission.List = list;
+            permission.User = user;
+            _context.Permissions.Add(permission);
 
-        //    var user = await _userManager.GetUserAsync(User);
-        //    permission.User = user;
+            _context.SaveChanges();
+            return Ok(User);
 
-
-        //}
+        }
 
 
         [HttpDelete]
