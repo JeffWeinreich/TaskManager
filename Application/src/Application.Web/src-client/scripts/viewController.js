@@ -20,7 +20,7 @@ import {RegistrationView} from "./views/view-registration.js";
 import {SingleListView} from "./views/view-singlelist.js";
 import {CreateListView} from "./views/view-create.js";
 import {EditListView} from "./views/view-edit.js";
-// import {AllListsView} fro "./views/view-all_lists.js";
+import {AllListsView} from "./views/view-all_lists.js";
 
 export const ViewController = React.createClass({
   getInitialState: function(){
@@ -57,9 +57,9 @@ export const ViewController = React.createClass({
  			case "REGISTER":
 				componentToRender = <RegistrationView {...this.state}/>
 				break;
-      // case "ALL_LISTS":
-			// 	componentToRender = <AllListsView {...this.state}/>
-			// 	break;
+      case "ALL_LISTS":
+				componentToRender = <AllListsView {...this.state}/>
+				break;
       case "SINGLE_LIST":
         componentToRender = <SingleListView {...this.state}/>
         break;

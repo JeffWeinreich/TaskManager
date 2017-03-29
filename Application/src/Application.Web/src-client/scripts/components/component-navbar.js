@@ -36,12 +36,29 @@ export const NavbarAuth = React.createClass({
 	_handleLogoutClick: function(){
 		ACTIONS.logUserOut()
 	},
+	_handleNavClick: function(evt){
+		let clickedRoute = evt.currentTarget.dataset.route
+		let routeMapping = {
+			"HOME" : '',
+			"LOGIN" : 'login',
+			"REGISTER" : 'register',
+			"ALL_LISTS" : 'lists',
+			"SINGLE_LIST" : 'single_list',
+			"CREATE_LIST" : 'lists/create',
+			"EDIT_LIST" : 'edit_list'
+		}
+
+		ACTIONS.routeTo(routeMapping[clickedRoute])
+	},
+
 	render: function(){
     return <div className="nav-top nav-auth columns-container">
-    <div className="nav-top_menu-button" onClick={this._handleNavClick} data-route="HOME"><i className="icon-menu"></i></div>
-    <div className="nav-top_right-buttons">
-				<div className="nav-logout" data-route="LOGOUT"
-					onClick={this._handleLogoutClick}>Logout</div>
+		<div className="nav-top_left-buttons">
+    	<div className="nav-top_menu-button nav-all-lists" onClick={this._handleNavClick} data-route="ALL_LISTS">View All Lists</div>
+			<div className="nav-top_menu-button nav-create-list" onClick={this._handleNavClick} data-route="CREATE_LIST">Create A List</div>
+		</div>
+		<div className="nav-top_right-buttons">
+			<div className="nav-logout" data-route="LOGOUT" onClick={this._handleLogoutClick}>Logout</div>
 		</div>
     </div>
 	}
