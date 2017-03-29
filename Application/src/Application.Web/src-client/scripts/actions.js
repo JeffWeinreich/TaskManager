@@ -19,7 +19,6 @@ export const ACTIONS = {
 	},
 
 	loginUser: function(credsObj){
-		console.log(credsObj)
 		UserModel.logIn(credsObj.email, credsObj.password).then(function(serverRes){
 			console.log(serverRes)
 			STORE.setStore('currentUser', serverRes)
@@ -50,7 +49,6 @@ export const ACTIONS = {
 	},
 
 	setListToPost: function(givenListObj){
-		console.log(givenListObj);
 		STORE.setStore("listToPost", givenListObj)
 		let newMod = new ListModel();
 		newMod.set(givenListObj);
@@ -69,18 +67,10 @@ export const ACTIONS = {
 	},
 
 	fetchGivenList: function(givenListID){
-		console.log(givenListID);
 		let newMod = new ListModel();
-		// newMod.set({id: givenListID});
+		newMod.set({id: givenListID});
 		newMod.fetch().then(function(serverRes){
-			console.log(serverRes);
-			let allTheListsInApp = serverRes
-			let soughtList = allTheListsInApp.filter(function(list,index,array){
-				if (list.id+'' === givenListID) {return true}
-			});
-			console.log('filtered list???', soughtList);
-			STORE.setStore("listData", soughtList[0]);
-			console.log(listData);
+			STORE.setStore("listData", serverRes);
 		})
 	},
 
