@@ -29,6 +29,10 @@
   margin: 8px;
 }
 
+.create-form input, .edit-form input{
+  font-size: 24px;
+}
+
 // TASK ROWS
 .task-row *{
   display: inline-block;
