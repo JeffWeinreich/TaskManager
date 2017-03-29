@@ -3,39 +3,38 @@ import {ACTIONS} from "../actions.js";
 
 // IMPORTS - REACT
 import React from "react";
-import ReactDOM from "react-dom";
 
 // REACT COMPONENT - CREATE LIST VIEW
 export const CreateListView = React.createClass({
   getInitialState: function(){
     return {
-      tasksToAdd: [{taskName: "", isImportant: false}],
+      tasksToAdd: [{name: "", isImportant: false}],
       errorMessageListName : "",
       errorMessageTaskName : ""
     }
   },
+
   _handleAddRowClick: function(){
     let component = this
     let copyOfTaskRows = this.state.tasksToAdd.map(function makeCopy(val){return val});
-    copyOfTaskRows.push({taskName: "", isImportant: false});
+    copyOfTaskRows.push({name: "", isImportant: false});
     this.setState({
       tasksToAdd: copyOfTaskRows
     })
   },
+
   _renderTasksToAdd: function(arrOfTasks){
     let component = this
     return arrOfTasks.map(function(singleTask, i){
-
       return(
         <TaskFormRow key={i} i={i} handleInputChange={component._handleInputChange}/>
       )
     })
-
   },
 
   _handleInputChange: function(val, type, index){
     let updatedTasks = this.state.tasksToAdd.map(function(taskObj,i){
-      let newObj = taskObj
+      let newObj = taskObj;
       if(i === index){
         newObj[type] = val
       }
@@ -45,11 +44,10 @@ export const CreateListView = React.createClass({
       tasksToAdd: updatedTasks
     })
   },
+
   _handleFormSubmit: function(){
-    console.log("--SUBMIT--");
     let submittedListName = document.querySelector(".create-form_list-name input").value;
     let submittedSharedUsers = document.querySelector(".create-form_sharing input").value;
-    console.log(this.state.tasksToAdd[0]);
     let errorJSXListName = (
       <div className="create-form_error-message error_listname">
         <p>The list name can't be blank.</p>
@@ -60,7 +58,7 @@ export const CreateListView = React.createClass({
         <p>Please add at least one task.</p>
       </div>
     )
-    if (submittedListName === "" && this.state.tasksToAdd[0].taskName === ""){
+    if (submittedListName === "" && this.state.tasksToAdd[0].name === ""){
       this.setState({
         errorMessageListName: errorJSXListName,
         errorMessageTaskName: errorJSXTaskName
@@ -81,18 +79,18 @@ export const CreateListView = React.createClass({
         errorMessageTaskName : ""
       })
       let listObjForSubmission = {
-        listName: submittedListName,
+        name: submittedListName,
         sharedWith: submittedSharedUsers,
-        tasks: this.state.tasksToAdd
+        todos: this.state.tasksToAdd
       };
-      console.log(listObjForSubmission);
       ACTIONS.setListToPost(listObjForSubmission);
     };
   },
+
   _handleCreateCancel: function(){
-    console.log("--CANCEL--");
-    // should route to main view, i.e. Multi Lists View
+    ACTIONS.changeCurrentNav("routeToAllLists","lists");
   },
+
   render: function(){
     let additionalTaskRows;
     return (
@@ -147,11 +145,12 @@ const TaskFormRow = React.createClass({
     };
     this.props.handleInputChange(eventValue, eventType, this.props.i);
   },
+
   render: function(){
     return (
       <div className="task-row columns-container">
         <div className="task-row_name">
-          <input name="taskName" ref="inputVal" onChange={this._handleChange} ref={this.props.i} type="text"></input>
+          <input name="name" ref="inputVal" onChange={this._handleChange} ref={this.props.i} type="text"></input>
         </div>
         <div className="task-row_important">
           <input name="isImportant" ref={this.props.i} onChange={this._handleChange} type="checkbox"></input>

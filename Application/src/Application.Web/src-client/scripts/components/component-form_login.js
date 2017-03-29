@@ -7,16 +7,17 @@ import {ACTIONS} from "../actions.js";
 
 export const LoginComponent = React.createClass({
 	_handleLoginFormSubmit: function(evt){
-		evt.preventDefault()
-		let formEl = evt.target
+		evt.preventDefault();
+		let formEl = evt.target;
 
 		let authCreds = {
 			email: formEl.emailField.value,
 			password: formEl.passwordField.value
-		}
+		};
 
-		console.log(authCreds)
-		ACTIONS.loginUser(authCreds)
+		console.log(authCreds);
+		ACTIONS.loginUser(authCreds);
+		ACTIONS.changeCurrentNav("routeToAllLists","lists");
 	},
 			render: function(){
 				return <form onSubmit={this._handleLoginFormSubmit} className="component-login">

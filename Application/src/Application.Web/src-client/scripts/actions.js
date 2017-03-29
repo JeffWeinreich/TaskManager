@@ -10,8 +10,7 @@ export const ACTIONS = {
 	setView: function(viewName, routeParamsData){
 		if(typeof routeParamsData !== 'undefined'){
 			STORE.setStore('routeParams', routeParamsData)
-		}
-
+		};
 		STORE.setStore('currentView', viewName)
 	},
 
@@ -51,7 +50,15 @@ export const ACTIONS = {
 	},
 
 	setListToPost: function(givenListObj){
+		console.log(givenListObj);
 		STORE.setStore("listToPost", givenListObj)
+		let newMod = new ListModel();
+		newMod.set(givenListObj);
+		newMod.save().then(function(serverRes){
+			console.log(serverRes);
+			STORE.setStore("listData", serverRes);
+			ACTIONS.changeCurrentNav("routeToSingleList","lists/"+serverRes.id);
+		});
 	},
 
 	fetchCurrenUser: function(){
@@ -62,18 +69,21 @@ export const ACTIONS = {
 	},
 
 	fetchGivenList: function(givenListID){
+		console.log(givenListID);
 		let newMod = new ListModel();
 		newMod.set({id: givenListID});
+		console.log(newMod);
 		newMod.fetch().then(function(serverRes){
-			console.log(serverRes)
-			STORE.setStore("listData", [serverRes]);
+			console.log(serverRes);
+			STORE.setStore("listData", serverRes.result);
 		})
+		console.log("STORE:",STORE._data);
 	},
 
 	fetchAllLists: function(){
 		let newColl = new ListCollection();
 		newColl.fetch().then(function(serverRes){
-			STORE.setStore("listData", serverRes);
+			STORE.setStore("allListsData", serverRes);
 		})
 	}
 };

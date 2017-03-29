@@ -17,7 +17,7 @@ export const WelcomeComponent = React.createClass({
 						</div>
 						<div className="welcome-row welcome-col2 columns-container">
 							<div className="box3"><h4>View and edit your lists on mobile, tablet, and desktop devices for your convenience</h4>
-								<i className="fa fa-mobile" aria-hidden="true"></i><i className="fa fa-tablet" aria-hidden="true"></i><i className="fa fa-desktop" aria-hidden="true"></i>
+								<i className="icon-mobile" aria-hidden="true"></i><i className="icon-tablet" aria-hidden="true"></i><i className="icon-desktop" aria-hidden="true"></i>
 							</div>
 							<div className="box4"><h4>Mark your tasks as important or add due dates for additional organization</h4></div>
 						</div>
