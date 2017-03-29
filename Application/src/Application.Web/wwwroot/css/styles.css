@@ -296,25 +296,25 @@
   .box2 {
     border-bottom: 0px; } }
 
-.create-form {
+.create-form, .edit-form {
   margin: 16px; }
 
-.create-form * {
+.create-form *, .edit-form * {
   font-family: 'Pavanam', sans-serif;
   letter-spacing: 2px; }
 
-.create-form_list-name h2 {
+.create-form_list-name h2, .edit-form_list-name h2 {
   margin-bottom: 8px; }
 
-.create-form_tasks h2 {
+.create-form_tasks h2, .edit-form_tasks h2 {
   margin-bottom: 8px; }
 
-.create-form_tasks-block {
+.create-form_tasks-block, .edit-form_tasks-block {
   border: 2px solid #CCCCCC;
   max-height: 34vh;
   overflow-y: scroll; }
 
-.create-form_tasks-add {
+.create-form_tasks-add, .edit-form_tasks-add {
   font-family: 'Pavanam', sans-serif;
   margin: 8px; }
 
@@ -325,16 +325,16 @@
   border-bottom: 2px solid #CCCCCC;
   padding: 8px; }
 
-.create-form_buttons {
+.create-form_buttons, .edit-form_buttons {
   text-align: center; }
 
-.create-form_buttons * {
+.create-form_buttons *, .edit-form_buttons * {
   display: inline-block; }
 
-.create-form_buttons h2 {
+.create-form_buttons h2, .edit-form_buttons h2 {
   margin: 0; }
 
-.create-form_submit {
+.create-form_submit, .edit-form_submit {
   background-color: #2755A9;
   border: 3px solid #698CCB;
   border-radius: 8px;
@@ -342,7 +342,7 @@
   margin-right: 8px;
   padding: 8px; }
 
-.create-form_cancel {
+.create-form_cancel, .edit-form_cancel {
   background-color: #b0b0b0;
   border: 3px solid #CCC;
   border-radius: 8px;
@@ -350,7 +350,7 @@
   margin-left: 8px;
   padding: 8px; }
 
-.create-form_error-message {
+.create-form_error-message, .edit-form_error-message {
   color: #FF0000;
   display: inline-block; }
 
