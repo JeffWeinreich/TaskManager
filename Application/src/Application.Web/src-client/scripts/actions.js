@@ -84,6 +84,7 @@ export const ACTIONS = {
 	},
 
 	updateTodo: function(todoObj){
+		// crazy hack by Travis Hubbard
 		let newTodo = new TodoModel();
 		newTodo.set(todoObj).save().then(function(serverRes){
 			let listDataCopy = Object.assign({}, STORE.getStoreData().listData)
