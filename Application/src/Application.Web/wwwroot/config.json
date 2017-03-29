@@ -53,6 +53,24 @@
       "css": "attention",
       "code": 59396,
       "src": "mfglabs"
+    },
+    {
+      "uid": "767fede84586366cd7d6c835be745454",
+      "css": "mobile",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "r36ey62e6pi493s139u528739kjr3o8w",
+      "css": "tablet",
+      "code": 59398,
+      "src": "modernpics"
+    },
+    {
+      "uid": "757afacc32d82967975cbb3b45cfb41b",
+      "css": "desktop",
+      "code": 61704,
+      "src": "fontawesome"
     }
   ]
 }
