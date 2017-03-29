@@ -35,17 +35,29 @@ export const EditListView = React.createClass({
     })
   },
 
+  _renderTasksToAdd: function(arrOfTasks){
+    let component = this;
+    return arrOfTasks.map(function(singleTask,i){
+      return <TaskFormRow key={i} i={i} handleInputChange={component._handleInputChange}/>
+    })
+  },
+
   _getInitialTasks: function(){
     let givenTasksArray = this.props.listData.todos;
     return givenTasksArray;
   },
 
   componentWillMount: function(){
-    ACTIONS.fetchGivenList(this.props.routeParams.listId);
+    ACTIONS.fetchGivenList(this.props.routeParams.id);
   },
 
   render: function(){
     let initialListObj = this.props.listData;
+    console.log(initialListObj)
+    if(typeof initialListObj === 'undefined') {
+      return <div>....</div>
+    }
+
     return (
       <div className="view-editlist">
         <div className="page-header">
@@ -88,8 +100,16 @@ export const EditListView = React.createClass({
 
 const TaskFormRow = React.createClass({
   _handleChange: function(){
-
+    let eventType = evt.target.name;
+    let eventValue;
+    if (eventType === "isImportant"){
+      eventValue = evt.target.checked;
+    } else {
+      eventValue = evt.target.value;
+    };
+    this.props.handleInputChange(eventValue, eventType, thisprops.i);
   },
+
   render: function(){
     return (
       <div className="task-row columns-container">

@@ -26,9 +26,7 @@ export const CreateListView = React.createClass({
   _renderTasksToAdd: function(arrOfTasks){
     let component = this
     return arrOfTasks.map(function(singleTask, i){
-      return(
-        <TaskFormRow key={i} i={i} handleInputChange={component._handleInputChange}/>
-      )
+      return <TaskFormRow key={i} i={i} handleInputChange={component._handleInputChange}/>
     })
   },
 

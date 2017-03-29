@@ -41,7 +41,7 @@ export const AppRouter = Backbone.Router.extend({
 	routeToListCreation: function(){
 		ACTIONS.setView("CREATE_LIST")
 	},
-	routeToListEditing: function(){
-		ACTIONS.setView("EDIT_LIST")
+	routeToListEditing: function(id){
+		ACTIONS.setView("EDIT_LIST", {id})
 	}
 })
