@@ -39,6 +39,7 @@ namespace Application.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    IsDone = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     TimeStamp = table.Column<DateTime>(nullable: false)
                 },
@@ -148,6 +149,7 @@ namespace Application.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    IsDone = table.Column<bool>(nullable: false),
                     ListId = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: false)
                 },

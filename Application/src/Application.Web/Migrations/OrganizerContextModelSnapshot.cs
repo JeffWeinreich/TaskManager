@@ -70,6 +70,8 @@ namespace Application.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("IsDone");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -102,6 +104,8 @@ namespace Application.Web.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsDone");
 
                     b.Property<int?>("ListId");
 
