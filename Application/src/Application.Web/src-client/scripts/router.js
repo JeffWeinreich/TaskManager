@@ -16,15 +16,11 @@ export const AppRouter = Backbone.Router.extend({
 	routes: {
 		"login" : "routeToLogin",
 		"register" : "routeToRegistration",
-		// "lists/:id" : "routeToSingleList",
-		"lists/edit" : "routeToListEditing",
-
+		"lists/:id/edit" : "routeToListEditing",
 		"lists/create" : "routeToListCreation",
 		"lists/:id" : "routeToSingleList",
-		// "lists/:id/edit" : "routeToListEditing"
 		"lists" : "routeToAllLists",
 		"" : "routeToWelcome",
-
 	},
 
 	routeToWelcome: function(){

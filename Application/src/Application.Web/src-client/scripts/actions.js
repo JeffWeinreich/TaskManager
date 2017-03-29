@@ -52,6 +52,12 @@ export const ACTIONS = {
 
 	setListToPost: function(givenListObj){
 		STORE.setStore("listToPost", givenListObj)
+		let newMod = new ListModel();
+		newMod.set(givenListObj);
+		newMod.save().then(function(serverRes){
+			let listID = serverRes.id;
+			fetchGivenList(listID);
+		});
 	},
 
 	fetchCurrenUser: function(){

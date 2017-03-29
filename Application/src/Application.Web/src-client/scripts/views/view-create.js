@@ -25,7 +25,6 @@ export const CreateListView = React.createClass({
   _renderTasksToAdd: function(arrOfTasks){
     let component = this
     return arrOfTasks.map(function(singleTask, i){
-
       return(
         <TaskFormRow key={i} i={i} handleInputChange={component._handleInputChange}/>
       )
@@ -45,6 +44,7 @@ export const CreateListView = React.createClass({
       tasksToAdd: updatedTasks
     })
   },
+
   _handleFormSubmit: function(){
     console.log("--SUBMIT--");
     let submittedListName = document.querySelector(".create-form_list-name input").value;
@@ -85,14 +85,16 @@ export const CreateListView = React.createClass({
         sharedWith: submittedSharedUsers,
         tasks: this.state.tasksToAdd
       };
-      console.log(listObjForSubmission);
       ACTIONS.setListToPost(listObjForSubmission);
     };
   },
+
   _handleCreateCancel: function(){
-    console.log("--CANCEL--");
+    ACTIONS.changeCurrentNav("routeToAllLists","lists");
     // should route to main view, i.e. Multi Lists View
+
   },
+
   render: function(){
     let additionalTaskRows;
     return (
@@ -147,6 +149,7 @@ const TaskFormRow = React.createClass({
     };
     this.props.handleInputChange(eventValue, eventType, this.props.i);
   },
+
   render: function(){
     return (
       <div className="task-row columns-container">

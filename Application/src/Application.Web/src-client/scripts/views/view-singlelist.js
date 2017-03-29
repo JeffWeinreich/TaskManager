@@ -1,6 +1,9 @@
 // IMPORTS - REACT
 import React from "react";
-import {ACTIONS} from '../actions.js  '
+
+// IMPORTS - DATA FLOW
+import {ACTIONS} from '../actions.js'
+
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
   render: function(){
