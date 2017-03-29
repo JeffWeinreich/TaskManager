@@ -141,19 +141,22 @@ namespace Application.Web.Controllers.API
             return Ok(list);
         }
 
-        //[HttpPost ("~/api/lists/{id}/share")]
+        //[HttpPost("~/api/lists/{id}/share")]
         //public async Task<IActionResult> PostList(int id)
         //{
+        //    var userId = _userManager.GetUserAsync(User);
+
+        //    var list = _context.Lists.Include(p=>p.Todos)
+        //        .
+
         //    var permission = new Permission();
-        //    permission.List = 
+        //    permission.List =;
 
         //    var user = await _userManager.GetUserAsync(User);
         //    permission.User = user;
-               
-            
-            
 
-        }
+
+        //}
 
 
         [HttpDelete]
