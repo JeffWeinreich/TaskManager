@@ -1,0 +1,20 @@
+.all-lists-header{
+  background-image: url("https://source.unsplash.com/505eectW54k");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 40vh;
+}
+
+.all-lists-overlay{
+  background-color: rgba(206, 209, 222, .6);
+  min-height: 40vh;
+}
+
+.all-lists-container h3{
+  font-family: 'Pavanam', sans-serif;
+  color: #3E383A;
+  letter-spacing: 2px;
+  margin-left: 5%;
+  margin-bottom: 4px;
+}

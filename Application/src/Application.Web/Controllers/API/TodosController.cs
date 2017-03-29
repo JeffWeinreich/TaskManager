@@ -55,7 +55,7 @@ namespace Application.Web.Controllers.API
                     throw;
                 }
             }
-            return NoContent();
+            return Ok();
         }
        
         [HttpPost("~/api/lists/{listId}/todos")]
