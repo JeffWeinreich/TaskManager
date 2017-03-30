@@ -2,8 +2,7 @@
 
 // INFO BAR
 .info-bar{
-  margin: 8px auto 16px auto;
-  width: 90%;
+  margin: 16px;
 }
 
 .info-bar_shared-with, .info-bar_edit-btn{
@@ -14,11 +13,12 @@
 .info-bar_shared-with{
   font-family: 'Pavanam', sans-serif;
   font-size: 24px;
+  width: 80%;
 }
 
 .info-bar_edit-btn{
-  position: absolute;
-  right: 0;
+  text-align: center;
+  width: 20%;
 }
 
 .info-bar_edit-btn h4{
@@ -50,6 +50,23 @@
 
 .list-header *{
   display: inline-block;
+  font-size: 36px;
+  margin: 0;
+}
+
+.list-header_main-icon{
+  text-align: left;
+  width: 10%;
+}
+
+.list-header_title{
+  text-align: center;
+  width: 80%
+}
+
+.list-header_delete-icon{
+  text-align: right;
+  width: 10%;
 }
 
 // TASKS/TO-DO'S
@@ -80,6 +97,14 @@
 .task-done .todo_name h2{
   color: #777;
   text-decoration: line-through;
+}
+
+.todo_checkedOff{
+  width: 40px;
+}
+
+.todo_checkedOff i{
+  font-size: 32px;
 }
 
 .todo_important{

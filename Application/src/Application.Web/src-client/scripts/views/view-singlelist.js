@@ -26,25 +26,26 @@ const SingleToDo = React.createClass({
     let completionInfo = "";
     let importantInfo = "";
     let completeClassName = 'task-notdone'
+    let checkmarkJSX = "";
 
     let elStyle={}
     if(this.props.taskData.isDone){
-      elStyle={background: 'red'}
       completeClassName = 'task-done'
       completionInfo = (
         <div className="todo_completed"><p>{givenTaskObj.completedBy} - {givenTaskObj.dateDone}</p></div>
       )
+      checkmarkJSX = <i className="icon-checkmark"/>
     };
     if(this.props.taskData.important === true){
       importantInfo = (<div className="todo_important"><i className="icon-attention"></i></div>)
     };
 
     return (
-      <div style={elStyle} className={`todo-singleview columns-container ${completeClassName}`} onClick={this._handleCompletion}>
-        <div className="todo_checkbox"><input type="checkbox"/></div>
+      <div className={`todo-singleview columns-container ${completeClassName}`} onClick={this._handleCompletion}>
+        <div className="todo_checkedOff">{checkmarkJSX}</div>
         <div className="todo_name"><h2>{givenTaskObj.name}</h2></div>
-        {importantInfo}
-        {completionInfo}
+        {/* {importantInfo} */}
+        {/* {completionInfo} */}
       </div>
     )
   }
