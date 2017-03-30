@@ -27,6 +27,7 @@ export const ACTIONS = {
 		UserModel.logIn(credsObj.email, credsObj.password).then(function(serverRes){
 			STORE.setStore('currentUser', serverRes);
 			ACTIONS.fetchCurrenUser();
+
 		})
 	},
 

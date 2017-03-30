@@ -24,9 +24,6 @@ const SingleList = React.createClass({
     ACTIONS.changeCurrentNav("SINGLE_LIST", 'lists/'+this.props.listData.id)
   },
   render: function(){
-    if (this.props.listData === undefined){
-      return <div></div>
-    };
     let listData = this.props.listData
     return (
       <div className="single-list" key={listData} onClick={this._viewSingle}>
@@ -39,8 +36,9 @@ const SingleList = React.createClass({
 
 // REACT COMPONENT - ALL LISTS VIEW
 export const AllListsView = React.createClass({
-  componentWillMount: function(){
+  componentDidMount: function(){
     ACTIONS.fetchAllLists();
+
 	},
 
   _mapOverLists: function(){
