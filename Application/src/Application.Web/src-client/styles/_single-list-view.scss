@@ -13,6 +13,7 @@
 .info-bar_shared-with{
   font-family: 'Pavanam', sans-serif;
   font-size: 24px;
+  letter-spacing: 2px;
   width: 80%;
 }
 
@@ -28,6 +29,7 @@
   color: #FFFFFF;
   font-family: 'Pavanam', sans-serif;
   font-size: 24px;
+  letter-spacing: 2px;
   padding: 8px;
 }
 
@@ -38,6 +40,7 @@
 
 .list-container *{
   font-family: 'Pavanam', sans-serif;
+  letter-spacing: 2px;
 }
 
 // LIST HEADER
@@ -114,4 +117,5 @@
 
 .task-done .todo_completed p{
   font-family: 'Pavanam', sans-serif;
+  letter-spacing: 2px;
 }
