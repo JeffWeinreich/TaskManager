@@ -133,7 +133,8 @@ namespace Application.Web.Controllers.API
             _context.Permissions.Add(permission);
 
             _context.SaveChanges();
-            return Ok(User);
+
+            return Ok(user);
 
         }
 
