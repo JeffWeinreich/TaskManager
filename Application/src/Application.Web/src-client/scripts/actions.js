@@ -62,7 +62,7 @@ export const ACTIONS = {
 		newMod.save().then(function(serverRes){
 			console.log(serverRes);
 			STORE.setStore("listData", serverRes);
-			ACTIONS.changeCurrentNav("routeToSingleList","lists/"+serverRes.id);
+			// ACTIONS.changeCurrentNav("routeToSingleList","lists/"+serverRes.id);
 		});
 	},
 
@@ -106,16 +106,20 @@ export const ACTIONS = {
 	},
 
 	shareWithOthers: function(emailArr){
-		let listID = STORE._data.listData.id;
-		console.log(listID);
-		// $.ajax({
-		//   type: "POST",
-		//   url: url,
-		//   data: {email: emailArr},
-		//   success: success,
-		//   dataType: string
-		// });
-
+		let dataCheckLoop = setInterval(function(){
+			if (STORE._data.listData.id !== undefined){
+				emailArr.map(function(emailStr){
+					let listID = STORE._data.listData.id;
+					let url = "/api/lists/"+listID+"/share"
+					let emailObj = JSON.stringify({email: emailStr});
+					$.post(url,emailObj,function(data,status){
+						console.log(data);
+						console.log(status);
+					})
+				})
+				clearInterval(dataCheckLoop);
+			}
+		},200)
 
 		// let newShare = new ShareModel;
 		// newShare.set({email: emailArr}).save().then(function(serverRes){

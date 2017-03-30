@@ -81,8 +81,12 @@ export const CreateListView = React.createClass({
         sharedWith: submittedSharedUsers,
         todos: this.state.tasksToAdd
       };
-      ACTIONS.shareWithOthers(submittedSharedUsers);
       ACTIONS.setListToPost(listObjForSubmission);
+      if (submittedSharedUsers !== ""){
+        let emailArray = submittedSharedUsers.split(", ");
+        console.log(emailArray);
+        ACTIONS.shareWithOthers(emailArray);
+      };
     };
   },
 
