@@ -8,6 +8,7 @@
 /// <reference path="../src-client/scripts/components/component-navbar.js" />
 /// <reference path="../src-client/scripts/components/component-welcome.js" />
 /// <reference path="../src-client/scripts/models/model-list.js" />
+/// <reference path="../src-client/scripts/models/model-todos.js" />
 /// <reference path="../src-client/scripts/models/model-user.js" />
 /// <reference path="../src-client/scripts/router.js" />
 /// <reference path="../src-client/scripts/store.js" />
