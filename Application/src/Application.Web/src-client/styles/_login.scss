@@ -1,3 +1,16 @@
+.login-header{
+  background-image: url("https://source.unsplash.com/505eectW54k");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 40vh;
+}
+
+.login-overlay{
+  background-color: rgba(206, 209, 222, .6);
+  min-height: 40vh;
+}
+
 .login-container h3{
   font-family: 'Pavanam', sans-serif;
   color: #3E383A;
