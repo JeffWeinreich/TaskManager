@@ -55,15 +55,34 @@ export const ACTIONS = {
 		})
 	},
 
-	setListToPost: function(givenListObj){
+	setListToPost: function(givenListObj, sharedUsers){
 		STORE.setStore("listToPost", givenListObj)
 		let newMod = new ListModel();
 		newMod.set(givenListObj);
 		newMod.save().then(function(serverRes){
-			console.log(serverRes);
+			console.log(serverRes, "getting response");
+			if(sharedUsers !== ""){
+				ACTIONS.shareWithOthers(sharedUsers, serverRes.id)
+			}
 			STORE.setStore("listData", serverRes);
 			// ACTIONS.changeCurrentNav("routeToSingleList","lists/"+serverRes.id);
 		});
+	},
+
+	shareWithOthers: function(sharedUsers, responseId){
+		let emailArr = sharedUsers.split(", ");
+		emailArr.map(function(email){
+			$.ajax({
+  			url:`/api/lists/${responseId}/share`,
+  			type:"POST",
+  			data:{email: email},
+  			contentType:"application/json; charset=utf-8",
+  			dataType:"json",
+  			success: function(response){
+					console.log(response)
+  			}
+			})
+		})
 	},
 
 	fetchCurrenUser: function(){
@@ -105,26 +124,5 @@ export const ACTIONS = {
 		})
 	},
 
-	shareWithOthers: function(emailArr){
-		let dataCheckLoop = setInterval(function(){
-			if (STORE._data.listData.id !== undefined){
-				emailArr.map(function(emailStr){
-					let listID = STORE._data.listData.id;
-					let url = "/api/lists/"+listID+"/share"
-					let emailObj = JSON.stringify({email: emailStr});
-					$.post(url,emailObj,function(data,status){
-						console.log(data);
-						console.log(status);
-					})
-				})
-				clearInterval(dataCheckLoop);
-			}
-		},200)
 
-		// let newShare = new ShareModel;
-		// newShare.set({email: emailArr}).save().then(function(serverRes){
-		// 	console.log(serverRes);
-		// })
-		// console.log(newShare);
-	}
 };
