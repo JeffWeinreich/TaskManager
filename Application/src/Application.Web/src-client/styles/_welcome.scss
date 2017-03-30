@@ -86,17 +86,17 @@ text-align: center;
 }
 
 .welcome-row h4{
-  margin-top: 6px;;
+  margin-top: 6px;
 }
 
 // TABLET STYLES
 @media screen and (min-width: 768px){
   .welcome-header{
-    min-height: 50vh;
+    min-height: 440px;
   }
 
   .welcome-overlay{
-    min-height: 50vh;
+    min-height: 440px;
   }
 
   .welcome-header h1{
@@ -132,6 +132,13 @@ text-align: center;
   .box2{
     border-bottom: 0px;
   }
+
+  .welcome-row .box3 i{
+    color: #3E383A;
+    font-size: 40px;
+    padding: 0 6px 0 6px;
+  }
+
 }
 
 // DESKTOP VIEWS
