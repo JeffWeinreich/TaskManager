@@ -60,7 +60,8 @@ export const SingleListView = React.createClass({
   },
 
   componentWillMount: function(){
-    ACTIONS.fetchGivenList(this.props.routeParams.listId);
+    let currentId = window.location.hash.split('lists/')
+    ACTIONS.fetchGivenList(currentId[1]);
   },
 
   componentWillReceiveProps: function(newProps){
