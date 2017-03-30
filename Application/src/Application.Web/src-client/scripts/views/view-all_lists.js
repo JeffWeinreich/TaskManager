@@ -71,10 +71,10 @@ export const AllListsView = React.createClass({
   </div>
 
         <div className="indiv-list-container column-container">
-            <h3>List Name</h3>
+            {/* <h3>List Name</h3>
             <h3>Task 1</h3>
             <h3>Task 2</h3>
-            <h3>Task 3</h3>
+            <h3>Task 3</h3> */}
             {this._mapOverLists()}
         </div>
 			</div>
