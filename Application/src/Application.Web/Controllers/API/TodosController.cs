@@ -55,7 +55,7 @@ namespace Application.Web.Controllers.API
                     throw;
                 }
             }
-            return Ok();
+            return NoContent();
         }
        
         [HttpPost("~/api/lists/{listId}/todos")]
@@ -70,7 +70,7 @@ namespace Application.Web.Controllers.API
             var list = _context.Lists.FirstOrDefault(p => p.Id == listId);
                       
             list.Todos.Add(todo);
- 
+
            await _context.SaveChangesAsync();
         
            return Ok (todo);
