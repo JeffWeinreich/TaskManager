@@ -140,7 +140,7 @@ namespace Application.Web.Controllers.API
 
 
         //[HttpGet("~/api/lists/{id}/share/email")]
-        //public IActionResult GetUser(int id)
+        //public IActionResult GetApplicationUser(int id)
         //{
         //    var userId = _userManager.GetUserId(User);
 

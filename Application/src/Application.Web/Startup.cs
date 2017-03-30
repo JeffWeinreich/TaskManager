@@ -84,7 +84,7 @@ namespace Application.Web
             context.Database.Migrate();
 
             //Chris Nimmons
-            var lorem = new Lorem();
+            //var lorem = new Lorem();
 
             var user = await userManager.FindByEmailAsync("a@b.com");
 
@@ -96,20 +96,80 @@ namespace Application.Web
 
                 var result = await userManager.CreateAsync(user, "testtest1");
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i <1; i++)
                 {
-                    var list = new List() { Name = lorem.Word() };
+                    var list = new List() { Name = "Saturday" };
                     context.Lists.Add(list);
 
                     var permission = new Permission() { User = user, List = list };
                     context.Permissions.Add(permission);
 
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < 1; j++)
                     {
-                        var todo = new Todo() { Name = lorem.Sentence(2, 6) };
+                        var todo = new Todo() { Name = "Eat lunch" };
                         list.Todos.Add(todo);
                     }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo2 = new Todo() { Name = "Free Thing 2" };
+                        list.Todos.Add(todo2);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo3 = new Todo() { Name = "Catch Thing 1" };
+                        list.Todos.Add(todo3);
+                    }
                 }
+
+                for (int i = 0; i < 1; i++)
+                {
+                    var list = new List() { Name = "Sunday" };
+                    context.Lists.Add(list);
+
+                    var permission = new Permission() { User = user, List = list };
+                    context.Permissions.Add(permission);
+
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo = new Todo() { Name = "Eat lunch" };
+                        list.Todos.Add(todo);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo2 = new Todo() { Name = "Free Thing 2" };
+                        list.Todos.Add(todo2);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo3 = new Todo() { Name = "Catch Thing 1" };
+                        list.Todos.Add(todo3);
+                    }
+                }
+                for (int i = 0; i < 1; i++)
+                {
+                    var list = new List() { Name = "Shopping" };
+                    context.Lists.Add(list);
+
+                    var permission = new Permission() { User = user, List = list };
+                    context.Permissions.Add(permission);
+
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo = new Todo() { Name = "Clothes" };
+                        list.Todos.Add(todo);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo2 = new Todo() { Name = "Food for Thing 2" };
+                        list.Todos.Add(todo2);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo3 = new Todo() { Name = "Food for Thing 1" };
+                        list.Todos.Add(todo3);
+                    }
+                }
+
                 context.SaveChanges();
             }
 
@@ -120,19 +180,35 @@ namespace Application.Web
                 user2 = new ApplicationUser();
                 user2.UserName = user2.Email = "a@c.com";
 
-                var result = await userManager.CreateAsync(user2, "testtest2");
+                var result = await userManager.CreateAsync(user2, "testtest1");
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 1; i++)
                 {
-                    var list = new List() { Name = lorem.Word() };
+                    var list = new List() { Name = "Sunday" };
                     context.Lists.Add(list);
+
 
                     var permission = new Permission() { User = user2, List = list };
                     context.Permissions.Add(permission);
 
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < 1; j++)
                     {
-                        var todo = new Todo() { Name = lorem.Sentence(2, 6) };
+                        var todo = new Todo() { Name = "Clean Windows" };
+                        list.Todos.Add(todo);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo = new Todo() { Name = "Eat food" };
+                        list.Todos.Add(todo);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo = new Todo() { Name = "Meeting Parker for trapeze" };
+                        list.Todos.Add(todo);
+                    }
+                    for (int j = 0; j < 1; j++)
+                    {
+                        var todo = new Todo() { Name = "Meet Parker for Manacure" };
                         list.Todos.Add(todo);
                     }
                 }
@@ -146,7 +222,7 @@ namespace Application.Web
                 user3 = new ApplicationUser();
                 user3.UserName = user3.Email = "a@d.com";
 
-                var result = await userManager.CreateAsync(user3, "testtest3");
+                var result = await userManager.CreateAsync(user3, "testtest1");
             }
             context.SaveChanges();
 
@@ -250,7 +326,7 @@ namespace Application.Web
             //context.Permissions.Add(permissions);
             //await context.SaveChangesAsync();
 
-
+            
 
         }
     }
