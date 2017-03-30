@@ -84,7 +84,7 @@ export const SingleListView = React.createClass({
   },
 
   render: function(){
-    if(this.props.listData === undefined){
+    if (this.props.listData === undefined){
       return(
         <div></div>
       )
