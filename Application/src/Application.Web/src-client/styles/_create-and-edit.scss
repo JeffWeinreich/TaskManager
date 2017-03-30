@@ -30,7 +30,21 @@
 }
 
 .create-form input, .edit-form input{
+  border-bottom: 2px solid #bbbbbb;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
   font-size: 24px;
+  outline-width: 0;
+  width: 100%;
+}
+
+.create-form_sharing{
+  margin-bottom: 24px;
+}
+
+.create-form_sharing h2{
+  margin-bottom: 8px;
 }
 
 // TASK ROWS
@@ -41,6 +55,17 @@
 .task-row{
   border-bottom: 2px solid #CCCCCC;
   padding: 8px;
+}
+
+.task-row_name{
+  width: 100%;
+}
+
+.task-row_name input{
+  border: 0;
+  font-size: 24px;
+  margin: 0;
+  outline-width: 0;
 }
 
 // BUTTONS

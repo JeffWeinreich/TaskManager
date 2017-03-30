@@ -101,7 +101,7 @@ export const CreateListView = React.createClass({
         <div className="create-form">
           <div className="create-form_list-name">
             <h2>List Name</h2>
-            <input type="text"/>
+            <input type="text" placeholder="What is this list about?"/>
             {this.state.errorMessageListName}
           </div>
           <div className="create-form_tasks">
@@ -117,7 +117,7 @@ export const CreateListView = React.createClass({
           </div>
           <div className="create-form_sharing">
             <h2>Users to Share With</h2>
-            <input type="text" name="shared-users"></input>
+            <input type="text" name="shared-users" placeholder="Who do you want to see this?"></input>
           </div>
           <div className="create-form_buttons columns-container">
             <div className="create-form_submit" onClick={this._handleFormSubmit}>
@@ -149,12 +149,12 @@ const TaskFormRow = React.createClass({
     return (
       <div className="task-row columns-container">
         <div className="task-row_name">
-          <input name="name" ref="inputVal" onChange={this._handleChange} ref={this.props.i} type="text"></input>
+          <input name="name" ref="inputVal" onChange={this._handleChange} ref={this.props.i} type="text" placeholder="What needs to be done?"></input>
         </div>
-        <div className="task-row_important">
+    {/* <div className="task-row_important">
           <input name="isImportant" ref={this.props.i} onChange={this._handleChange} type="checkbox"></input>
           Important?
-        </div>
+        </div> */}
     {/* <div className="task-row_date-due">
           <i className="icon-calendar"></i>
           <input type="date"></input>
