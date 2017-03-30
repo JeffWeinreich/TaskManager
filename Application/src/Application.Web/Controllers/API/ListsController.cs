@@ -117,26 +117,40 @@ namespace Application.Web.Controllers.API
         }
 
         [HttpPost("~/api/lists/{id}/share")]
-        public async Task<IActionResult> PostList(int id,[FromBody] List list)
+        public async Task<IActionResult> PostList(int id, [FromBody] ApplicationUser applicationuser)
         {
             var userId = _userManager.GetUserId(User);
 
-                list = _context.Lists.Include(q => q.Todos)
-               .Where(q => _context.Permissions.Any(r => r.List.Id == id && r.User.Id == userId))
-               .FirstOrDefault(p => p.Id == id);
-           
-            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var list = _context.Lists.Include(q => q.Todos)
+           .Where(q => _context.Permissions.Any(r => r.List.Id == id && r.User.Id == userId))
+           .FirstOrDefault(p => p.Id == id);
+
+            var user = await _userManager.FindByEmailAsync(applicationuser.Email);
 
             var permission = new Permission();
             permission.List = list;
             permission.User = user;
+
             _context.Permissions.Add(permission);
 
             _context.SaveChanges();
 
-            return Ok(user);
-
+            return Ok(permission);
         }
+
+
+        //[HttpGet("~/api/lists/{id}/share/email")]
+        //public IActionResult GetUser(int id)
+        //{
+        //    var userId = _userManager.GetUserId(User);
+
+        //    var users = _context.Permissions.Include(p => p.User)
+        //        .Where(q => _context.Permissions.Any(r => r.List.Id == id && r.User.Id == userId))
+        //        .FirstOrDefault(p => p.Id == id);
+                
+
+        //    return Ok();
+        //}
 
 
         [HttpDelete]
