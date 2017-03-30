@@ -208,7 +208,7 @@ namespace Application.Web
                     }
                     for (int j = 0; j < 1; j++)
                     {
-                        var todo = new Todo() { Name = "Meet Parker for Manacure" };
+                        var todo = new Todo() { Name = "Meet Parker for manicures" };
                         list.Todos.Add(todo);
                     }
                 }
