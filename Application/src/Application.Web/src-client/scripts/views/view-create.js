@@ -81,6 +81,7 @@ export const CreateListView = React.createClass({
         sharedWith: submittedSharedUsers,
         todos: this.state.tasksToAdd
       };
+      ACTIONS.shareWithOthers(submittedSharedUsers);
       ACTIONS.setListToPost(listObjForSubmission);
     };
   },

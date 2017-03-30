@@ -1,11 +1,15 @@
 // IMPORTS - BACKBONE
 import Backbone from 'backbone'
 
+// IMPORTS - JQUERY
+import $ from "jquery";
+
 // IMPORTS - DATA FLOW
 import {STORE} from './store.js';
 import {UserModel} from './models/model-user.js';
 import {ListModel,ListCollection} from "./models/model-list.js";
 import {TodoModel,TodoCollection} from "./models/model-todos.js";
+import {ShareModel} from "./models/model-share.js";
 
 export const ACTIONS = {
 	setView: function(viewName, routeParamsData){
@@ -99,5 +103,24 @@ export const ACTIONS = {
 			listDataCopy.todos = todosDataCopy
 			STORE.setStore('listData', listDataCopy)
 		})
+	},
+
+	shareWithOthers: function(emailArr){
+		let listID = STORE._data.listData.id;
+		console.log(listID);
+		// $.ajax({
+		//   type: "POST",
+		//   url: url,
+		//   data: {email: emailArr},
+		//   success: success,
+		//   dataType: string
+		// });
+
+
+		// let newShare = new ShareModel;
+		// newShare.set({email: emailArr}).save().then(function(serverRes){
+		// 	console.log(serverRes);
+		// })
+		// console.log(newShare);
 	}
 };
