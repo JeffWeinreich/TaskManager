@@ -6,13 +6,39 @@ import ReactDOM from "react-dom";
 import {STORE} from "../store.js";
 import {ACTIONS} from '../actions.js'
 
-import {SingleListView} from './view-singlelist.js';
+// REACT COMPONENT - SINGLE LIST ITEM
+const SingleList = React.createClass({
+  _mapOverTask: function(givenListObj){
+    let givenTasks = givenListObj.todos;
+    if (typeof givenTasks === 'undefined' ) givenTasks = []
+    let mappedTasks = givenTasks.map(function(task, i){
+      return (
+        <div className="todo" key={i}>
+          <p>{task.name}</p>
+        </div>
+      )
+    });
+    return mappedTasks;
+  },
+  render: function(){
+    if (this.props.listData === undefined){
+      return <div></div>
+    };
+    let listData = this.props.listData
+    return (
+      <div className="single-list" key={listData}>
+        <h3>{listData.name}</h3>
+        {this._mapOverTask(this.props.listData)}
+      </div>
+    )
+  }
+});
 
+// REACT COMPONENT - ALL LISTS VIEW
 export const AllListsView = React.createClass({
-  getInitialState: function(){
+  componentWillMount: function(){
     // console.log('first')
-    ACTIONS.fetchAllLists()
-    return STORE.getStoreData()
+    ACTIONS.fetchAllLists();
 	},
 
   _mapOverLists: function(){
@@ -20,13 +46,17 @@ export const AllListsView = React.createClass({
     let mappedLists = listsArray.map(function(list, i){
       return <SingleList key={i+Date.now()} listData={list}/>
     })
-    return mappedLists;
+    return <div className="mapped-lists">{mappedLists}</div>;
   },
 
 	render: function(){
     let listsArray = this.props.allListsData;
     console.log(listsArray)
-
+    if (this.props.allListsData === undefined){
+      return(
+        <div></div>
+      )
+    };
 		return (
 			<div className="all-lists-container">
         <div className="all-lists-header">
@@ -45,6 +75,7 @@ export const AllListsView = React.createClass({
             <h3>Task 1</h3>
             <h3>Task 2</h3>
             <h3>Task 3</h3>
+            {this._mapOverLists()}
         </div>
 			</div>
 		)
