@@ -24,9 +24,6 @@ const SingleList = React.createClass({
     ACTIONS.changeCurrentNav("SINGLE_LIST", 'lists/'+this.props.listData.id)
   },
   render: function(){
-    if (this.props.listData === undefined){
-      return <div></div>
-    };
     let listData = this.props.listData
     return (
       <div className="single-list" key={listData} onClick={this._viewSingle}>
@@ -39,8 +36,9 @@ const SingleList = React.createClass({
 
 // REACT COMPONENT - ALL LISTS VIEW
 export const AllListsView = React.createClass({
-  componentWillMount: function(){
+  componentDidMount: function(){
     ACTIONS.fetchAllLists();
+
 	},
 
   _mapOverLists: function(){
@@ -53,8 +51,8 @@ export const AllListsView = React.createClass({
 
 	render: function(){
     let listsArray = this.props.allListsData;
-    // console.log(listsArray)
-    if (this.props.allListsData === undefined){
+    console.log(listsArray)
+    if (listsArray === undefined){
       return(
         <div></div>
       )
@@ -65,13 +63,12 @@ export const AllListsView = React.createClass({
           <div className="all-lists-overlay">
             <div className="page-header">
             <div className="page-header_block">
-          <h1>TaskMaster</h1>
-          <h2>All Lists</h2>
+              <h1>TaskMaster</h1>
+              <h2>All Lists</h2>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
         <div className="indiv-list-container column-container">
           <div className="all-lists-single">
             {/* <h3>List Name</h3>

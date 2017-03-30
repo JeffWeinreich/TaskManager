@@ -58,7 +58,11 @@ export const ViewController = React.createClass({
 				componentToRender = <RegistrationView {...this.state}/>
 				break;
       case "ALL_LISTS":
-				componentToRender = <AllListsView {...this.state}/>
+        if(typeof this.state.currentUser.name !== "string"){
+          componentToRender = <div></div>
+        }else{
+          componentToRender = <AllListsView {...this.state}/>
+        }
 				break;
       case "SINGLE_LIST":
         componentToRender = <SingleListView {...this.state}/>
