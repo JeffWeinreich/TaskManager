@@ -6,6 +6,8 @@ import ReactDOM from "react-dom";
 import {STORE} from "../store.js";
 import {ACTIONS} from '../actions.js'
 
+import {SingleListView} from './view-singlelist.js';
+
 export const AllListsView = React.createClass({
   getInitialState: function(){
     // console.log('first')
@@ -13,8 +15,16 @@ export const AllListsView = React.createClass({
     return STORE.getStoreData()
 	},
 
+  _mapOverLists: function(){
+    let listsArray = this.props.allListsData;
+    let mappedLists = listsArray.map(function(list, i){
+      return <SingleList key={i+Date.now()} listData={list}/>
+    })
+    return mappedLists;
+  },
+
 	render: function(){
-    let listsArray = this.props.listData;
+    let listsArray = this.props.allListsData;
     console.log(listsArray)
 
 		return (
