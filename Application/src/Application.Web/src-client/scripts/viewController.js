@@ -37,10 +37,10 @@ export const ViewController = React.createClass({
     let router = new AppRouter();
   },
   _getNavbar: function(currentUser){
-    let theNavbar = <NavbarAnon  {...this.state}/>
+    let theNavbar = <NavbarAuth  {...this.state}/>
 
-    if(typeof currentUser.name !== 'undefined'){
-          theNavbar = <NavbarAuth {...this.state}/>
+    if(typeof currentUser.name !== 'string'){
+          theNavbar = <NavbarAnon {...this.state}/>
     }
       return theNavbar;
   },
