@@ -53,8 +53,8 @@ export const AllListsView = React.createClass({
 
 	render: function(){
     let listsArray = this.props.allListsData;
-    // console.log(listsArray)
-    if (this.props.allListsData === undefined){
+    console.log(listsArray)
+    if (listsArray === undefined){
       return(
         <div></div>
       )
@@ -65,13 +65,12 @@ export const AllListsView = React.createClass({
           <div className="all-lists-overlay">
             <div className="page-header">
             <div className="page-header_block">
-          <h1>TaskMaster</h1>
-          <h2>All Lists</h2>
+              <h1>TaskMaster</h1>
+              <h2>All Lists</h2>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
         <div className="indiv-list-container column-container">
           <div className="all-lists-single">
             {/* <h3>List Name</h3>

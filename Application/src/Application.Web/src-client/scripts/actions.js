@@ -25,8 +25,16 @@ export const ACTIONS = {
 
 	loginUser: function(credsObj){
 		UserModel.logIn(credsObj.email, credsObj.password).then(function(serverRes){
-			STORE.setStore('currentUser', serverRes)
+			STORE.setStore('currentUser', serverRes);
+			ACTIONS.fetchCurrenUser();
 		})
+	},
+
+	logUserOut: function(){
+		UserModel.logOut().then(function(){
+			STORE.setStore('currentUser', {})
+		})
+		ACTIONS.changeCurrentNav("routeToWelcome","");
 	},
 
 	registerNewUser: function(newUserInfoObj){
@@ -49,12 +57,6 @@ export const ACTIONS = {
 		window.location.hash = urlRoute
 	},
 
-	logUserOut: function(){
-		UserModel.logOut().then(function(){
-			STORE.setStore('currentUser', {})
-		})
-	},
-
 	setListToPost: function(givenListObj, sharedUsers){
 		STORE.setStore("listToPost", givenListObj)
 		let newMod = new ListModel();
@@ -65,24 +67,33 @@ export const ACTIONS = {
 				ACTIONS.shareWithOthers(sharedUsers, serverRes.id)
 			}
 			STORE.setStore("listData", serverRes);
-			// ACTIONS.changeCurrentNav("routeToSingleList","lists/"+serverRes.id);
+			ACTIONS.changeCurrentNav("routeToSingleList","lists/"+serverRes.id);
 		});
 	},
 
 	shareWithOthers: function(sharedUsers, responseId){
 		let emailArr = sharedUsers.split(", ");
-		emailArr.map(function(email){
+		let postToShare = function(emailStr,listId){
+			let emailObj = {"email": emailStr};
+			let emailJSON = JSON.stringify(emailObj)
 			$.ajax({
-  			url:`/api/lists/${responseId}/share`,
-  			type:"POST",
-  			data:{email: email},
-  			contentType:"application/json; charset=utf-8",
-  			dataType:"json",
-  			success: function(response){
+				url:`/api/lists/${listId}/share`,
+				type:"POST",
+				data: emailJSON,
+				contentType:"application/json; charset=utf-8",
+				dataType:"json",
+				success: function(response){
 					console.log(response)
-  			}
+				}
+
 			})
-		})
+		};
+		postToShare(emailArr[0], responseId)
+
+		// for (var i = 0; i < emailArr.length; i++){
+		// 	console.log(emailArr[i])
+		// 	postToShare(emailArr[i], responseId)
+		// };
 	},
 
 	fetchCurrenUser: function(){

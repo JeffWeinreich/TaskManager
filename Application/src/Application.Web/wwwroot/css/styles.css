@@ -13,7 +13,7 @@
 
 .page-header h2 {
   font-family: 'Pavanam', sans-serif;
-  font-size: 18px;
+  font-size: 30px;
   color: #3E383A;
   letter-spacing: 2px;
   margin: 0; }
@@ -74,6 +74,10 @@
   padding: 12px;
   vertical-align: top; }
 
+.nav-all-lists,
+.nav-create-list {
+  margin-top: 12px; }
+
 .right-buttons_log-in {
   margin-left: 8px; }
 
@@ -115,6 +119,7 @@
 .info-bar_shared-with {
   font-family: 'Pavanam', sans-serif;
   font-size: 24px;
+  letter-spacing: 2px;
   width: 80%; }
 
 .info-bar_edit-btn {
@@ -128,13 +133,15 @@
   color: #FFFFFF;
   font-family: 'Pavanam', sans-serif;
   font-size: 24px;
+  letter-spacing: 2px;
   padding: 8px; }
 
 .list-container {
   margin: 16px; }
 
 .list-container * {
-  font-family: 'Pavanam', sans-serif; }
+  font-family: 'Pavanam', sans-serif;
+  letter-spacing: 2px; }
 
 .list-header {
   background-color: #446CB6;
@@ -193,7 +200,8 @@
   font-size: 24px; }
 
 .task-done .todo_completed p {
-  font-family: 'Pavanam', sans-serif; }
+  font-family: 'Pavanam', sans-serif;
+  letter-spacing: 2px; }
 
 .welcome-header {
   width: 100%; }
@@ -274,9 +282,9 @@
 
 @media screen and (min-width: 768px) {
   .welcome-header {
-    min-height: 50vh; }
+    min-height: 440px; }
   .welcome-overlay {
-    min-height: 50vh; }
+    min-height: 440px; }
   .welcome-header h1 {
     padding-top: 82px; }
   .welcome-row {
@@ -298,7 +306,11 @@
     max-width: 48%;
     padding-bottom: 32px; }
   .box2 {
-    border-bottom: 0px; } }
+    border-bottom: 0px; }
+  .welcome-row .box3 i {
+    color: #3E383A;
+    font-size: 40px;
+    padding: 0 6px 0 6px; } }
 
 @media screen and (min-width: 1000px) {
   .welcome-header {
@@ -351,7 +363,19 @@
   margin: 8px; }
 
 .create-form input, .edit-form input {
-  font-size: 24px; }
+  border-bottom: 2px solid #bbbbbb;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  font-size: 24px;
+  outline-width: 0;
+  width: 100%; }
+
+.create-form_sharing {
+  margin-bottom: 24px; }
+
+.create-form_sharing h2 {
+  margin-bottom: 8px; }
 
 .task-row * {
   display: inline-block; }
@@ -359,6 +383,15 @@
 .task-row {
   border-bottom: 2px solid #CCCCCC;
   padding: 8px; }
+
+.task-row_name {
+  width: 100%; }
+
+.task-row_name input {
+  border: 0;
+  font-size: 24px;
+  margin: 0;
+  outline-width: 0; }
 
 .create-form_buttons, .edit-form_buttons {
   text-align: center; }
@@ -388,6 +421,17 @@
 .create-form_error-message, .edit-form_error-message {
   color: #FF0000;
   display: inline-block; }
+
+.login-header {
+  background-image: url("https://source.unsplash.com/505eectW54k");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 40vh; }
+
+.login-overlay {
+  background-color: rgba(206, 209, 222, 0.6);
+  min-height: 40vh; }
 
 .login-container h3 {
   font-family: 'Pavanam', sans-serif;
@@ -420,7 +464,7 @@
   padding: 12px; }
 
 .reg-header {
-  background-image: url("https://source.unsplash.com/505eectW54k");
+  background-image: url("https://source.unsplash.com/RdmLSJR-tq8");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -483,12 +527,34 @@
   background-color: rgba(206, 209, 222, 0.6);
   min-height: 40vh; }
 
+.all-lists-container {
+  text-align: center; }
+
+.all-lists-container .single-list {
+  width: 80%;
+  margin-left: 10%;
+  border: 1px solid #3E383A;
+  border-radius: 10px;
+  margin-bottom: 24px; }
+
 .all-lists-container h3 {
-  font-family: 'Pavanam', sans-serif;
+  font-family: 'Abril Fatface', serif;
   color: #3E383A;
   letter-spacing: 2px;
   margin-left: 5%;
-  margin-bottom: 4px; }
+  margin-right: 5%;
+  padding-bottom: 4px;
+  margin-top: 6px;
+  border-bottom: 1px solid #446CB6; }
+
+.all-lists-container p {
+  font-family: 'Pavanam', sans-serif;
+  color: #3E383A;
+  letter-spacing: 2px;
+  padding-bottom: 2px;
+  margin-top: 6px;
+  text-align: left;
+  padding-left: 5%; }
 
 #app-container {
   margin-top: 72px; }

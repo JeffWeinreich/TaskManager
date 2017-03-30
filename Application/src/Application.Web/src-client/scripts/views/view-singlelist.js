@@ -7,17 +7,12 @@ import {ACTIONS} from '../actions.js'
 // REACT COMPONENT - SINGLE TASK/TO-DO
 const SingleToDo = React.createClass({
   _handleCompletion: function(event){
-    console.log(event.target);
-    console.log(event.currentTarget);
-    console.log(this.props)
     let objToSave = Object.assign({}, this.props.taskData)
     if(objToSave.isDone === true){
       objToSave.isDone = false
     } else {
       objToSave.isDone = true
     }
-
-    console.log(objToSave)
     ACTIONS.updateTodo(objToSave)
   },
 
@@ -65,7 +60,6 @@ export const SingleListView = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps){
-    console.log('new PROPS', newProps)
     this.setState({
       realPropsListData : newProps.listData
     })
