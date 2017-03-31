@@ -37,7 +37,7 @@ const SingleToDo = React.createClass({
 
     return (
       <div className={`todo-singleview columns-container ${completeClassName}`} onClick={this._handleCompletion}>
-        <div className="todo_checkedOff">{checkmarkJSX}</div>
+        {/* <div className="todo_checkedOff">{checkmarkJSX}</div> */}
         <div className="todo_name"><h2>{givenTaskObj.name}</h2></div>
         {/* {importantInfo} */}
         {/* {completionInfo} */}

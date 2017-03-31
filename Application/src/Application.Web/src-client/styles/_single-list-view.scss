@@ -87,6 +87,11 @@
   margin: 0;
 }
 
+.todo_name{
+  margin-left: 16px;
+  width: 100%;
+}
+
 .todo_completed{
   display: block;
   margin-top: 0;
@@ -94,7 +99,7 @@
 }
 
 .task-done{
-  background-color: $color-secondary-2-1;
+  background-color: #51eebb;
 }
 
 .task-done .todo_name h2{
