@@ -12,8 +12,10 @@ const SingleList = React.createClass({
     let givenTasks = givenListObj.todos;
     if (typeof givenTasks === 'undefined' ) givenTasks = []
     let mappedTasks = givenTasks.map(function(task, i){
+      let todoClass = "todo";
+      if (task.isDone === true){todoClass = "todo todo_done"}
       return (
-        <div className="todo" key={i}>
+        <div className={todoClass} key={i}>
           <p>{task.name}</p>
         </div>
       )

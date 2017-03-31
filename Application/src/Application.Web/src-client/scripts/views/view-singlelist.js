@@ -92,9 +92,9 @@ export const SingleListView = React.createClass({
           <h2>Single List View</h2>
         </div>
         <div className="info-bar columns-container">
-          <div className="info-bar_shared-with">
+          {/* <div className="info-bar_shared-with">
             <h4>Shared With: {givenListObj.sharedWith}</h4>
-          </div>
+          </div> */}
           <div className="info-bar_edit-btn" onClick={this._handleEditClick}>
             <h4>Edit List</h4>
           </div>
